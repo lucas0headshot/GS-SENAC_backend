@@ -1,0 +1,12 @@
+package com.senac.gestaocurso.enums;
+
+public enum Escolaridade {
+    FUNDAMENTALCOMPLETO,
+    FUNDAMENTALINCOMPLETO,
+    MEDIOCOMPLETO,
+    MEDIOINCOMPLETO,
+    SUPERIORCOMPLETO,
+    SUPERIORINCOMPLETO,
+    POSCOMPLETA,
+    POSINCOMPLETA;
+}
