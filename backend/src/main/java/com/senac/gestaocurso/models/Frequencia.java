@@ -2,6 +2,7 @@ package com.senac.gestaocurso.models;
 
 
 public class Frequencia {
+<<<<<<< Updated upstream
     private Boolean frequencia;
     private Aula diaDaAula;
     private Funcionario aluno;
@@ -41,4 +42,7 @@ public class Frequencia {
                 ", aluno=" + aluno +
                 '}';
     }
+=======
+
+>>>>>>> Stashed changes
 }

@@ -1,17 +1,37 @@
 package com.senac.gestaocurso.models;
 
+
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+
 import java.time.LocalDate;
 
-public class Avaliacao {
 
+
+@Entity
+public class Avaliacao {
+    @Column(nullable = false)
     private Funcionario aluno;
+
+    @Column(nullable = false)
     private Funcionario professor;
+
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private Integer nota;
+
+    @Column(nullable = false)
     private LocalDate data;
+
+
 
     public Avaliacao() {
     }
+
+
 
     public Funcionario getAluno() {
         return aluno;
@@ -52,6 +72,8 @@ public class Avaliacao {
     public void setData(LocalDate data) {
         this.data = data;
     }
+
+
 
     @Override
     public String toString() {

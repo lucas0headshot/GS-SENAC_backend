@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.senac</groupId>
-	<artifactId>gestao-curso</artifactId>
+	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>gestao-curso</name>
 	<description>projeto semestral da matéria de backend para gestão de cursos</description>

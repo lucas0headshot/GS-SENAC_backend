@@ -1,23 +1,30 @@
 package com.senac.gestaocurso.models;
 
-import com.senac.gestaocurso.enums.DiaDaSemana;
 
-public class Materia {
 
-    private String nomeDaMateria;
+import jakarta.persistence.Entity;
+
+
+
+@Entity
+public class Materia extends EntityID {
+    private String nome;
     private Integer cargaHoraria;
     private Funcionario nomeProfessor;
-    private DiaDaSemana diaDaSemana;
+
+
 
     public Materia() {
     }
 
+
+
     public String getNomeDaMateria() {
-        return nomeDaMateria;
+        return nome;
     }
 
     public void setNomeDaMateria(String nomeDaMateria) {
-        this.nomeDaMateria = nomeDaMateria;
+        this.nome = nomeDaMateria;
     }
 
     public Integer getCargaHoraria() {
@@ -36,21 +43,14 @@ public class Materia {
         this.nomeProfessor = nomeProfessor;
     }
 
-    public DiaDaSemana getDiaDaSemana() {
-        return diaDaSemana;
-    }
 
-    public void setDiaDaSemana(DiaDaSemana diaDaSemana) {
-        this.diaDaSemana = diaDaSemana;
-    }
 
     @Override
     public String toString() {
         return "Materia{" +
-                "nomeDaMateria='" + nomeDaMateria + '\'' +
+                "nomeDaMateria='" + nome + '\'' +
                 ", cargaHoraria=" + cargaHoraria +
                 ", nomeProfessor=" + nomeProfessor +
-                ", diaDaSemana=" + diaDaSemana +
                 '}';
     }
 }
