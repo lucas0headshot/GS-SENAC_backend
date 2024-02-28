@@ -10,7 +10,7 @@ import java.util.List;
 
 @Entity
 public class Curso {
-    private String nomeCurso;
+    private String nome;
     private Funcionario coordenador;
     private Integer cargaHorariaTotal;
     private List<Materia> materias;
@@ -18,15 +18,12 @@ public class Curso {
 
     public Curso() {
     }
-
-
-
-    public String getNomeCurso() {
-        return nomeCurso;
+    public String getNome() {
+        return nome;
     }
 
-    public void setNomeCurso(String nomeCurso) {
-        this.nomeCurso = nomeCurso;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Funcionario getCoordenador() {
@@ -58,7 +55,7 @@ public class Curso {
     @Override
     public String toString() {
         return "Curso{" +
-                "nomeCurso='" + nomeCurso + '\'' +
+                "nomeCurso='" + nome + '\'' +
                 ", coordenador=" + coordenador +
                 ", cargaHorariaTotal=" + cargaHorariaTotal +
                 ", materias=" + materias +
