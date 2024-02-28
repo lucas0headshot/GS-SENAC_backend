@@ -27,19 +27,19 @@ public class Turma extends EntityID {
 
     @Column(nullable = false)
     private LocalDate dataFinal;
+    private Curso curso;
+    private String descricao;
 
 
 
     public Turma() {
     }
 
-
-
-    public String getNomeTurma() {
+    public String getNome() {
         return nome;
     }
 
-    public void setNomeTurma(String nomeTurma) {
+    public void setNome(String nomeTurma) {
         this.nome = nomeTurma;
     }
 
@@ -65,6 +65,22 @@ public class Turma extends EntityID {
 
     public void setDataFinal(LocalDate dataFinal) {
         this.dataFinal = dataFinal;
+    }
+
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
+
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
 
