@@ -1,14 +1,23 @@
 package com.senac.gestaocurso.models;
 
 
-public class Frequencia {
-<<<<<<< Updated upstream
+
+import jakarta.persistence.Entity;
+
+
+
+@Entity
+public class Frequencia extends EntityID {
     private Boolean frequencia;
-    private Aula diaDaAula;
+    private Aula aula;
     private Funcionario aluno;
+
+
 
     public Frequencia() {
     }
+
+
 
     public Boolean getFrequencia() {
         return frequencia;
@@ -18,12 +27,12 @@ public class Frequencia {
         this.frequencia = frequencia;
     }
 
-    public Aula getDiaDaAula() {
-        return diaDaAula;
+    public Aula getAula() {
+        return aula;
     }
 
-    public void setDiaDaAula(Aula diaDaAula) {
-        this.diaDaAula = diaDaAula;
+    public void setAula(Aula aula) {
+        this.aula = aula;
     }
 
     public Funcionario getAluno() {
@@ -34,15 +43,14 @@ public class Frequencia {
         this.aluno = aluno;
     }
 
+
+
     @Override
     public String toString() {
         return "Frequencia{" +
                 "frequencia=" + frequencia +
-                ", diaDaAula=" + diaDaAula +
+                ", aula=" + aula +
                 ", aluno=" + aluno +
                 '}';
     }
-=======
-
->>>>>>> Stashed changes
 }

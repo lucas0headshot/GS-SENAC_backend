@@ -4,13 +4,15 @@ package com.senac.gestaocurso.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
 import java.time.LocalDate;
 
 
 
+/**
+ * Classe precisa ser re-analisada
+ * */
 @Entity
-public class Avaliacao {
+public class Avaliacao extends EntityID {
     @Column(nullable = false)
     private Funcionario aluno;
 

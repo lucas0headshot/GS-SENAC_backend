@@ -5,7 +5,6 @@ package com.senac.gestaocurso.models;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.ManyToOne;
-
 import java.time.LocalDate;
 import java.util.List;
 
@@ -27,13 +26,16 @@ public class Turma extends EntityID {
 
     @Column(nullable = false)
     private LocalDate dataFinal;
-    private Curso curso;
+
+    @Column(nullable = false)
     private String descricao;
 
 
 
     public Turma() {
     }
+
+
 
     public String getNome() {
         return nome;
