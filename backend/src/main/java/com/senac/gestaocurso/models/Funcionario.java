@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @Entity
-public class Funcionario {
+public class Funcionario extends EntityID {
     private String nome;
     private String cpf;
     private String rg;
