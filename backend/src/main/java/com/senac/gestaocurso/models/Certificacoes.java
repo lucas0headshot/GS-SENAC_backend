@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.models;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 
@@ -9,9 +10,14 @@ import java.time.LocalDate;
 
 
 @Entity
-public class Certificacoes {
+public class Certificacoes extends EntityID {
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private Integer cargaHoraria;
+
+    @Column(nullable = false)
     private LocalDate dataEmissao;
 
 
@@ -44,6 +50,8 @@ public class Certificacoes {
     public void setDataEmissao(LocalDate dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
+
+
 
     @Override
     public String toString() {

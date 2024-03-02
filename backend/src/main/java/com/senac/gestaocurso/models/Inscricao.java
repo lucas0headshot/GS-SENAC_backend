@@ -24,8 +24,10 @@ public class Inscricao extends EntityID {
     private Integer valor;
 
 
+
     public Inscricao() {
     }
+
 
 
     public Funcionario getInscrito() {
@@ -61,7 +63,7 @@ public class Inscricao extends EntityID {
     }
 
 
-    
+
     @Override
     public String toString() {
         return "Inscricao{" +

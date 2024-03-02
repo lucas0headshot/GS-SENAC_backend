@@ -3,6 +3,7 @@ package com.senac.gestaocurso.models;
 
 
 import com.senac.gestaocurso.enums.Escolaridade;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 import java.time.LocalDate;
@@ -10,9 +11,14 @@ import java.time.LocalDate;
 
 
 @Entity
-public class Dependentes {
+public class Dependentes extends EntityID {
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private Escolaridade escolaridade;
+
+    @Column(nullable = false)
     private LocalDate dataNasc;
 
 
@@ -45,6 +51,8 @@ public class Dependentes {
     public void setDataNasc(LocalDate dataNasc) {
         this.dataNasc = dataNasc;
     }
+
+
 
     @Override
     public String toString() {

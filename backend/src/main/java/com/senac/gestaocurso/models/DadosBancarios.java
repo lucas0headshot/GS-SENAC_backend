@@ -3,15 +3,23 @@ package com.senac.gestaocurso.models;
 
 
 import com.senac.gestaocurso.enums.TipoContaBancaria;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 
 
 @Entity
-public class DadosBancarios {
+public class DadosBancarios extends EntityID {
+    @Column(nullable = false)
     private String banco;
+
+    @Column(nullable = false)
     private String agencia;
+
+    @Column(nullable = false)
     private String conta;
+
+    @Column(nullable = false)
     private TipoContaBancaria tipoContaBancaria;
 
 
@@ -52,6 +60,7 @@ public class DadosBancarios {
     public void setTipoContaBancaria(TipoContaBancaria tipoContaBancaria) {
         this.tipoContaBancaria = tipoContaBancaria;
     }
+
 
 
     @Override

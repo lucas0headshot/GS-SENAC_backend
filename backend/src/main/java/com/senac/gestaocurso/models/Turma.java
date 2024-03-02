@@ -4,6 +4,7 @@ package com.senac.gestaocurso.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import java.time.LocalDate;
 import java.util.List;
@@ -13,13 +14,14 @@ import java.util.List;
 @Entity
 public class Turma extends EntityID {
     @ManyToOne
+    @JoinColumn(name = "curso_id")
     private Curso curso;
 
     @Column(nullable = false)
     private String nome;
 
     @Column(nullable = false)
-    private List<Funcionario> alunos;
+    private List<Inscricao> inscritos;
 
     @Column(nullable = false)
     private LocalDate dataInicio;
@@ -45,12 +47,12 @@ public class Turma extends EntityID {
         this.nome = nomeTurma;
     }
 
-    public List<Funcionario> getAlunos() {
-        return alunos;
+    public List<Inscricao> getInscritos() {
+        return inscritos;
     }
 
-    public void setAlunos(List<Funcionario> alunos) {
-        this.alunos = alunos;
+    public void setInscritos(List<Inscricao> inscritos) {
+        this.inscritos = inscritos;
     }
 
     public LocalDate getDataInicio() {
@@ -91,7 +93,7 @@ public class Turma extends EntityID {
     public String toString() {
         return "Turma{" +
                 "nomeTurma='" + nome + '\'' +
-                ", alunos=" + alunos +
+                ", inscritos=" + inscritos +
                 ", dataInicio=" + dataInicio +
                 ", dataFinal=" + dataFinal +
                 '}';
