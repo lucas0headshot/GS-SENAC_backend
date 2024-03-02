@@ -1,6 +1,7 @@
 package com.senac.gestaocurso.models;
 
 import com.senac.gestaocurso.enums.*;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 import java.time.LocalDate;
@@ -11,7 +12,12 @@ import java.util.List;
 
 @Entity
 public class Funcionario extends EntityID {
+<<<<<<< Updated upstream
+=======
+    @Column(nullable = false)
+>>>>>>> Stashed changes
     private String nome;
+
     private String cpf;
     private String rg;
     private String endereco;

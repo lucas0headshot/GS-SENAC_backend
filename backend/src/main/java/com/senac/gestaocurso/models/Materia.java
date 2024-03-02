@@ -2,20 +2,27 @@ package com.senac.gestaocurso.models;
 
 
 
-import jakarta.persistence.Entity;
-
+import jakarta.persistence.*;
 
 
 @Entity
 public class Materia extends EntityID {
+    @Column(nullable = false)
     private String nome;
+
+    @Column(nullable = false)
     private Integer cargaHoraria;
-    private Funcionario nomeProfessor;
+
+    @ManyToOne
+    @JoinColumn(name = "professor_id")
+    private Funcionario professor;
 
 
 
     public Materia() {
     }
+
+
 
     public String getNome() {
         return nome;
@@ -33,12 +40,12 @@ public class Materia extends EntityID {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public Funcionario getNomeProfessor() {
-        return nomeProfessor;
+    public Funcionario getProfessor() {
+        return professor;
     }
 
-    public void setNomeProfessor(Funcionario nomeProfessor) {
-        this.nomeProfessor = nomeProfessor;
+    public void setProfessor(Funcionario professor) {
+        this.professor = professor;
     }
 
 
@@ -48,7 +55,7 @@ public class Materia extends EntityID {
         return "Materia{" +
                 "nomeDaMateria='" + nome + '\'' +
                 ", cargaHoraria=" + cargaHoraria +
-                ", nomeProfessor=" + nomeProfessor +
+                ", professor=" + professor +
                 '}';
     }
 }

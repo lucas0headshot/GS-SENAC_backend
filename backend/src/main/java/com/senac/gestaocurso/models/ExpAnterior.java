@@ -2,16 +2,24 @@ package com.senac.gestaocurso.models;
 
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import java.time.LocalDate;
 
 
 
 @Entity
-public class ExpAnterior {
+public class ExpAnterior extends EntityID {
+    @Column(nullable = false)
     private String descricao;
+
+    @Column(nullable = false)
     private Cargo cargo;
+
+    @Column(nullable = false)
     private LocalDate periodoFinal;
+
+    @Column(nullable = false)
     private LocalDate peridoInicial;
 
 
@@ -52,6 +60,8 @@ public class ExpAnterior {
     public void setPeridoInicial(LocalDate peridoInicial) {
         this.peridoInicial = peridoInicial;
     }
+
+
 
     @Override
     public String toString() {

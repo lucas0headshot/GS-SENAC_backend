@@ -4,9 +4,6 @@ package com.senac.gestaocurso.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
-
-
 import java.util.List;
 
 

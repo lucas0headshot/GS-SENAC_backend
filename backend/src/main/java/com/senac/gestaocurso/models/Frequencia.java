@@ -2,14 +2,20 @@ package com.senac.gestaocurso.models;
 
 
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 
 
 
 @Entity
 public class Frequencia extends EntityID {
+    @Column(nullable = false)
     private Boolean frequencia;
+
+    @Column(nullable = false)
     private Aula aula;
+
+    @Column(nullable = false)
     private Funcionario aluno;
 
 
