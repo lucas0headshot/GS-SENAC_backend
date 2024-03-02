@@ -1,0 +1,22 @@
+.button {
+    width: fit-content;
+    height: fit-content;
+    padding: auto;
+    transition: all ease .3s;
+    background-color: #fff;
+    color: #000;
+    border-radius: 7px;
+}
+.button:hover {
+    opacity: 0.8;
+}
+.button:active {
+    transform: scale(1.1);
+}
+
+
+
+.input {
+    width: fit-content;
+    height: fit-content;
+}

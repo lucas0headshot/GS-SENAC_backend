@@ -1,3 +1,59 @@
+html, * {
+    box-sizing: border-box;
+}
+
+
+
 body {
-    background-color: red;
+    width: 100vh;
+    height: 100vh;
+}
+
+
+
+header {
+    background-color: gray;
+    padding: 1rem 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+
+
+main {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-flow: wrap column;
+    justify-content: center;
+    align-items: center;
+    background-image: url('/lucas/assets/images/background.jpg');
+}
+
+
+
+.card {
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 3rem;
+    width: 50%;
+    height: 50%;
+}
+.card-header {
+    padding-bottom: 0.5rem;
+}
+.card-body {
+    padding: 2rem;
+}
+.card-footer {
+    padding: 1rem;
+}
+
+
+
+footer {
+    padding: 1rem 0 1rem 0;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 500;
 }

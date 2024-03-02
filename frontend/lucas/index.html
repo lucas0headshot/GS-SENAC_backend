@@ -5,12 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gestão de Cursos</title>
 
+    <link rel="stylesheet" href="assets/css/components.css">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 <body>
-    <header>Header</header>
-    <main>Principal</main>
-    <footer>Footer</footer>
+    <header>
+        <h1>Gestão de Cursos</h1>
+    </header>
+    
+    <main>
+        <div class="container">
+            <div class="card" id="card-login">
+                <div class="card-header">
+                    Entre na sua conta!
+                </div>
+
+                <div class="card-body">
+                    <form id="formLogin">
+                        <div class="form-control">
+                            <label for="usuario">Usuário</label>
+                            <input type="text" class="input" name="usuario" maxlength="100" required placeholder="Digite seu usuário" id="usuario">
+                        </div>
+                        <div class="form-control">
+                            <label for="senha"></label>
+                            <input type="password" name="senha" class="input" maxlength="100" required placeholder="Digite sua senha">
+                        </div>
+                        <div class="card-button">
+                            <button type="submit" class="button button-primary" name="entrar" id="btnEntrar">Entrar</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="card-footer">
+                    <p>Ainda não possui uma ?</p>
+                    <a href="cadastro">Crie uma clicando aqui</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>Desenvolvido por grupo GS - Copyright 2024</p>
+    </footer>
 
 
 
