@@ -9,6 +9,12 @@
         <module name="backend" />
       </profile>
     </annotationProcessing>
+<<<<<<< Updated upstream
+=======
+    <bytecodeTargetLevel>
+      <module name="backend" target="17" />
+    </bytecodeTargetLevel>
+>>>>>>> Stashed changes
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
