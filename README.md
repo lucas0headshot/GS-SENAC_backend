@@ -58,7 +58,7 @@
 
 ---
 
-## 👨‍💻 Authores
+## 👨‍💻 Autores
 
 <table>
   <tr>
