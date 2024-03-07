@@ -19,83 +19,103 @@
         <header>
             <nav class="navbar navbar-expand-lg bg-dark">
                 <div class="container-fluid">
-                    <a href="#" class="navbar-brand text-white">Gestão de Cursos</a>
+                    <a href="#" class="navbar-brand text-white">
+                        <img src="assets/images/favicon.png" alt="Logo" class="img-fluid mx-auto border-0">
+                    </a>
                 </div>
 
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-
-                <div class="collapse navbar-collapse" id="navbarContent">
-                    <ul class="navbar-nav me-auto mb mb-lg-0">
-                        <li class="nav-item">
-                            <a href="#entrar" class="nav-link active" aria-current="page">Entrar</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="#cadastrar" class="nav-link"></a>
-                        </li>
-                    </ul>
-                </div>
             </nav>
         </header>
         
-        <main class="container w-100 h-100">
+
+        <main class="container-fluid bg-personalizado">
             <div class="row">
-                <div class="col-12">
-                    <!-- Card Login -->
-                        <div class="card col-lg-4 col-md-6 col-sm-12 p-1 bg-body" id="entrar">
-                            <div class="card-header bg-body border-0 rounded-0">
-                                <h3 class="card-title">Entre na sua conta!</h3>
-                            </div>
+                <div class="col">
+                    <div class="login-container row align-items-center justify-content-center">
+                        <!-- Card Login -->
+                            <div class="card col-lg-4 col-md-6 col-sm-12 p-1 bg-body" id="entrar">
+                                <div class="card-header bg-body border-0 rounded-0">
+                                    <h3 class="card-title">Entre na sua conta!</h3>
+                                </div>
 
-                            <div class="card-body">
-                                <form id="formLogin">
-                                    <div class="row">
-                                        <div class="col-auto mb-3 form-control border-0">
-                                            <label for="usuario" class="form-label fw-bold">Usuário</label>
-                                            <input type="text" class="form-control" name="usuario" maxlength="100" required placeholder="Digite seu usuário" id="usuario">
+                                <div class="card-body">
+                                    <form id="formLogin">
+                                        <div class="row">
+                                            <div class="col-auto mb-3 form-control border-0">
+                                                <label for="usuario" class="form-label fw-bold">Usuário</label>
+                                                <input type="text" class="form-control" name="usuario" maxlength="100" required placeholder="Digite seu usuário" id="usuario">
+                                            </div>
+
+                                            <div class="col-auto form-control mb-3 border-0">
+                                                <label for="senha" class="form-label fw-bold">Senha </label>
+                                                <input type="password" name="senha" class="form-control" maxlength="100" required placeholder="Digite sua senha">
+                                            </div>
                                         </div>
-                                        <div class="col-auto form-control mb-3 border-0">
-                                            <label for="senha" class="form-label fw-bold">Senha </label>
-                                            <input type="password" name="senha" class="form-control" maxlength="100" required placeholder="Digite sua senha">
+
+                                        <div class="text-center pt-1 pb-1">
+                                            <button type="submit" class="btn btn-md btn-primary" name="entrar" id="btnEntrar">Entrar</button>
                                         </div>
-                                    </div>
+                                    </form>
+                                </div>
 
-                                    <div class="text-center pt-1 pb-1">
-                                        <button type="submit" class="btn btn-md btn-primary" name="entrar" id="btnEntrar">Entrar</button>
+                                <div class="card-footer bg-body m-0">
+                                    <div class="card-text text-center">
+                                        <p class="fs-5">Ainda não possui uma?</p>
+                                        <a href="#" id="aCadastrarConta" class="fs-5">Crie uma clicando aqui</a>
                                     </div>
-                                </form>
-                            </div>
-
-                            <div class="card-footer bg-body m-0">
-                                <div class="card-text text-center">
-                                    <p class="fs-5">Ainda não possui uma?</p>
-                                    <a href="cadastro" class="fs-5">Crie uma clicando aqui</a>
                                 </div>
                             </div>
-                        </div>
-                    <!-- /Card Login -->
+                        <!-- /Card Login -->
 
 
-                    <!-- Card Cadastro -->
-                        <div class="card col-lg-4 col-md-6 col-sm-12 p-1 bg-body" id="cadastrar">
-                            <div class="card-header bg-body border-0 rounded-0">
-                                <h3 class="card-title">Crie sua conta!</h3>
+                        <!-- Card Cadastro -->
+                            <div class="card col-lg-4 col-md-6 col-sm-12 p-1 bg-body d-none" id="cadastrar">
+                                <div class="card-header bg-body border-0 rounded-0">
+                                    <h3 class="card-title">Crie sua conta!</h3>
+                                </div>
+
+                                <div class="card-body">
+                                    <form id="formCadastro">
+                                        <div class="row">
+                                            <div class="col-auto mb-3 form-control border-0">
+                                                <label for="usuario_cadastro" class="form-label fw-bold">Usuário</label>
+                                                <input type="text" class="form-control" name="usuario_cadastro" maxlength="100" required placeholder="Digite seu usuário" id="usuario_cadastro">
+                                            </div>
+
+                                            <div class="col-auto mb-3 form-control border-0">
+                                                <label for="email_cadastro" class="form-label fw-bold">E-mail</label>
+                                                <input type="email" class="form-control" name="email_cadastro" maxlength="100" required placeholder="Digite seu email" id="email_cadastro">
+                                            </div>
+
+                                            <div class="col form-control mb-3 border-0">
+                                                <label for="senha_cadastro" class="form-label fw-bold">Senha</label>
+                                                <input type="password" name="senha_cadastro" class="form-control" maxlength="100" required placeholder="Digite sua senha">
+                                            </div>
+
+                                            <div class="col form-control d-none mb-3 border-0">
+                                                <label for="repita_senha_cadastro" class="form-label fw-bold">Repita sua senha</label>
+                                                <input type="password" name="repita_senha_cadastro" class="form-control" maxlength="100" required placeholder="Re-digite sua senha">
+                                            </div>
+                                        </div>
+
+                                        <div class="card-text text-center">
+                                            <button class="btn btn-md btn-primary" type="submit" id="btnCriar" name="criar">Criar</button>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
-
-                            <div class="card-body"></div>
-
-                            <div class="card-footer bg-body m-0">
-                                .ca
-                            </div>
-                        </div>
-                    <!-- /Card Cadastro -->
+                        <!-- /Card Cadastro -->
+                    </div>
                 </div>
             </div>
         </main>
 
-        <footer class="footer">
-            <p>Desenvolvido por grupo GS - Copyright 2024</p>
+
+        <footer class="footer text-center p-1 bg-dark text-white">
+            <p class="fs-5">Desenvolvido por Lucas ©2024</p>
         </footer>
 
 
