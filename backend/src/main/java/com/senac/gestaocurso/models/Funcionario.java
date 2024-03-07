@@ -12,10 +12,7 @@ import java.util.List;
 
 @Entity
 public class Funcionario extends EntityID {
-<<<<<<< Updated upstream
-=======
     @Column(nullable = false)
->>>>>>> Stashed changes
     private String nome;
 
     private String cpf;
