@@ -9,6 +9,10 @@ body {
 }
 
 
+main, .container {
+    min-height: calc(100vh - 90px);
+}
+
 
 .bg-personalizado {
     background-image: url('../images/background.jpg');
@@ -18,7 +22,6 @@ body {
 }
 
 
-
-.card {
-    transition: all ease .3s;
+.footer {
+    height: 40px;
 }

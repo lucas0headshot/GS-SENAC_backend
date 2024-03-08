@@ -1,8 +1,8 @@
 $(function() {
-    $('#formLogin').submit(function(e) {
-        e.preventDefault;
-
-        $(this).validate({
+    /*
+        Funções modal Login
+    */
+        $('#formLogin').validate({
             onsubmit: true,
 
             rules: {
@@ -39,18 +39,29 @@ $(function() {
             }
         });
 
-        if ($(this).valid()) {
-            alert(`Bem-vindo, ${$('#usuario').val()}!`);
-            return location.reload();
-        }
-    });
+        $('#formLogin').submit(function(e) {
+            e.preventDefault();
+
+            if ($(this).valid()) {
+                alert(`Bem-vindo, ${$('#usuario').val()}!`);
+                return location.reload();
+            }
+        });
 
 
+        $('#aCadastrarConta').click(function() {
+            $('#entrar').addClass('d-none');
+            return $('#cadastrar').removeClass('d-none');
+        });
+    /*
+        /Funções modal Login
+    */
 
-    $('#formCadastro').submit(function(e) {
-        e.preventDefault;
 
-        $(this).validate({
+    /*
+        Funções modal Cadastro
+    */
+        $('#formCadastro').validate({
             onsubmit: true,
 
             rules: {
@@ -64,16 +75,30 @@ $(function() {
 
                 senha_cadastro: {
                     required: true
+                },
+
+                repita_senha_cadastro: {
+                    required: true,
+                    equals: $('#senha_cadastro').val()
                 }
             },
 
             messages: {
-                usuario: {
+                usuario_cadastro: {
                     required: "Informe seu nome de usuário"
                 },
 
-                senha: {
+                email_cadastro: {
+                    required: "Informe seu e-mail"
+                },
+
+                senha_cadastro: {
                     required: "Informe sua senha"
+                },
+
+                repita_senha_cadastro: {
+                    required: "Repita sua senha",
+                    equals: "Senhas não coincidem"
                 }
             },
 
@@ -91,16 +116,24 @@ $(function() {
             }
         });
 
-        if ($(this).valid()) {
-            //TODO: limpar form & redirecionar
-            alert('Bem-vindo!');
-        }
-    });
+        $('#formCadastro').submit(function(e) {
+            e.preventDefault();
 
+            if ($(this).valid()) {
+                alert(`Bem-vindo, ${$('#nome_cadastro').val()}!`);
+                return location.reload();
+            }
+        });
 
+        $('#senha_cadastro').change(function() {
+            return $(this).val() !== "" ? $('#repita_senha_cadastro').removeClass('d-none') : $('#repita_senha_cadastro').addClass('d-none');
+        });
 
-    $('#aCadastrarConta').click(function() {
-        $('#entrar').addClass('d-none');
-        return $('#cadastrar').removeClass('d-none');
-    });
+        $('#aPossuiConta').click(function() {
+            $('#cadastrar').addClass('d-none');
+            return $('#entrar').removeClass('d-none');
+        });
+    /*
+        /Funções modal Cadastro
+    */
 });
