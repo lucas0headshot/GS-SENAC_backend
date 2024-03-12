@@ -1,9 +1,7 @@
 package com.senac.gestaocurso.models;
 
 
-
 import jakarta.persistence.*;
-
 
 @Entity
 public class Materia extends EntityID {
@@ -13,15 +11,14 @@ public class Materia extends EntityID {
     @Column(nullable = false)
     private Integer cargaHoraria;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "professor_id")
     private Funcionario professor;
 
 
-
     public Materia() {
-    }
 
+    }
 
 
     public String getNome() {
@@ -49,11 +46,10 @@ public class Materia extends EntityID {
     }
 
 
-
     @Override
     public String toString() {
         return "Materia{" +
-                "nomeDaMateria='" + nome + '\'' +
+                "nome='" + nome + '\'' +
                 ", cargaHoraria=" + cargaHoraria +
                 ", professor=" + professor +
                 '}';

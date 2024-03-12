@@ -2,10 +2,8 @@ package com.senac.gestaocurso.models;
 
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.util.List;
 
@@ -20,7 +18,8 @@ public class Turma extends EntityID {
     @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
+    @ElementCollection
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Inscricao> inscritos;
 
     @Column(nullable = false)
