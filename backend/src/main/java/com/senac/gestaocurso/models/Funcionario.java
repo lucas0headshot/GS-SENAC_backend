@@ -1,8 +1,8 @@
 package com.senac.gestaocurso.models;
 
 import com.senac.gestaocurso.enums.*;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -15,46 +15,129 @@ public class Funcionario extends EntityID {
     @Column(nullable = false)
     private String nome;
 
+    @Column(nullable = false)
     private String cpf;
+
+    @Column(nullable = false)
     private String rg;
+
+    @Column(nullable = false)
     private String endereco;
+
+    @Column()
     private String ctbs;
+
+    @Column(nullable = false)
     private Double salarioContratual;
+
+    @Column(nullable = false)
     private Integer cargaHoraria;
+
+    @Column(nullable = false)
     private ModalidadeContratual modalidadeContratual;
+
+    @Column(nullable = false)
     private String telefone;
+
+    @Column(nullable = false)
     private EstadoCivil estadoCivil;
+
+    @Column(nullable = false)
     private String tituloEleitor;
+
+    @Column(nullable = false)
     private String reservista;
+
+    @Column(nullable = false)
     private LocalDate dataNasc;
+
+    @Column(nullable = false)
     private String pisPasep;
+
+    @Column(nullable = false)
     private String registroProfissional;
+
+    @Column(nullable = false)
     private String email;
+
+    @Column()
     private String sindicato;
+
+    @Column(nullable = false)
     private String setor;
+
+    @Column(nullable = false)
     private TipoRH tipoRH;
+
+    @Column()
     private String cnh;
+
+    @Column(nullable = false)
     private LocalDate dataAdmissao;
+
+    @Column(nullable = false)
     private Cargo cargo;
+
+    @Column(nullable = false)
     private Escolaridade escolaridade;
+
+    @Column
     private Filiacao filiacao;
+
+    @Column()
     private Dependentes dependentes;
+
+    @Column(nullable = false)
     private String racaCor;
+
+    @Column
     private String religiao;
+
+    @Column()
     private Boolean doadorSangue;
+
+    @Column
     private Genero genero;
+    @ElementCollection
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Certificacoes> certificacoes;
+
+    @Column(nullable = false)
     private Turno turno;
+
+    @Column(nullable = false)
     private String nacionalidade;
+
+    @Column(nullable = false)
     private String redeSocial;
+
+    @Column(nullable = false)
     private String areaAtuacao;
+
+    @Column(nullable = false)
     private String matricula;
+
+    @Column(nullable = false)
     private Status status;
+
+    @ElementCollection
+    @OneToMany(cascade = CascadeType.ALL)
     private List<ExpAnterior> expAnterior;
+
+    @Column(nullable = false)
     private String idioma;
+
+    @ElementCollection
+    @OneToMany(cascade = CascadeType.ALL)
     private List<DadosBancarios> dadosBancarios;
+
+    @Column()
     private Integer horaExtra;
+
+    @Column()
     private LocalTime horaEntrada;
+
+    @Column
     private LocalTime horaSaida;
 
 

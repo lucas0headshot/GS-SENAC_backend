@@ -2,8 +2,8 @@ package com.senac.gestaocurso.models;
 
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+
 import java.util.List;
 
 
@@ -22,7 +22,8 @@ public class Curso extends EntityID {
     @Column(nullable = false)
     private Integer cargaHorariaTotal;
 
-    @Column(nullable = false)
+    @ElementCollection
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Materia> materias;
 
 

@@ -8,16 +8,13 @@ import java.time.LocalDate;
 
 
 
-/**
- * Classe precisa ser re-analisada
- * */
 @Entity
 public class Avaliacao extends EntityID {
     @Column(nullable = false)
     private Funcionario aluno;
 
     @Column(nullable = false)
-    private Funcionario professor;
+    private Materia materia;
 
     @Column(nullable = false)
     private String nome;
@@ -43,12 +40,12 @@ public class Avaliacao extends EntityID {
         this.aluno = aluno;
     }
 
-    public Funcionario getProfessor() {
-        return professor;
+    public Materia getMateria() {
+        return materia;
     }
 
-    public void setProfessor(Funcionario professor) {
-        this.professor = professor;
+    public void setMateria(Materia materia) {
+        this.materia = materia;
     }
 
     public String getNome() {
@@ -81,7 +78,7 @@ public class Avaliacao extends EntityID {
     public String toString() {
         return "Avaliacao{" +
                 "aluno=" + aluno +
-                ", professor=" + professor +
+                ", materia=" + materia +
                 ", nome='" + nome + '\'' +
                 ", nota=" + nota +
                 ", data=" + data +
