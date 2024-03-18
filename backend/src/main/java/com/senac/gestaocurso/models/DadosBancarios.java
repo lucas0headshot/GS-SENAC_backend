@@ -3,25 +3,30 @@ package com.senac.gestaocurso.models;
 
 
 import com.senac.gestaocurso.enums.TipoContaBancaria;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-
+import jakarta.persistence.*;
 
 
 @Entity
 public class DadosBancarios extends EntityID {
-    @Column(nullable = false)
     private String banco;
 
-    @Column(nullable = false)
     private String agencia;
 
-    @Column(nullable = false)
     private String conta;
 
-    @Column(nullable = false)
     private TipoContaBancaria tipoContaBancaria;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
 
 
     public DadosBancarios() {

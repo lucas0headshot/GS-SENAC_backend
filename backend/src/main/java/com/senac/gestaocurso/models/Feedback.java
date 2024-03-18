@@ -3,26 +3,22 @@ package com.senac.gestaocurso.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.ManyToOne;
 
 import java.time.LocalDate;
 
 
 @Entity
 public class Feedback extends EntityID {
-    @Column(nullable = false)
     private Funcionario autor;
 
-    @Column
     private String feedback;
 
-    @Column(nullable = false)
     private Integer nota;
 
-    @Column(nullable = false)
     private LocalDate data;
 
-    @Column(nullable = false)
-    private Object avaliado;
+    private Curso avaliado;
 
 
     public Funcionario getAutor() {
@@ -61,7 +57,7 @@ public class Feedback extends EntityID {
         return avaliado;
     }
 
-    public void setAvaliado(Object avaliado) {
+    public void setAvaliado(Curso avaliado) {
         this.avaliado = avaliado;
     }
 

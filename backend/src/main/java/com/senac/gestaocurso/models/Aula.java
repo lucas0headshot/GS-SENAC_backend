@@ -2,18 +2,18 @@ package com.senac.gestaocurso.models;
 
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 
+
 @Entity
 public class Aula extends EntityID {
-    @Column(nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "materia_id")
     private Materia materia;
 
-    @Column(nullable = false)
     private LocalDate dia;
 
 

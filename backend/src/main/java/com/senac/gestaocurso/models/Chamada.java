@@ -4,18 +4,19 @@ package com.senac.gestaocurso.models;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
 
 @Entity
 public class Chamada extends EntityID {
-    @Column()
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "professor_id")
     private Funcionario professor;
 
-    @ElementCollection
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Frequencia> frequencias;
+    @OneToMany(mappedBy = "chamada", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Frequencia> frequencias = new ArrayList<>();
 
 
 

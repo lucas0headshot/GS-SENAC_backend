@@ -1,8 +1,6 @@
 package com.senac.gestaocurso.models;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-
+import jakarta.persistence.*;
 
 
 import java.time.LocalDate;
@@ -11,15 +9,24 @@ import java.time.LocalDate;
 
 @Entity
 public class Certificacoes extends EntityID {
-    @Column(nullable = false)
+
     private String nome;
 
-    @Column(nullable = false)
     private Integer cargaHoraria;
 
-    @Column(nullable = false)
     private LocalDate dataEmissao;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
+
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
 
 
     public Certificacoes() {

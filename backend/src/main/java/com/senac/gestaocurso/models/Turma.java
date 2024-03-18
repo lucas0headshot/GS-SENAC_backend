@@ -11,24 +11,17 @@ import java.util.List;
 
 @Entity
 public class Turma extends EntityID {
-    @ManyToOne
-    @JoinColumn(name = "curso_id")
+
     private Curso curso;
 
-    @Column(nullable = false)
     private String nome;
 
-    @ElementCollection
-    @OneToMany(cascade = CascadeType.ALL)
     private List<Inscricao> inscritos;
 
-    @Column(nullable = false)
     private LocalDate dataInicio;
 
-    @Column(nullable = false)
     private LocalDate dataFinal;
 
-    @Column(nullable = false)
     private String descricao;
 
 

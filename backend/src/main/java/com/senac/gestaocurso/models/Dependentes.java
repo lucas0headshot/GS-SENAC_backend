@@ -12,13 +12,10 @@ import java.time.LocalDate;
 
 @Entity
 public class Dependentes extends EntityID {
-    @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
     private Escolaridade escolaridade;
 
-    @Column(nullable = false)
     private LocalDate dataNasc;
 
 

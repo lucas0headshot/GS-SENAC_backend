@@ -6,138 +6,105 @@ import org.springframework.validation.annotation.Validated;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.List;
 
 
 
 @Entity
 public class Funcionario extends EntityID {
-    @Column(nullable = false)
     private String nome;
 
-    @Column(nullable = false)
     private String cpf;
 
-    @Column(nullable = false)
     private String rg;
 
-    @Column(nullable = false)
     private String endereco;
 
-    @Column()
     private String ctbs;
 
-    @Column(nullable = false)
     private Double salarioContratual;
 
-    @Column(nullable = false)
     private Integer cargaHoraria;
 
-    @Column(nullable = false)
     private ModalidadeContratual modalidadeContratual;
 
-    @Column(nullable = false)
     private String telefone;
 
-    @Column(nullable = false)
     private EstadoCivil estadoCivil;
 
-    @Column(nullable = false)
     private String tituloEleitor;
 
-    @Column(nullable = false)
     private String reservista;
 
-    @Column(nullable = false)
     private LocalDate dataNasc;
 
-    @Column(nullable = false)
     private String pisPasep;
 
-    @Column(nullable = false)
     private String registroProfissional;
 
-    @Column(nullable = false)
     private String email;
 
-    @Column()
     private String sindicato;
 
-    @Column(nullable = false)
     private String setor;
 
-    @Column(nullable = false)
     private TipoRH tipoRH;
 
-    @Column()
     private String cnh;
 
-    @Column(nullable = false)
     private LocalDate dataAdmissao;
 
-    @Column(nullable = false)
+    @ManyToOne
+    @JoinColumn(name = "cargo_id")
     private Cargo cargo;
 
-    @Column(nullable = false)
     private Escolaridade escolaridade;
 
-    @Column
+    @ManyToOne
+    @JoinColumn(name = "filiacao_id")
     private Filiacao filiacao;
 
-    @Column()
+    @ManyToOne
+    @JoinColumn(name = "dependentes_id")
     private Dependentes dependentes;
 
-    @Column(nullable = false)
     private String racaCor;
 
-    @Column
     private String religiao;
 
-    @Column()
     private Boolean doadorSangue;
 
-    @Column
     private Genero genero;
-    @ElementCollection
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Certificacoes> certificacoes;
 
-    @Column(nullable = false)
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Certificacoes> certificacoeses = new ArrayList<>();
+
     private Turno turno;
 
-    @Column(nullable = false)
     private String nacionalidade;
 
-    @Column(nullable = false)
+
     private String redeSocial;
 
-    @Column(nullable = false)
     private String areaAtuacao;
 
-    @Column(nullable = false)
     private String matricula;
 
-    @Column(nullable = false)
     private Status status;
 
-    @ElementCollection
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<ExpAnterior> expAnterior;
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<ExpAnterior> expAnteriors = new ArrayList<>();
 
-    @Column(nullable = false)
     private String idioma;
 
-    @ElementCollection
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<DadosBancarios> dadosBancarios;
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<DadosBancarios> dadosBancarioses = new ArrayList<>();
 
-    @Column()
     private Integer horaExtra;
 
-    @Column()
     private LocalTime horaEntrada;
 
-    @Column
     private LocalTime horaSaida;
 
 
@@ -379,12 +346,28 @@ public class Funcionario extends EntityID {
         this.genero = genero;
     }
 
-    public List<Certificacoes> getCertificacoes() {
-        return certificacoes;
+    public List<DadosBancarios> getDadosBancarioses() {
+        return dadosBancarioses;
     }
 
-    public void setCertificacoes(List<Certificacoes> certificacoes) {
-        this.certificacoes = certificacoes;
+    public void setDadosBancarioses(List<DadosBancarios> dadosBancarioses) {
+        this.dadosBancarioses = dadosBancarioses;
+    }
+
+    public List<ExpAnterior> getExpAnteriors() {
+        return expAnteriors;
+    }
+
+    public void setExpAnteriors(List<ExpAnterior> expAnteriors) {
+        this.expAnteriors = expAnteriors;
+    }
+
+    public List<Certificacoes> getCertificacoeses() {
+        return certificacoeses;
+    }
+
+    public void setCertificacoeses(List<Certificacoes> certificacoeses) {
+        this.certificacoeses = certificacoeses;
     }
 
     public Turno getTurno() {
@@ -435,13 +418,6 @@ public class Funcionario extends EntityID {
         this.status = status;
     }
 
-    public List<ExpAnterior> getExpAnterior() {
-        return expAnterior;
-    }
-
-    public void setExpAnterior(List<ExpAnterior> expAnterior) {
-        this.expAnterior = expAnterior;
-    }
 
     public String getIdioma() {
         return idioma;
@@ -451,13 +427,6 @@ public class Funcionario extends EntityID {
         this.idioma = idioma;
     }
 
-    public List<DadosBancarios> getDadosBancarios() {
-        return dadosBancarios;
-    }
-
-    public void setDadosBancarios(List<DadosBancarios> dadosBancarios) {
-        this.dadosBancarios = dadosBancarios;
-    }
 
     public Integer getHoraExtra() {
         return horaExtra;
@@ -515,16 +484,16 @@ public class Funcionario extends EntityID {
                 ", religiao='" + religiao + '\'' +
                 ", doadorSangue=" + doadorSangue +
                 ", genero=" + genero +
-                ", certificacoes=" + certificacoes +
+                ", certificacoes=" + certificacoeses +
                 ", turno=" + turno +
                 ", nacionalidade='" + nacionalidade + '\'' +
                 ", redeSocial='" + redeSocial + '\'' +
                 ", areaAtuacao='" + areaAtuacao + '\'' +
                 ", matricula='" + matricula + '\'' +
                 ", status=" + status +
-                ", expAnterior=" + expAnterior +
+                ", expAnterior=" + expAnteriors +
                 ", idioma='" + idioma + '\'' +
-                ", dadosBancarios=" + dadosBancarios +
+                ", dadosBancarios=" + dadosBancarioses +
                 ", horaExtra=" + horaExtra +
                 ", horaEntrada=" + horaEntrada +
                 ", horaSaida=" + horaSaida +
