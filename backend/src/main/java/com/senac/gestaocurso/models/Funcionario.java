@@ -27,10 +27,12 @@ public class Funcionario extends EntityID {
 
     private Integer cargaHoraria;
 
+    @Enumerated(EnumType.STRING)
     private ModalidadeContratual modalidadeContratual;
 
     private String telefone;
 
+    @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
 
     private String tituloEleitor;
@@ -49,6 +51,7 @@ public class Funcionario extends EntityID {
 
     private String setor;
 
+    @Enumerated(EnumType.STRING)
     private TipoRH tipoRH;
 
     private String cnh;
@@ -59,6 +62,7 @@ public class Funcionario extends EntityID {
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
 
+    @Enumerated(EnumType.STRING)
     private Escolaridade escolaridade;
 
     @ManyToOne
@@ -75,11 +79,13 @@ public class Funcionario extends EntityID {
 
     private Boolean doadorSangue;
 
+    @Enumerated(EnumType.STRING)
     private Genero genero;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Certificacoes> certificacoeses = new ArrayList<>();
 
+    @Enumerated(EnumType.STRING)
     private Turno turno;
 
     private String nacionalidade;
