@@ -2,27 +2,29 @@ package com.senac.gestaocurso.models;
 
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 
 
 @Entity
 public class Avaliacao extends EntityID {
-    @Column(nullable = false)
-    private Funcionario aluno;
-
-    @Column(nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "materia_id")
     private Materia materia;
 
-    @Column(nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "aluno_id")
+    private Inscricao aluno;
+
+    @Column
     private String nome;
 
-    @Column(nullable = false)
+    @Column
     private Integer nota;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate data;
 
 
@@ -32,13 +34,7 @@ public class Avaliacao extends EntityID {
 
 
 
-    public Funcionario getAluno() {
-        return aluno;
-    }
 
-    public void setAluno(Funcionario aluno) {
-        this.aluno = aluno;
-    }
 
     public Materia getMateria() {
         return materia;
@@ -46,6 +42,14 @@ public class Avaliacao extends EntityID {
 
     public void setMateria(Materia materia) {
         this.materia = materia;
+    }
+
+    public Inscricao getAluno() {
+        return aluno;
+    }
+
+    public void setAluno(Inscricao aluno) {
+        this.aluno = aluno;
     }
 
     public String getNome() {

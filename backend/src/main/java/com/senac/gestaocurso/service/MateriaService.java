@@ -26,7 +26,6 @@ public class MateriaService {
         if ((encontrado.isPresent())) {
             Materia materia = encontrado.get();
             materia.setNome(alterado.getNome());
-            materia.setProfessor(alterado.getProfessor());
             materia.setCargaHoraria(alterado.getCargaHoraria());
             return materiaRepository.save(materia);
         }

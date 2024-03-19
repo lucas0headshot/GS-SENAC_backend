@@ -5,6 +5,8 @@ package com.senac.gestaocurso.models;
 import com.senac.gestaocurso.enums.Escolaridade;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 
 import java.time.LocalDate;
 
@@ -12,13 +14,13 @@ import java.time.LocalDate;
 
 @Entity
 public class Dependentes extends EntityID {
-    @Column(nullable = false)
+    @Column
     private String nome;
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Escolaridade escolaridade;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate dataNasc;
 
 

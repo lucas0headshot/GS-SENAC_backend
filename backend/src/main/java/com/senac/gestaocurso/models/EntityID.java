@@ -12,7 +12,7 @@ import jakarta.persistence.MappedSuperclass;
 @MappedSuperclass
 public class EntityID {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private Long id;
 
     public Long getId() {
