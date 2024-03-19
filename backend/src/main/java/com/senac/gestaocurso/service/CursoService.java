@@ -25,7 +25,6 @@ public class CursoService {
             Curso curso = encontrado.get();
             curso.setNome(alterado.getNome());
             curso.setCoordenador(alterado.getCoordenador());
-            curso.setMaterias(alterado.getMaterias());
             curso.setCargaHorariaTotal(alterado.getCargaHorariaTotal());
             return cursoRepository.save(curso);
         }
