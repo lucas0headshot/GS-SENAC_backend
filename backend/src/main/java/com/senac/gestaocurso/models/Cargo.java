@@ -9,13 +9,13 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Cargo extends EntityID {
-    @Column(nullable = false)
+    @Column
     private String descricao;
 
-    @Column(nullable = false)
+    @Column
     private String nivel;
 
-    @Column(nullable = false)
+    @Column
     private Boolean comissionado;
 
 

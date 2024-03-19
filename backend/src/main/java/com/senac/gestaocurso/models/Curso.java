@@ -4,27 +4,23 @@ package com.senac.gestaocurso.models;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 
 
 @Entity
 public class Curso extends EntityID {
-    @Column(nullable = false)
+    @Column
     private String nome;
 
-    @Column(nullable = false)
+    @Column
     private String descricao;
 
-    @Column(nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "coordenador_id")
     private Funcionario coordenador;
 
-    @Column(nullable = false)
+    @Column
     private Integer cargaHorariaTotal;
 
-    @ElementCollection
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Materia> materias;
 
 
 
@@ -32,6 +28,13 @@ public class Curso extends EntityID {
     }
 
 
+    public String getDescricao() {
+        return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
+    }
 
     public String getNome() {
         return nome;
@@ -57,23 +60,15 @@ public class Curso extends EntityID {
         this.cargaHorariaTotal = cargaHorariaTotal;
     }
 
-    public List<Materia> getMaterias() {
-        return materias;
-    }
-
-    public void setMaterias(List<Materia> materias) {
-        this.materias = materias;
-    }
-
 
 
     @Override
     public String toString() {
         return "Curso{" +
-                "nomeCurso='" + nome + '\'' +
+                "nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
                 ", coordenador=" + coordenador +
                 ", cargaHorariaTotal=" + cargaHorariaTotal +
-                ", materias=" + materias +
                 '}';
     }
 }

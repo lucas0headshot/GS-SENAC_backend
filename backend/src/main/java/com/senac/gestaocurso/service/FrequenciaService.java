@@ -24,7 +24,7 @@ public class FrequenciaService {
             Frequencia frequencia = encontrado.get();
             frequencia.setFrequencia(alterado.getFrequencia());
             frequencia.setAula(alterado.getAula());
-            frequencia.setAluno(alterado.getAluno());
+            frequencia.setInscricao(alterado.getInscricao());
 
             return frequenciaRepository.save(frequencia);
         }

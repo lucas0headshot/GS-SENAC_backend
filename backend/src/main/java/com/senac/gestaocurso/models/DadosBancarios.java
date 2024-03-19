@@ -3,24 +3,26 @@ package com.senac.gestaocurso.models;
 
 
 import com.senac.gestaocurso.enums.TipoContaBancaria;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-
+import jakarta.persistence.*;
 
 
 @Entity
 public class DadosBancarios extends EntityID {
-    @Column(nullable = false)
+    @Column
     private String banco;
 
-    @Column(nullable = false)
+    @Column
     private String agencia;
 
-    @Column(nullable = false)
+    @Column
     private String conta;
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private TipoContaBancaria tipoContaBancaria;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "funcionario_id")
+    private Funcionario funcionario;
 
 
 
@@ -28,6 +30,13 @@ public class DadosBancarios extends EntityID {
     }
 
 
+    public Funcionario getFuncionario() {
+        return funcionario;
+    }
+
+    public void setFuncionario(Funcionario funcionario) {
+        this.funcionario = funcionario;
+    }
 
     public String getBanco() {
         return banco;
