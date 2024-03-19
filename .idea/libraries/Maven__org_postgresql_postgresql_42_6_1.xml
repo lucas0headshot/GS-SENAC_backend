@@ -1,0 +1,14 @@
+<component name="libraryTable">
+  <library name="Maven: org.postgresql:postgresql:42.6.1" type="java-imported" external-system-id="Maven">
+    <properties groupId="org.postgresql" artifactId="postgresql" version="42.6.1" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.6.1/postgresql-42.6.1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.6.1/postgresql-42.6.1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/postgresql/postgresql/42.6.1/postgresql-42.6.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

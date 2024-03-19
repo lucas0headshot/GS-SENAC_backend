@@ -2,30 +2,29 @@ package com.senac.gestaocurso.models;
 
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 
 
-/**
- * Classe precisa ser re-analisada
- * */
 @Entity
 public class Avaliacao extends EntityID {
-    @Column(nullable = false)
-    private Funcionario aluno;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "materia_id")
+    private Materia materia;
 
-    @Column(nullable = false)
-    private Funcionario professor;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "aluno_id")
+    private Inscricao aluno;
 
-    @Column(nullable = false)
+    @Column
     private String nome;
 
-    @Column(nullable = false)
+    @Column
     private Integer nota;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate data;
 
 
@@ -35,20 +34,22 @@ public class Avaliacao extends EntityID {
 
 
 
-    public Funcionario getAluno() {
+
+
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+
+    public Inscricao getAluno() {
         return aluno;
     }
 
-    public void setAluno(Funcionario aluno) {
+    public void setAluno(Inscricao aluno) {
         this.aluno = aluno;
-    }
-
-    public Funcionario getProfessor() {
-        return professor;
-    }
-
-    public void setProfessor(Funcionario professor) {
-        this.professor = professor;
     }
 
     public String getNome() {
@@ -81,7 +82,7 @@ public class Avaliacao extends EntityID {
     public String toString() {
         return "Avaliacao{" +
                 "aluno=" + aluno +
-                ", professor=" + professor +
+                ", materia=" + materia +
                 ", nome='" + nome + '\'' +
                 ", nota=" + nota +
                 ", data=" + data +

@@ -2,21 +2,25 @@ package com.senac.gestaocurso.models;
 
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-
+import jakarta.persistence.*;
 
 
 @Entity
 public class Frequencia extends EntityID {
-    @Column(nullable = false)
+    @Column
     private Boolean frequencia;
 
-    @Column(nullable = false)
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "aula_id")
     private Aula aula;
 
-    @Column(nullable = false)
-    private Funcionario aluno;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "inscricao_id")
+    private Inscricao aluno;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "chamada_id")
+    private Chamada chamada;
 
 
 
@@ -24,6 +28,14 @@ public class Frequencia extends EntityID {
     }
 
 
+
+    public Chamada getChamada() {
+        return chamada;
+    }
+
+    public void setChamada(Chamada chamada) {
+        this.chamada = chamada;
+    }
 
     public Boolean getFrequencia() {
         return frequencia;
@@ -41,12 +53,12 @@ public class Frequencia extends EntityID {
         this.aula = aula;
     }
 
-    public Funcionario getAluno() {
+    public Inscricao getInscricao() {
         return aluno;
     }
 
-    public void setAluno(Funcionario aluno) {
-        this.aluno = aluno;
+    public void setInscricao(Inscricao inscricao) {
+        this.aluno = inscricao;
     }
 
 
