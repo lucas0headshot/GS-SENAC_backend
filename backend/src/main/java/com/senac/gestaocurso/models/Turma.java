@@ -5,24 +5,31 @@ package com.senac.gestaocurso.models;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 
 
 @Entity
 public class Turma extends EntityID {
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "curso_id")
     private Curso curso;
 
+    @Column
     private String nome;
 
-    private List<Inscricao> inscritos;
-
+    @Column
     private LocalDate dataInicio;
 
+    @Column
     private LocalDate dataFinal;
 
+    @Column
     private String descricao;
+
+    @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Inscricao> inscritos = new ArrayList<>();
 
 
 

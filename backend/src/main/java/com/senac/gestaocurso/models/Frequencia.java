@@ -7,6 +7,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class Frequencia extends EntityID {
+    @Column
     private Boolean frequencia;
 
     @ManyToOne(cascade = CascadeType.ALL)
@@ -21,6 +22,13 @@ public class Frequencia extends EntityID {
     @JoinColumn(name = "chamada_id")
     private Chamada chamada;
 
+
+
+    public Frequencia() {
+    }
+
+
+
     public Chamada getChamada() {
         return chamada;
     }
@@ -28,12 +36,6 @@ public class Frequencia extends EntityID {
     public void setChamada(Chamada chamada) {
         this.chamada = chamada;
     }
-
-
-    public Frequencia() {
-    }
-
-
 
     public Boolean getFrequencia() {
         return frequencia;

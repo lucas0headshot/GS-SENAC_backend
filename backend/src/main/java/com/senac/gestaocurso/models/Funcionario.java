@@ -1,9 +1,9 @@
 package com.senac.gestaocurso.models;
 
+
+
 import com.senac.gestaocurso.enums.*;
 import jakarta.persistence.*;
-import org.springframework.validation.annotation.Validated;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -13,52 +13,74 @@ import java.util.List;
 
 @Entity
 public class Funcionario extends EntityID {
+    @Column
     private String nome;
 
+    @Column
     private String cpf;
 
+    @Column
     private String rg;
 
+    @Column
     private String endereco;
 
+    @Column
     private String ctbs;
 
+    @Column
     private Double salarioContratual;
 
+    @Column
     private Integer cargaHoraria;
 
+    @Enumerated(EnumType.STRING)
     private ModalidadeContratual modalidadeContratual;
 
+    @Column
     private String telefone;
 
+    @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
 
+    @Column
     private String tituloEleitor;
 
+    @Column
     private String reservista;
 
+    @Column
     private LocalDate dataNasc;
 
+    @Column
     private String pisPasep;
 
+    @Column
     private String registroProfissional;
 
+    @Column
     private String email;
 
+    @Column
     private String sindicato;
 
+    @Column
     private String setor;
 
+    @Enumerated(EnumType.STRING)
     private TipoRH tipoRH;
 
+    @Column
     private String cnh;
 
+    @Column
     private LocalDate dataAdmissao;
 
     @ManyToOne
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
 
+    @Enumerated(EnumType.STRING)
     private Escolaridade escolaridade;
 
     @ManyToOne
@@ -69,42 +91,55 @@ public class Funcionario extends EntityID {
     @JoinColumn(name = "dependentes_id")
     private Dependentes dependentes;
 
+    @Column
     private String racaCor;
 
+    @Column
     private String religiao;
 
+    @Column
     private Boolean doadorSangue;
 
+    @Enumerated(EnumType.STRING)
     private Genero genero;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Certificacoes> certificacoeses = new ArrayList<>();
 
+    @Enumerated(EnumType.STRING)
     private Turno turno;
 
+    @Column
     private String nacionalidade;
 
-
+    @Column
     private String redeSocial;
 
+    @Column
     private String areaAtuacao;
 
+    @Column
     private String matricula;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ExpAnterior> expAnteriors = new ArrayList<>();
 
+    @Column
     private String idioma;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DadosBancarios> dadosBancarioses = new ArrayList<>();
 
+    @Column
     private Integer horaExtra;
 
+    @Column
     private LocalTime horaEntrada;
 
+    @Column
     private LocalTime horaSaida;
 
 

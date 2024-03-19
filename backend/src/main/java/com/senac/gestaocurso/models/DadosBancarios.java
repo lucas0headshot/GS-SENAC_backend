@@ -8,17 +8,27 @@ import jakarta.persistence.*;
 
 @Entity
 public class DadosBancarios extends EntityID {
+    @Column
     private String banco;
 
+    @Column
     private String agencia;
 
+    @Column
     private String conta;
 
+    @Enumerated(EnumType.STRING)
     private TipoContaBancaria tipoContaBancaria;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
+
+
+
+    public DadosBancarios() {
+    }
+
 
     public Funcionario getFuncionario() {
         return funcionario;
@@ -27,12 +37,6 @@ public class DadosBancarios extends EntityID {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-
-
-    public DadosBancarios() {
-    }
-
-
 
     public String getBanco() {
         return banco;

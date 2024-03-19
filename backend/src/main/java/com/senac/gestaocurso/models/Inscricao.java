@@ -2,24 +2,40 @@ package com.senac.gestaocurso.models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.senac.gestaocurso.enums.Status;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
+
 import java.time.LocalDate;
 
 
 
 @Entity
 public class Inscricao extends EntityID {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "inscrito_id")
     private Funcionario inscrito;
 
+    @Column
     private LocalDate data;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column
     private Integer valor;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "turma_id")
+    private Turma turma;
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
 
 
     public Inscricao() {

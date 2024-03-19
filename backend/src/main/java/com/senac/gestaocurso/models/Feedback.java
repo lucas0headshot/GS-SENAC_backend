@@ -1,24 +1,36 @@
 package com.senac.gestaocurso.models;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
 
 @Entity
 public class Feedback extends EntityID {
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "autor_id")
     private Funcionario autor;
 
+    @Column
     private String feedback;
 
+    @Column
     private Integer nota;
 
+    @Column
     private LocalDate data;
 
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "avaliado_id")
     private Curso avaliado;
+
+
+    public Feedback() {
+
+    }
+
+
 
 
     public Funcionario getAutor() {

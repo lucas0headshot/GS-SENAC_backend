@@ -18,10 +18,13 @@ public class Avaliacao extends EntityID {
     @JoinColumn(name = "aluno_id")
     private Inscricao aluno;
 
+    @Column
     private String nome;
 
+    @Column
     private Integer nota;
 
+    @Column
     private LocalDate data;
 
 

@@ -4,20 +4,21 @@ package com.senac.gestaocurso.models;
 
 import jakarta.persistence.*;
 
-import java.util.List;
-
 
 
 @Entity
 public class Curso extends EntityID {
-
+    @Column
     private String nome;
 
+    @Column
     private String descricao;
 
-
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "coordenador_id")
     private Funcionario coordenador;
 
+    @Column
     private Integer cargaHorariaTotal;
 
 

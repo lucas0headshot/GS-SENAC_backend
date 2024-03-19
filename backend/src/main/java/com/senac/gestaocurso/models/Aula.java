@@ -14,7 +14,12 @@ public class Aula extends EntityID {
     @JoinColumn(name = "materia_id")
     private Materia materia;
 
+    @Column
     private LocalDate dia;
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "professor_id")
+    private Funcionario professor;
 
 
 
@@ -36,6 +41,14 @@ public class Aula extends EntityID {
 
     public void setDia(LocalDate dia) {
         this.dia = dia;
+    }
+
+    public Funcionario getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Funcionario professor) {
+        this.professor = professor;
     }
 
 
