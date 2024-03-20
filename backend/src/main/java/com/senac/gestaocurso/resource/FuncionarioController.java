@@ -19,7 +19,7 @@ public class FuncionarioController {
     @PostMapping()
     public ResponseEntity salvar(@RequestBody Funcionario funcionario){
         Funcionario save = funcionarioService.salvar(funcionario);
-        return ResponseEntity.created(URI.create("/funcionario/salvar" + funcionario.getId())).body(save);
+        return ResponseEntity.created(URI.create("/api/funcionario" + funcionario.getId())).body(save);
     }
 
 
