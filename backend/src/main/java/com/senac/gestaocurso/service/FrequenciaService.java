@@ -5,6 +5,8 @@ import com.senac.gestaocurso.models.Frequencia;
 import com.senac.gestaocurso.repository.FiliacaoRepository;
 import com.senac.gestaocurso.repository.FrequenciaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,8 +15,12 @@ import java.util.Optional;
 public class FrequenciaService {
     @Autowired
     private FrequenciaRepository frequenciaRepository;
-    public Frequencia salvar(Frequencia entity) {return frequenciaRepository.save(entity);}
-    public List<Frequencia> buscaTodos() {return frequenciaRepository.findAll();}
+    public Frequencia salvar(Frequencia entity) {
+        return frequenciaRepository.save(entity);
+    }
+    public Page<Frequencia> buscaTodos(Pageable pageable) {
+        return frequenciaRepository.findAll(pageable);
+    }
     public Frequencia buscaPorId(Long id) {
         return frequenciaRepository.findById(id).orElse(null);
     }

@@ -29,6 +29,7 @@ public class Inscricao extends EntityID {
     @JoinColumn(name = "turma_id")
     private Turma turma;
 
+
     public Turma getTurma() {
         return turma;
     }
@@ -42,6 +43,13 @@ public class Inscricao extends EntityID {
     }
 
 
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
+    }
 
     public Funcionario getInscrito() {
         return inscrito;

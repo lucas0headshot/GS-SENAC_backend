@@ -1,27 +1,51 @@
 package com.senac.gestaocurso.service;
 
+
+
+import com.senac.gestaocurso.enterprise.exception.BusinessException;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 import java.util.Optional;
+
+
 
 @Service
 public class FuncionarioService {
-
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+  
+  
+  
+    public Funcionario salvar(Funcionario entity) {
+        if (funcionarioRepository.findByCpf(entity.getCpf()).isPresent()) { // CPF já cadastrado
+            throw new BusinessException("CPF já cadastrado");
+        }
 
-    public Funcionario salvar(Funcionario entity) {return funcionarioRepository.save(entity);}
-
-    public List<Funcionario> buscaTodos() {
-        return funcionarioRepository.findAll();
+        return funcionarioRepository.save(entity);
     }
+
+  
+  
+    public Page<Funcionario> buscaTodos(Pageable pageable) {
+        return funcionarioRepository.findAll(pageable);
+    }
+
+
+
+    public Page<Funcionario> buscaTodos(Pageable pageable) {
+        return funcionarioRepository.findAll(pageable);
+    }
+
     public Funcionario buscaPorId(Long id) {
         return funcionarioRepository.findById(id).orElse(null);
     }
+
+
+
     public Funcionario alterar(Long id, Funcionario alterado) {
         Optional<Funcionario> encontrado = funcionarioRepository.findById(id);
         if ((encontrado.isPresent())) {
@@ -72,7 +96,10 @@ public class FuncionarioService {
         }
         return null;
     }
-    public void remover(Long id) {funcionarioRepository.deleteById(id);
-    }
 
+
+
+    public void remover(Long id) {
+        funcionarioRepository.deleteById(id);
+    }
 }
