@@ -2,7 +2,6 @@ package com.senac.gestaocurso.models;
 
 
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.senac.gestaocurso.enums.Status;
 import jakarta.persistence.*;
 
@@ -29,6 +28,12 @@ public class Inscricao extends EntityID {
     @JoinColumn(name = "turma_id")
     private Turma turma;
 
+
+
+    public Inscricao() {
+    }
+
+
     public Turma getTurma() {
         return turma;
     }
@@ -36,12 +41,6 @@ public class Inscricao extends EntityID {
     public void setTurma(Turma turma) {
         this.turma = turma;
     }
-
-
-    public Inscricao() {
-    }
-
-
 
     public Funcionario getInscrito() {
         return inscrito;

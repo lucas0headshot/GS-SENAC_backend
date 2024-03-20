@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/aulas")
-public class AulaController {
+public class AulaController extends AbstractController {
     @Autowired
     private AulaService aulaService;
 

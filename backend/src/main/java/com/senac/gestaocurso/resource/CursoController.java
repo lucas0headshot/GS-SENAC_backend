@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/cursos")
-public class CursoController {
+public class CursoController extends AbstractController {
     @Autowired
     private CursoService cursoService;
 

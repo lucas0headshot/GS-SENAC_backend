@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 @RestController
 @RequestMapping("api/filiacao")
-public class FiliacaoController {
+public class FiliacaoController extends AbstractController {
     @Autowired
     private FiliacaoService filiacaoService;
 

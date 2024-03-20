@@ -14,7 +14,7 @@ import java.net.URI;
 import java.util.List;
 @RestController
 @RequestMapping("api/turma")
-public class TurmaController {
+public class TurmaController extends AbstractController {
 
     @Autowired
     private TurmaService turmaService;

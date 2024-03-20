@@ -13,7 +13,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/certificacoes")
-public class CertificacoesController {
+public class CertificacoesController extends AbstractController {
 
         @Autowired
         private CertificacoesService certificacoesService;

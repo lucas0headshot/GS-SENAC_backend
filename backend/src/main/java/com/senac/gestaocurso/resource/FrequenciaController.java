@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 @RestController
 @RequestMapping("api/frequencia")
-public class FrequenciaController {
+public class FrequenciaController extends AbstractController {
     @Autowired
     private FrequenciaService frequenciaService;
 
