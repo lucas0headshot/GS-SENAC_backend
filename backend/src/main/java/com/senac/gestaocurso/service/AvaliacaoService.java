@@ -51,11 +51,7 @@ public class AvaliacaoService {
 
   
   
-    public void remover(Long id) {avaliacaoRepository.deleteById(id);
-    }
-
-  
-  
-    public void remover(Long id) {avaliacaoRepository.deleteById(id);
+    public void remover(Long id) {
+        avaliacaoRepository.deleteById(id);
     }
 }

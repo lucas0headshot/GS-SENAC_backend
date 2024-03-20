@@ -48,12 +48,12 @@ public class AvaliacaoController extends AbstractController {
           return ResponseEntity.noContent().build();
       }
 
-        /**
-         * Reparar classe Avaliacao para alterar o service, mapeamento esta certo
-         */
-       /** @PutMapping("{id}")
+
+
+       @PutMapping("{id}")
         public ResponseEntity update(@PathVariable("id") Long id, @RequestBody Avaliacao entity) {
-            Avaliacao avaliacao = avaliacaoService.alterar(id, entity);
-        */
+            Avaliacao alterado = avaliacaoService.alterar(id, entity);
+
+            return ResponseEntity.ok().body(alterado);
         }
-    }
+}
