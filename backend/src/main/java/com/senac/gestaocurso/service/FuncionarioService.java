@@ -3,6 +3,8 @@ package com.senac.gestaocurso.service;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -14,10 +16,12 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
-    public Funcionario salvar(Funcionario entity) {return funcionarioRepository.save(entity);}
+    public Funcionario salvar(Funcionario entity) {
+        return funcionarioRepository.save(entity);
+    }
 
-    public List<Funcionario> buscaTodos() {
-        return funcionarioRepository.findAll();
+    public Page<Funcionario> buscaTodos(Pageable pageable) {
+        return funcionarioRepository.findAll(pageable);
     }
     public Funcionario buscaPorId(Long id) {
         return funcionarioRepository.findById(id).orElse(null);
