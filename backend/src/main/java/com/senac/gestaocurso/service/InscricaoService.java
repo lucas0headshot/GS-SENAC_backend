@@ -3,6 +3,8 @@ package com.senac.gestaocurso.service;
 import com.senac.gestaocurso.models.Inscricao;
 import com.senac.gestaocurso.repository.InscricaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +14,12 @@ public class InscricaoService {
 
     @Autowired
     private InscricaoRepository inscricaoRepository;
-    public Inscricao salvar(Inscricao entity) {return inscricaoRepository.save(entity);}
-    public List<Inscricao> buscaTodos() {return inscricaoRepository.findAll();}
+    public Inscricao salvar(Inscricao entity) {
+        return inscricaoRepository.save(entity);
+    }
+    public Page<Inscricao> buscaTodos(Pageable pageable) {
+        return inscricaoRepository.findAll(pageable);
+    }
     public Inscricao buscaPorId(Long id) {
         return inscricaoRepository.findById(id).orElse(null);
     }

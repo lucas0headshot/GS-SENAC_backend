@@ -5,6 +5,8 @@ import com.senac.gestaocurso.models.Aula;
 import com.senac.gestaocurso.models.Certificacoes;
 import com.senac.gestaocurso.repository.CertifcacoesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,10 +17,12 @@ import java.util.Optional;
 public class CertificacoesService {
     @Autowired
     private CertifcacoesRepository certifcacoesRepository;
-    public Certificacoes salvar(Certificacoes entity) {return certifcacoesRepository.save(entity);}
+    public Certificacoes salvar(Certificacoes entity) {
+        return certifcacoesRepository.save(entity);
+    }
 
-    public List<Certificacoes> buscaTodos() {
-        return certifcacoesRepository.findAll();
+    public Page<Certificacoes> buscaTodos(Pageable pageable) {
+        return certifcacoesRepository.findAll(pageable);
     }
     public Certificacoes buscaPorId(Long id) {
         return certifcacoesRepository.findById(id).orElse(null);
