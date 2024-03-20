@@ -11,6 +11,7 @@ import java.util.List;
 
 
 @RestController
+@RequestMapping("/api/experiencias")
 public class ExpAnteriorController {
     @Autowired
     private ExpAnteriorService expAnteriorService;
