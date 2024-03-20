@@ -4,6 +4,7 @@ package com.senac.gestaocurso.resource;
 
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.service.FuncionarioService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -23,7 +24,7 @@ public class FuncionarioController extends AbstractController {
 
 
     @PostMapping()
-    public ResponseEntity salvar(@RequestBody Funcionario funcionario){
+    public ResponseEntity salvar(@Valid @RequestBody Funcionario funcionario){
         Funcionario save = funcionarioService.salvar(funcionario);
         return ResponseEntity.created(URI.create("/api/funcionario" + funcionario.getId())).body(save);
     }
