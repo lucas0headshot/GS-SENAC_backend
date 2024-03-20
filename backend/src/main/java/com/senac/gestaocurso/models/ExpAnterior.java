@@ -13,16 +13,17 @@ import java.time.LocalDate;
 
 @Entity
 public class ExpAnterior extends EntityID {
+    @Column(nullable = false)
     private String descricao;
 
     @ManyToOne
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate periodoFinal;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate peridoInicial;
 
     @ManyToOne

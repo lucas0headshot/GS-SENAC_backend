@@ -12,13 +12,13 @@ public class Feedback extends EntityID {
     @JoinColumn(name = "autor_id")
     private Funcionario autor;
 
-    @Column
+    @Column(nullable = false)
     private String feedback;
 
-    @Column
+    @Column(nullable = false)
     private Integer nota;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate data;
 
     @ManyToOne(cascade = CascadeType.ALL)

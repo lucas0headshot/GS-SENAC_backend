@@ -8,13 +8,13 @@ import jakarta.persistence.*;
 
 @Entity
 public class DadosBancarios extends EntityID {
-    @Column
+    @Column(nullable = false)
     private String banco;
 
-    @Column
+    @Column(nullable = false)
     private String agencia;
 
-    @Column
+    @Column(nullable = false)
     private String conta;
 
     @Enumerated(EnumType.STRING)

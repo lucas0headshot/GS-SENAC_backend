@@ -23,6 +23,10 @@ public class FuncionarioService {
     public Page<Funcionario> buscaTodos(Pageable pageable) {
         return funcionarioRepository.findAll(pageable);
     }
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
     public Funcionario buscaPorId(Long id) {
         return funcionarioRepository.findById(id).orElse(null);
     }

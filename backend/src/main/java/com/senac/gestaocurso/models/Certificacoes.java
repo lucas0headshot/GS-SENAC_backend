@@ -9,13 +9,13 @@ import java.time.LocalDate;
 
 @Entity
 public class Certificacoes extends EntityID {
-    @Column
+    @Column(nullable = false)
     private String nome;
 
-    @Column
+    @Column(nullable = false)
     private Integer cargaHoraria;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate dataEmissao;
 
     @ManyToOne(cascade = CascadeType.ALL)

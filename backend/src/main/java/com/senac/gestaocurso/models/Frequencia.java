@@ -7,7 +7,7 @@ import jakarta.persistence.*;
 
 @Entity
 public class Frequencia extends EntityID {
-    @Column
+    @Column(nullable = false)
     private Boolean frequencia;
 
     @ManyToOne(cascade = CascadeType.ALL)

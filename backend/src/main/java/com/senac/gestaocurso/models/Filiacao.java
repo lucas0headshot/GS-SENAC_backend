@@ -9,16 +9,16 @@ import jakarta.persistence.Entity;
 
 @Entity
 public class Filiacao extends EntityID {
-    @Column
+    @Column(nullable = false)
     private String nomePai;
 
-    @Column
+    @Column(nullable = false)
     private String telefonePai;
 
-    @Column
+    @Column(nullable = false)
     private String nomeMae;
 
-    @Column
+    @Column(nullable = false)
     private String telefoneMae;
 
 
