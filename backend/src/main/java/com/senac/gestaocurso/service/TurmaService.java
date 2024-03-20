@@ -9,29 +9,32 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+
+
+
 @Service
 public class TurmaService {
     @Autowired
     private TurmaRepository turmaRepository;
 
-
-
+  
+  
     public Turma salvar(Turma entity) {
         return turmaRepository.save(entity);
     }
-
-
-
+  
+  
+  
     public Page<Turma> buscaTodos(Pageable pageable) {
         return turmaRepository.findAll(pageable);
     }
-
+  
     public Turma buscaPorId(Long id) {
         return turmaRepository.findById(id).orElse(null);
     }
 
-
-
+  
+  
     public Turma alterar(Long id, Turma alterado) {
         Optional<Turma> encontrado = turmaRepository.findById(id);
         if ((encontrado.isPresent())) {
@@ -43,7 +46,7 @@ public class TurmaService {
             turma.setDataInicio(alterado.getDataInicio());
             turma.setDataFinal(alterado.getDataFinal());
             turma.setLimiteQtdInscricao(alterado.getLimiteQtdInscricao());
-
+          
             return turmaRepository.save(turma);
         }
         return null;

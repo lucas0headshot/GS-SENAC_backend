@@ -1,6 +1,7 @@
 package com.senac.gestaocurso.resource;
 
 
+
 import com.senac.gestaocurso.models.Cargo;
 import com.senac.gestaocurso.service.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 import java.util.List;
 
+
+
 @RestController
 @RequestMapping("/api/cargos")
-
 public class CargoController extends AbstractController {
     @Autowired
     private CargoService cargoService;

@@ -1,7 +1,6 @@
 package com.senac.gestaocurso.service;
 
 
-
 import com.senac.gestaocurso.enterprise.exception.BusinessException;
 import com.senac.gestaocurso.models.Inscricao;
 import com.senac.gestaocurso.models.Turma;
@@ -72,6 +71,6 @@ public class InscricaoService {
 
 
     public void remover(Long id) {
-        inscricaoRepository.deleteById(id);
+      inscricaoRepository.deleteById(id);
     }
 }

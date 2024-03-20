@@ -1,7 +1,6 @@
 package com.senac.gestaocurso.service;
 
 
-
 import com.senac.gestaocurso.models.Avaliacao;
 import com.senac.gestaocurso.repository.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,8 +32,8 @@ public class AvaliacaoService {
         return avaliacaoRepository.findById(id).orElse(null);
     }
 
-
-
+  
+  
     public Avaliacao alterar(Long id, Avaliacao alterado) {
         Optional<Avaliacao> encontrado = avaliacaoRepository.findById(id);
         if (encontrado.isPresent()) {
@@ -50,8 +49,13 @@ public class AvaliacaoService {
         return null;
     }
 
+  
+  
+    public void remover(Long id) {avaliacaoRepository.deleteById(id);
+    }
 
-
+  
+  
     public void remover(Long id) {avaliacaoRepository.deleteById(id);
     }
 }

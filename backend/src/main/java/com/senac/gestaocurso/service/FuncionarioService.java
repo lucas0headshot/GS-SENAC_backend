@@ -17,15 +17,21 @@ import java.util.Optional;
 public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
-
-
-
+  
+  
+  
     public Funcionario salvar(Funcionario entity) {
         if (funcionarioRepository.findByCpf(entity.getCpf()).isPresent()) { // CPF já cadastrado
             throw new BusinessException("CPF já cadastrado");
         }
 
         return funcionarioRepository.save(entity);
+    }
+
+  
+  
+    public Page<Funcionario> buscaTodos(Pageable pageable) {
+        return funcionarioRepository.findAll(pageable);
     }
 
 

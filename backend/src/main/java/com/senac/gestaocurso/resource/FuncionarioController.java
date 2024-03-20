@@ -35,7 +35,6 @@ public class FuncionarioController extends AbstractController {
     public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "3") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Funcionario> funcionarios = funcionarioService.buscaTodos(pageable);
-
         return ResponseEntity.ok(funcionarios);
     }
 
