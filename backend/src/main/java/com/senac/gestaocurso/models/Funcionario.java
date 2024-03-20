@@ -1,9 +1,13 @@
 package com.senac.gestaocurso.models;
 
+
+
+import jakarta.persistence.*;
+import org.hibernate.validator.constraints.br.CPF;
+import org.hibernate.validator.constraints.br.TituloEleitoral;
+import javax.validation.constraints.Email;
 import com.senac.gestaocurso.enums.*;
 import jakarta.persistence.*;
-import org.springframework.validation.annotation.Validated;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -13,49 +17,70 @@ import java.util.List;
 
 @Entity
 public class Funcionario extends EntityID {
+    @Column
     private String nome;
 
+    @Column
+    @CPF(message = "Informe um CPF válido")
     private String cpf;
 
+    @Column
     private String rg;
 
+    @Column
     private String endereco;
 
+    @Column
     private String ctbs;
 
+    @Column
     private Double salarioContratual;
 
+    @Column
     private Integer cargaHoraria;
 
     @Enumerated(EnumType.STRING)
     private ModalidadeContratual modalidadeContratual;
 
+    @Column
     private String telefone;
 
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
 
+    @Column
+    @TituloEleitoral(message = "Informe um título de eleitor válido")
     private String tituloEleitor;
 
+    @Column
     private String reservista;
 
+    @Column
     private LocalDate dataNasc;
 
+    @Column
     private String pisPasep;
 
+    @Column
     private String registroProfissional;
 
+    @Column
+    @Email(message = "Informe um e-mail válido")
     private String email;
 
+    @Column
     private String sindicato;
 
+    @Column
     private String setor;
 
     @Enumerated(EnumType.STRING)
     private TipoRH tipoRH;
 
+    @Column
     private String cnh;
 
+    @Column
     private LocalDate dataAdmissao;
 
     @ManyToOne
@@ -73,10 +98,13 @@ public class Funcionario extends EntityID {
     @JoinColumn(name = "dependentes_id")
     private Dependentes dependentes;
 
+    @Column
     private String racaCor;
 
+    @Column
     private String religiao;
 
+    @Column
     private Boolean doadorSangue;
 
     @Enumerated(EnumType.STRING)
@@ -88,29 +116,37 @@ public class Funcionario extends EntityID {
     @Enumerated(EnumType.STRING)
     private Turno turno;
 
+    @Column
     private String nacionalidade;
 
-
+    @Column
     private String redeSocial;
 
+    @Column
     private String areaAtuacao;
 
+    @Column
     private String matricula;
 
+    @Enumerated(EnumType.STRING)
     private Status status;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ExpAnterior> expAnteriors = new ArrayList<>();
 
+    @Column
     private String idioma;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<DadosBancarios> dadosBancarioses = new ArrayList<>();
 
+    @Column
     private Integer horaExtra;
 
+    @Column
     private LocalTime horaEntrada;
 
+    @Column
     private LocalTime horaSaida;
 
 

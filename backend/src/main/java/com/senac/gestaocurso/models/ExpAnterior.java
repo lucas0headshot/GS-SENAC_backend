@@ -19,13 +19,22 @@ public class ExpAnterior extends EntityID {
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
 
+    @Column
     private LocalDate periodoFinal;
 
+    @Column
     private LocalDate peridoInicial;
 
     @ManyToOne
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
+
+
+
+    public ExpAnterior() {
+    }
+
+
 
     public Funcionario getFuncionario() {
         return funcionario;
@@ -34,12 +43,6 @@ public class ExpAnterior extends EntityID {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-
-
-    public ExpAnterior() {
-    }
-
-
 
     public String getDescricao() {
         return descricao;

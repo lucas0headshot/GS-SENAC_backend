@@ -3,7 +3,8 @@ package com.senac.gestaocurso.models;
 
 
 import jakarta.persistence.*;
-
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 
 
@@ -18,10 +19,15 @@ public class Avaliacao extends EntityID {
     @JoinColumn(name = "aluno_id")
     private Inscricao aluno;
 
+    @Column
     private String nome;
 
+    @Column
+    @Min(value = 0, message = "A nota deve ser no mínimo 0")
+    @Max(value = 10, message = "A nota deve ser no máximo 10")
     private Integer nota;
 
+    @Column
     private LocalDate data;
 
 

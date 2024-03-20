@@ -9,16 +9,24 @@ import java.time.LocalDate;
 
 @Entity
 public class Certificacoes extends EntityID {
-
+    @Column
     private String nome;
 
+    @Column
     private Integer cargaHoraria;
 
+    @Column
     private LocalDate dataEmissao;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "funcionario_id")
     private Funcionario funcionario;
+
+
+
+    public Certificacoes() {
+    }
+
 
     public Funcionario getFuncionario() {
         return funcionario;
@@ -27,12 +35,6 @@ public class Certificacoes extends EntityID {
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
     }
-
-
-    public Certificacoes() {
-    }
-
-
 
     public String getNome() {
         return nome;

@@ -3,6 +3,9 @@ package com.senac.gestaocurso.resource;
 import com.senac.gestaocurso.models.Materia;
 import com.senac.gestaocurso.service.MateriaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,19 +14,20 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/materia")
-public class MateriaController {
+public class MateriaController extends AbstractController {
     @Autowired
     private MateriaService materiaService;
 
     @PostMapping()
     public ResponseEntity salvar(@RequestBody Materia materia){
         Materia save = materiaService.salvar(materia);
-        return ResponseEntity.created(URI.create("/materia/salvar" + materia.getId())).body(save);
+        return ResponseEntity.created(URI.create("/api/materia" + materia.getId())).body(save);
     }
 
     @GetMapping
-    public  ResponseEntity findAll() {
-        List<Materia> materias = materiaService.buscaTodos();
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Materia> materias = materiaService.buscaTodos(pageable);
         return ResponseEntity.ok(materias);
     }
     @GetMapping("/{id}")

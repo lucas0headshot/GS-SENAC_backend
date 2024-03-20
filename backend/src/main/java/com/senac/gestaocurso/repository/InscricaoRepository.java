@@ -1,9 +1,17 @@
 package com.senac.gestaocurso.repository;
 
-import com.senac.gestaocurso.models.Inscricao;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Service;
 
-@Service
+
+import com.senac.gestaocurso.models.Inscricao;
+import com.senac.gestaocurso.models.Turma;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+
+
+@Repository
 public interface InscricaoRepository extends JpaRepository<Inscricao, Long> {
+    List<Inscricao> findAllByTurma(Turma turma);
 }
