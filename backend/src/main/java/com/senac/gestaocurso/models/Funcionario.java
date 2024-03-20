@@ -4,6 +4,10 @@ package com.senac.gestaocurso.models;
 
 import com.senac.gestaocurso.enums.*;
 import jakarta.persistence.*;
+import org.hibernate.validator.constraints.br.CPF;
+import org.hibernate.validator.constraints.br.TituloEleitoral;
+
+import javax.validation.constraints.Email;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.ArrayList;
@@ -17,6 +21,7 @@ public class Funcionario extends EntityID {
     private String nome;
 
     @Column
+    @CPF(message = "Informe um CPF válido")
     private String cpf;
 
     @Column
@@ -44,6 +49,7 @@ public class Funcionario extends EntityID {
     private EstadoCivil estadoCivil;
 
     @Column
+    @TituloEleitoral(message = "Informe um título de eleitor válido")
     private String tituloEleitor;
 
     @Column
@@ -59,6 +65,7 @@ public class Funcionario extends EntityID {
     private String registroProfissional;
 
     @Column
+    @Email(message = "Informe um e-mail válido")
     private String email;
 
     @Column
