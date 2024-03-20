@@ -28,8 +28,7 @@ public class AvaliacaoController extends AbstractController {
 
 
         @GetMapping
-        public ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
-                                      @RequestParam(defaultValue = "0") int size) {
+        public ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
             Pageable pageable = PageRequest.of(page, size);
             Page<Avaliacao> avaliacoes = avaliacaoService.buscaTodos(pageable);
             return ResponseEntity.ok(avaliacoes);

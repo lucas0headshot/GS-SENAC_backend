@@ -26,8 +26,7 @@ public class ExpAnteriorController extends AbstractController {
     }
 
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
-                                   @RequestParam(defaultValue = "0") int size) {
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<ExpAnterior> expAnteriors = expAnteriorService.buscaTodos(pageable);
         return ResponseEntity.ok(expAnteriors);
