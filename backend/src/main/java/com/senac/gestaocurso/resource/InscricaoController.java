@@ -5,6 +5,9 @@ import com.senac.gestaocurso.models.Inscricao;
 import com.senac.gestaocurso.service.FuncionarioService;
 import com.senac.gestaocurso.service.InscricaoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +22,14 @@ public class InscricaoController {
     @PostMapping()
     public ResponseEntity salvar(@RequestBody Inscricao inscricao){
         Inscricao save = inscricaoService.salvar(inscricao);
-        return ResponseEntity.created(URI.create("/inscricao/salvar" + inscricao.getId())).body(save);
+        return ResponseEntity.created(URI.create("/api/inscricao" + inscricao.getId())).body(save);
     }
 
     @GetMapping
-    public  ResponseEntity findAll() {
-        List<Inscricao> inscricao = inscricaoService.buscaTodos();
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "0") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Inscricao> inscricao = inscricaoService.buscaTodos(pageable);
         return ResponseEntity.ok(inscricao);
     }
     @GetMapping("/{id}")

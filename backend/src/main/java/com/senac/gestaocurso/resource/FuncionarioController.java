@@ -4,6 +4,9 @@ package com.senac.gestaocurso.resource;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +22,15 @@ public class FuncionarioController {
     @PostMapping()
     public ResponseEntity salvar(@RequestBody Funcionario funcionario){
         Funcionario save = funcionarioService.salvar(funcionario);
-        return ResponseEntity.created(URI.create("/funcionario/salvar" + funcionario.getId())).body(save);
+        return ResponseEntity.created(URI.create("/api/funcionario" + funcionario.getId())).body(save);
     }
 
 
     @GetMapping
-    public  ResponseEntity findAll() {
-        List<Funcionario> funcionarios = funcionarioService.buscaTodos();
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "0") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Funcionario> funcionarios = funcionarioService.buscaTodos(pageable);
         return ResponseEntity.ok(funcionarios);
     }
     @GetMapping("/{id}")

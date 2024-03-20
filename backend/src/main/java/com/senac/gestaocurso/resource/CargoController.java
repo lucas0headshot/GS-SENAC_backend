@@ -4,6 +4,9 @@ package com.senac.gestaocurso.resource;
 import com.senac.gestaocurso.models.Cargo;
 import com.senac.gestaocurso.service.CargoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
@@ -23,8 +26,10 @@ public class CargoController {
     }
 
     @GetMapping
-    public  ResponseEntity findAll() {
-        List<Cargo> cargos = cargoService.buscaTodos();
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "0") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Cargo> cargos = cargoService.buscaTodos(pageable);
         return ResponseEntity.ok(cargos);
     }
     @GetMapping("/{id}")
