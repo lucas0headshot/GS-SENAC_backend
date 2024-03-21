@@ -25,8 +25,7 @@ public class MateriaController {
     }
 
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
-                                   @RequestParam(defaultValue = "0") int size) {
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Materia> materias = materiaService.buscaTodos(pageable);
         return ResponseEntity.ok(materias);

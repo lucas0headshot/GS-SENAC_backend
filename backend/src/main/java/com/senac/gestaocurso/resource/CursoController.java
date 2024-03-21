@@ -26,8 +26,7 @@ public class CursoController {
     }
 
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
-                                   @RequestParam(defaultValue = "0") int size) {
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Curso> cursos = cursoService.buscaTodos(pageable);
         return ResponseEntity.ok(cursos);

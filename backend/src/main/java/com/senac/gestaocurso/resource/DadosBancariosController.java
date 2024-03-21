@@ -25,8 +25,7 @@ public class DadosBancariosController {
     }
 
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
-                                   @RequestParam(defaultValue = "0") int size) {
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<DadosBancarios> dadosBancarios = dadosBancariosService.buscaTodos(pageable);
         return ResponseEntity.ok(dadosBancarios);
