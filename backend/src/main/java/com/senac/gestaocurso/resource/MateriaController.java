@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/materia")
-public class MateriaController extends AbstractController {
+public class MateriaController {
     @Autowired
     private MateriaService materiaService;
 
@@ -25,7 +25,8 @@ public class MateriaController extends AbstractController {
     }
 
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "0") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Materia> materias = materiaService.buscaTodos(pageable);
         return ResponseEntity.ok(materias);

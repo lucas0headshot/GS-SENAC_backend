@@ -2,10 +2,6 @@ package com.senac.gestaocurso.models;
 
 
 
-import jakarta.persistence.*;
-import org.hibernate.validator.constraints.br.CPF;
-import org.hibernate.validator.constraints.br.TituloEleitoral;
-import javax.validation.constraints.Email;
 import com.senac.gestaocurso.enums.*;
 import jakarta.persistence.*;
 import java.time.LocalDate;
@@ -17,61 +13,73 @@ import java.util.List;
 
 @Entity
 public class Funcionario extends EntityID {
-    @Column
+    @Column(nullable = false)
     private String nome;
 
+<<<<<<< Updated upstream
     @Column
+=======
+    @Column(nullable = false)
     @CPF(message = "Informe um CPF válido")
+>>>>>>> Stashed changes
     private String cpf;
 
-    @Column
+    @Column(nullable = false)
     private String rg;
 
-    @Column
+    @Column(nullable = false)
     private String endereco;
 
-    @Column
+    @Column(nullable = false)
     private String ctbs;
 
-    @Column
+    @Column(nullable = false)
     private Double salarioContratual;
 
-    @Column
+    @Column(nullable = false)
     private Integer cargaHoraria;
 
     @Enumerated(EnumType.STRING)
     private ModalidadeContratual modalidadeContratual;
 
-    @Column
+    @Column(nullable = false)
     private String telefone;
 
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
 
+<<<<<<< Updated upstream
     @Column
+=======
+    @Column(nullable = false)
     @TituloEleitoral(message = "Informe um título de eleitor válido")
+>>>>>>> Stashed changes
     private String tituloEleitor;
 
-    @Column
+    @Column(nullable = false)
     private String reservista;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate dataNasc;
 
-    @Column
+    @Column(nullable = false)
     private String pisPasep;
 
-    @Column
+    @Column(nullable = false)
     private String registroProfissional;
 
+<<<<<<< Updated upstream
     @Column
+=======
+    @Column(nullable = false)
     @Email(message = "Informe um e-mail válido")
+>>>>>>> Stashed changes
     private String email;
 
-    @Column
+    @Column(nullable = false)
     private String sindicato;
 
-    @Column
+    @Column(nullable = false)
     private String setor;
 
     @Enumerated(EnumType.STRING)
@@ -80,7 +88,7 @@ public class Funcionario extends EntityID {
     @Column
     private String cnh;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate dataAdmissao;
 
     @ManyToOne
@@ -94,17 +102,17 @@ public class Funcionario extends EntityID {
     @JoinColumn(name = "filiacao_id")
     private Filiacao filiacao;
 
-    @ManyToOne
-    @JoinColumn(name = "dependentes_id")
-    private Dependentes dependentes;
 
-    @Column
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    private List<Dependentes>  dependentes;
+
+    @Column(nullable = false)
     private String racaCor;
 
-    @Column
+    @Column(nullable = false)
     private String religiao;
 
-    @Column
+    @Column(nullable = false)
     private Boolean doadorSangue;
 
     @Enumerated(EnumType.STRING)
@@ -116,16 +124,16 @@ public class Funcionario extends EntityID {
     @Enumerated(EnumType.STRING)
     private Turno turno;
 
-    @Column
+    @Column(nullable = false)
     private String nacionalidade;
 
-    @Column
+    @Column(nullable = false)
     private String redeSocial;
 
-    @Column
+    @Column(nullable = false)
     private String areaAtuacao;
 
-    @Column
+    @Column(nullable = false)
     private String matricula;
 
     @Enumerated(EnumType.STRING)
@@ -134,7 +142,7 @@ public class Funcionario extends EntityID {
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<ExpAnterior> expAnteriors = new ArrayList<>();
 
-    @Column
+    @Column(nullable = false)
     private String idioma;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -143,10 +151,10 @@ public class Funcionario extends EntityID {
     @Column
     private Integer horaExtra;
 
-    @Column
+    @Column(nullable = false)
     private LocalTime horaEntrada;
 
-    @Column
+    @Column(nullable = false)
     private LocalTime horaSaida;
 
 
@@ -348,11 +356,11 @@ public class Funcionario extends EntityID {
         this.filiacao = filiacao;
     }
 
-    public Dependentes getDependentes() {
+    public List<Dependentes> getDependentes() {
         return dependentes;
     }
 
-    public void setDependentes(Dependentes dependentes) {
+    public void setDependentes(List<Dependentes> dependentes) {
         this.dependentes = dependentes;
     }
 

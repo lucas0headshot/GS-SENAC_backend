@@ -13,7 +13,7 @@ import java.net.URI;
 import java.util.List;
 @RestController
 @RequestMapping("api/frequencia")
-public class FrequenciaController extends AbstractController {
+public class FrequenciaController {
     @Autowired
     private FrequenciaService frequenciaService;
 
@@ -23,7 +23,8 @@ public class FrequenciaController extends AbstractController {
         return ResponseEntity.created(URI.create("/api/frequencia" + frequencia.getId())).body(save);
     }
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "0") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Frequencia> frequencias = frequenciaService.buscaTodos(pageable);
         return ResponseEntity.ok(frequencias);

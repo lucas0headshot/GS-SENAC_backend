@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/aulas")
-public class AulaController extends AbstractController {
+public class AulaController {
     @Autowired
     private AulaService aulaService;
 
@@ -26,7 +26,8 @@ public class AulaController extends AbstractController {
 
 
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "0") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Aula> aulas = aulaService.buscaTodos(pageable);
         return ResponseEntity.ok(aulas);

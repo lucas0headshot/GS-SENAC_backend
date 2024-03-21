@@ -2,10 +2,8 @@ package com.senac.gestaocurso.models;
 
 
 
-import com.fasterxml.jackson.annotation.JsonInclude;
 import com.senac.gestaocurso.enums.Status;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 
@@ -16,20 +14,20 @@ public class Inscricao extends EntityID {
     @JoinColumn(name = "inscrito_id")
     private Funcionario inscrito;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate data;
 
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @Column
+    @Column(nullable = false)
     private Integer valor;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "turma_id")
     private Turma turma;
 
-
+<<<<<<< Updated upstream
     public Turma getTurma() {
         return turma;
     }
@@ -37,20 +35,18 @@ public class Inscricao extends EntityID {
     public void setTurma(Turma turma) {
         this.turma = turma;
     }
+=======
+>>>>>>> Stashed changes
 
 
     public Inscricao() {
     }
 
+<<<<<<< Updated upstream
 
-    public Turma getTurma() {
-        return turma;
-    }
 
-    public void setTurma(Turma turma) {
-        this.turma = turma;
-    }
-
+=======
+>>>>>>> Stashed changes
     public Funcionario getInscrito() {
         return inscrito;
     }
@@ -81,6 +77,14 @@ public class Inscricao extends EntityID {
 
     public void setValor(Integer valor) {
         this.valor = valor;
+    }
+
+    public Turma getTurma() {
+        return turma;
+    }
+
+    public void setTurma(Turma turma) {
+        this.turma = turma;
     }
 
 
