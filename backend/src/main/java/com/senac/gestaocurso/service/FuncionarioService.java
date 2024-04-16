@@ -1,12 +1,14 @@
 package com.senac.gestaocurso.service;
 
-import com.senac.gestaocurso.models.Funcionario;
+import com.senac.gestaocurso.models.*;
+import com.senac.gestaocurso.repository.DependentesRepository;
 import com.senac.gestaocurso.repository.FuncionarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -16,17 +18,45 @@ public class FuncionarioService {
     @Autowired
     private FuncionarioRepository funcionarioRepository;
 
+    @Autowired
+    private DependentesRepository dependentesRepository;
+
     public Funcionario salvar(Funcionario entity) {
+
+        List<Dependentes> dependentesList = new ArrayList<>();
+        for(Dependentes dependentesIn : entity.getDependentes()){
+            Dependentes dependentes = new Dependentes(dependentesIn.getNome(), dependentesIn.getEscolaridade(), dependentesIn.getDataNasc(), entity);
+            dependentesList.add(dependentes);
+        }
+
+        List<ExpAnterior> expAnteriorList = new ArrayList<>();
+        for(ExpAnterior expAnteriorIn : entity.getExpAnteriors()){
+            ExpAnterior expAnterior =  new ExpAnterior(expAnteriorIn.getDescricao(), expAnteriorIn.getCargo(), expAnteriorIn.getPeriodoFinal(), expAnteriorIn.getPeridoInicial(), entity);
+            expAnteriorList.add(expAnterior);
+        }
+
+        List<Certificacoes> certificacoesList = new ArrayList<>();
+        for (Certificacoes certificacoesIn : entity.getCertificacoeses()){
+            Certificacoes certificacoes = new Certificacoes(certificacoesIn.getNome(), certificacoesIn.getCargaHoraria(), certificacoesIn.getDataEmissao(), entity);
+            certificacoesList.add(certificacoes);
+        }
+
+        List<DadosBancarios> dadosBancariosList = new ArrayList<>();
+        for (DadosBancarios dadosBancariosIn : entity.getDadosBancarioses()){
+            DadosBancarios dadosBancarios = new DadosBancarios(dadosBancariosIn.getBanco(), dadosBancariosIn.getAgencia(), dadosBancariosIn.getAgencia(), dadosBancariosIn.getTipoContaBancaria(), entity);
+            dadosBancariosList.add(dadosBancarios);
+        }
+        entity.setDependentes(dependentesList);
+        entity.setExpAnteriors(expAnteriorList);
+        entity.setCertificacoeses(certificacoesList);
+        entity.setDadosBancarioses(dadosBancariosList);
         return funcionarioRepository.save(entity);
+
     }
 
     public Page<Funcionario> buscaTodos(Pageable pageable) {
         return funcionarioRepository.findAll(pageable);
     }
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes
     public Funcionario buscaPorId(Long id) {
         return funcionarioRepository.findById(id).orElse(null);
     }
