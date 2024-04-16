@@ -28,28 +28,29 @@ public class FuncionarioService {
             Dependentes dependentes = new Dependentes(dependentesIn.getNome(), dependentesIn.getEscolaridade(), dependentesIn.getDataNasc(), entity);
             dependentesList.add(dependentes);
         }
+        entity.setDependentes(dependentesList);
 
         List<ExpAnterior> expAnteriorList = new ArrayList<>();
-        for(ExpAnterior expAnteriorIn : entity.getExpAnteriors()){
-            ExpAnterior expAnterior =  new ExpAnterior(expAnteriorIn.getDescricao(), expAnteriorIn.getCargo(), expAnteriorIn.getPeriodoFinal(), expAnteriorIn.getPeridoInicial(), entity);
+        for(ExpAnterior expAnteriorIn : entity.getExpAnterior()){
+            ExpAnterior expAnterior =  new ExpAnterior(expAnteriorIn.getDescricao(), expAnteriorIn.getCargo(), expAnteriorIn.getPeriodoFinal(), expAnteriorIn.getPeriodoInicial(), entity);
             expAnteriorList.add(expAnterior);
         }
+        entity.setExpAnterior(expAnteriorList);
 
         List<Certificacoes> certificacoesList = new ArrayList<>();
-        for (Certificacoes certificacoesIn : entity.getCertificacoeses()){
+        for (Certificacoes certificacoesIn : entity.getCertificacoes()){
             Certificacoes certificacoes = new Certificacoes(certificacoesIn.getNome(), certificacoesIn.getCargaHoraria(), certificacoesIn.getDataEmissao(), entity);
             certificacoesList.add(certificacoes);
         }
+        entity.setCertificacoes(certificacoesList);
 
         List<DadosBancarios> dadosBancariosList = new ArrayList<>();
-        for (DadosBancarios dadosBancariosIn : entity.getDadosBancarioses()){
+        for (DadosBancarios dadosBancariosIn : entity.getDadosBancarios()){
             DadosBancarios dadosBancarios = new DadosBancarios(dadosBancariosIn.getBanco(), dadosBancariosIn.getAgencia(), dadosBancariosIn.getAgencia(), dadosBancariosIn.getTipoContaBancaria(), entity);
             dadosBancariosList.add(dadosBancarios);
         }
-        entity.setDependentes(dependentesList);
-        entity.setExpAnteriors(expAnteriorList);
-        entity.setCertificacoeses(certificacoesList);
-        entity.setDadosBancarioses(dadosBancariosList);
+        entity.setDadosBancarios(dadosBancariosList);
+
         return funcionarioRepository.save(entity);
 
     }
@@ -73,10 +74,10 @@ public class FuncionarioService {
             funcionario.setAreaAtuacao(alterado.getAreaAtuacao());
             funcionario.setCpf(alterado.getCpf());
             funcionario.setCargaHoraria(alterado.getCargaHoraria());
-            funcionario.setDadosBancarioses(alterado.getDadosBancarioses());
+            funcionario.setDadosBancarios(alterado.getDadosBancarios());
             funcionario.setCtbs(alterado.getCtbs());
-            funcionario.setCertificacoeses(alterado.getCertificacoeses());
-            funcionario.setExpAnteriors(alterado.getExpAnteriors());
+            funcionario.setCertificacoes(alterado.getCertificacoes());
+            funcionario.setExpAnterior(alterado.getExpAnterior());
             funcionario.setDependentes(alterado.getDependentes());
             funcionario.setTituloEleitor(alterado.getTituloEleitor());
             funcionario.setTipoRH(alterado.getTipoRH());
