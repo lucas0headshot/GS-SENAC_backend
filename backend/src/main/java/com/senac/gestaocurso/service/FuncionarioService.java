@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FuncionarioService {
@@ -23,32 +24,56 @@ public class FuncionarioService {
 
     public Funcionario salvar(Funcionario entity) {
 
-        List<Dependentes> dependentesList = new ArrayList<>();
-        for(Dependentes dependentesIn : entity.getDependentes()){
-            Dependentes dependentes = new Dependentes(dependentesIn.getNome(), dependentesIn.getEscolaridade(), dependentesIn.getDataNasc(), entity);
-            dependentesList.add(dependentes);
-        }
+        List<Dependentes> dependentesList = entity.getDependentes()
+                .stream()
+                .map(dependentesIn -> new Dependentes(
+                        dependentesIn.getNome(),
+                        dependentesIn.getEscolaridade(),
+                        dependentesIn.getDataNasc(),
+                        entity))
+                .collect(Collectors.toList());
+
         entity.setDependentes(dependentesList);
 
-        List<ExpAnterior> expAnteriorList = new ArrayList<>();
-        for(ExpAnterior expAnteriorIn : entity.getExpAnterior()){
-            ExpAnterior expAnterior =  new ExpAnterior(expAnteriorIn.getDescricao(), expAnteriorIn.getCargo(), expAnteriorIn.getPeriodoFinal(), expAnteriorIn.getPeriodoInicial(), entity);
-            expAnteriorList.add(expAnterior);
-        }
+
+
+        List<ExpAnterior> expAnteriorList = entity.getExpAnterior()
+                .stream()
+                .map(expAnteriorIn -> new ExpAnterior(
+                        expAnteriorIn.getDescricao(),
+                        expAnteriorIn.getCargo(),
+                        expAnteriorIn.getPeriodoFinal(),
+                        expAnteriorIn.getPeriodoInicial(),
+                        entity))
+                .collect(Collectors.toList());
+
         entity.setExpAnterior(expAnteriorList);
 
-        List<Certificacoes> certificacoesList = new ArrayList<>();
-        for (Certificacoes certificacoesIn : entity.getCertificacoes()){
-            Certificacoes certificacoes = new Certificacoes(certificacoesIn.getNome(), certificacoesIn.getCargaHoraria(), certificacoesIn.getDataEmissao(), entity);
-            certificacoesList.add(certificacoes);
-        }
+
+
+        List<Certificacoes> certificacoesList = entity.getCertificacoes()
+                .stream()
+                .map(certificacoesIn -> new Certificacoes(
+                        certificacoesIn.getNome(),
+                        certificacoesIn.getCargaHoraria(),
+                        certificacoesIn.getDataEmissao(),
+                        entity))
+                .collect(Collectors.toList());
+
         entity.setCertificacoes(certificacoesList);
 
-        List<DadosBancarios> dadosBancariosList = new ArrayList<>();
-        for (DadosBancarios dadosBancariosIn : entity.getDadosBancarios()){
-            DadosBancarios dadosBancarios = new DadosBancarios(dadosBancariosIn.getBanco(), dadosBancariosIn.getAgencia(), dadosBancariosIn.getAgencia(), dadosBancariosIn.getTipoContaBancaria(), entity);
-            dadosBancariosList.add(dadosBancarios);
-        }
+
+
+        List<DadosBancarios> dadosBancariosList = entity.getDadosBancarios()
+                .stream()
+                .map(dadosBancariosIn -> new DadosBancarios(
+                        dadosBancariosIn.getBanco(),
+                        dadosBancariosIn.getAgencia(),
+                        dadosBancariosIn.getAgencia(),
+                        dadosBancariosIn.getTipoContaBancaria(),
+                        entity))
+                .collect(Collectors.toList());
+
         entity.setDadosBancarios(dadosBancariosList);
 
         return funcionarioRepository.save(entity);
