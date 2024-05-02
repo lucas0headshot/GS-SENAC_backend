@@ -1,14 +1,13 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.models.*;
-import com.senac.gestaocurso.repository.DependentesRepository;
 import com.senac.gestaocurso.repository.FuncionarioRepository;
+import com.senac.gestaocurso.strategy.NovaValidacaoFuncionarioStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -20,9 +19,10 @@ public class FuncionarioService {
     private FuncionarioRepository funcionarioRepository;
 
     @Autowired
-    private DependentesRepository dependentesRepository;
+    private List<NovaValidacaoFuncionarioStrategy> novaValidacaoFuncionarioStrategies;
 
     public Funcionario salvar(Funcionario entity) {
+        novaValidacaoFuncionarioStrategies.forEach(validacao -> validacao.validar(entity));
 
         List<Dependentes> dependentesList = entity.getDependentes()
                 .stream()
