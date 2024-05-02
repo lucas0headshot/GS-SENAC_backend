@@ -11,11 +11,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.List;
 @RestController
 @RequestMapping("/api/funcionario")
 
-public class FuncionarioController {
+public class FuncionarioController extends AbstractController{
     @Autowired
     private FuncionarioService funcionarioService;
 
