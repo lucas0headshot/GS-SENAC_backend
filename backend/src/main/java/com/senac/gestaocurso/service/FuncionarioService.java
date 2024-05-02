@@ -3,6 +3,7 @@ package com.senac.gestaocurso.service;
 import com.senac.gestaocurso.models.*;
 import com.senac.gestaocurso.repository.FuncionarioRepository;
 import com.senac.gestaocurso.strategy.NovaValidacaoFuncionarioStrategy;
+import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,67 +18,15 @@ public class FuncionarioService {
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
-
     @Autowired
     private List<NovaValidacaoFuncionarioStrategy> novaValidacaoFuncionarioStrategies;
+    @Autowired
+    private List<ValidarImplementacaoListasStrategy> validarImplementacaoListasStrategies;
 
     public Funcionario salvar(Funcionario entity) {
         novaValidacaoFuncionarioStrategies.forEach(validacao -> validacao.validar(entity));
-
-        List<Dependentes> dependentesList = entity.getDependentes()
-                .stream()
-                .map(dependentesIn -> new Dependentes(
-                        dependentesIn.getNome(),
-                        dependentesIn.getEscolaridade(),
-                        dependentesIn.getDataNasc(),
-                        entity))
-                .collect(Collectors.toList());
-
-        entity.setDependentes(dependentesList);
-
-
-
-        List<ExpAnterior> expAnteriorList = entity.getExpAnterior()
-                .stream()
-                .map(expAnteriorIn -> new ExpAnterior(
-                        expAnteriorIn.getDescricao(),
-                        expAnteriorIn.getCargo(),
-                        expAnteriorIn.getPeriodoFinal(),
-                        expAnteriorIn.getPeriodoInicial(),
-                        entity))
-                .collect(Collectors.toList());
-
-        entity.setExpAnterior(expAnteriorList);
-
-
-
-        List<Certificacoes> certificacoesList = entity.getCertificacoes()
-                .stream()
-                .map(certificacoesIn -> new Certificacoes(
-                        certificacoesIn.getNome(),
-                        certificacoesIn.getCargaHoraria(),
-                        certificacoesIn.getDataEmissao(),
-                        entity))
-                .collect(Collectors.toList());
-
-        entity.setCertificacoes(certificacoesList);
-
-
-
-        List<DadosBancarios> dadosBancariosList = entity.getDadosBancarios()
-                .stream()
-                .map(dadosBancariosIn -> new DadosBancarios(
-                        dadosBancariosIn.getBanco(),
-                        dadosBancariosIn.getAgencia(),
-                        dadosBancariosIn.getAgencia(),
-                        dadosBancariosIn.getTipoContaBancaria(),
-                        entity))
-                .collect(Collectors.toList());
-
-        entity.setDadosBancarios(dadosBancariosList);
-
+        validarImplementacaoListasStrategies.forEach(validacao -> validacao.lista(entity));
         return funcionarioRepository.save(entity);
-
     }
 
     public Page<Funcionario> buscaTodos(Pageable pageable) {
