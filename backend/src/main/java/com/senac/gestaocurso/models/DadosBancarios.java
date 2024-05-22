@@ -2,6 +2,7 @@ package com.senac.gestaocurso.models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.gestaocurso.enums.TipoContaBancaria;
 import jakarta.persistence.*;
 
@@ -20,8 +21,9 @@ public class DadosBancarios extends EntityID {
     @Enumerated(EnumType.STRING)
     private TipoContaBancaria tipoContaBancaria;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "funcionario_id")
+    @JsonIgnore
     private Funcionario funcionario;
 
 
@@ -29,6 +31,13 @@ public class DadosBancarios extends EntityID {
     public DadosBancarios() {
     }
 
+    public DadosBancarios(String banco, String agencia, String conta, TipoContaBancaria tipoContaBancaria, Funcionario funcionario) {
+        this.banco = banco;
+        this.agencia = agencia;
+        this.conta = conta;
+        this.tipoContaBancaria = tipoContaBancaria;
+        this.funcionario = funcionario;
+    }
 
     public Funcionario getFuncionario() {
         return funcionario;

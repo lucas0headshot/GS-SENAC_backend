@@ -29,7 +29,7 @@ public class ExpAnteriorService {
             ExpAnterior expAnterior = encontrado.get();
             expAnterior.setCargo(alterado.getCargo());
             expAnterior.setDescricao(alterado.getDescricao());
-            expAnterior.setPeridoInicial(alterado.getPeridoInicial());
+            expAnterior.setPeriodoInicial(alterado.getPeriodoInicial());
             expAnterior.setPeriodoFinal(alterado.getPeriodoFinal());
             return expAnteriorRepository.save(expAnterior);
         }

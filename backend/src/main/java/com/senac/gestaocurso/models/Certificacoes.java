@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 
@@ -18,8 +19,9 @@ public class Certificacoes extends EntityID {
     @Column(nullable = false)
     private LocalDate dataEmissao;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "funcionario_id")
+    @JsonIgnore
     private Funcionario funcionario;
 
 
@@ -27,6 +29,12 @@ public class Certificacoes extends EntityID {
     public Certificacoes() {
     }
 
+    public Certificacoes(String nome, Integer cargaHoraria, LocalDate dataEmissao, Funcionario funcionario) {
+        this.nome = nome;
+        this.cargaHoraria = cargaHoraria;
+        this.dataEmissao = dataEmissao;
+        this.funcionario = funcionario;
+    }
 
     public Funcionario getFuncionario() {
         return funcionario;

@@ -11,75 +11,60 @@ import java.util.List;
 
 
 
-@Entity
+@Entity(name = "funcionario")
 public class Funcionario extends EntityID {
-    @Column(nullable = false)
+    @Column
     private String nome;
 
-<<<<<<< Updated upstream
     @Column
-=======
-    @Column(nullable = false)
-    @CPF(message = "Informe um CPF válido")
->>>>>>> Stashed changes
     private String cpf;
 
-    @Column(nullable = false)
+    @Column
     private String rg;
 
-    @Column(nullable = false)
+    @Column
     private String endereco;
 
-    @Column(nullable = false)
+    @Column
     private String ctbs;
 
-    @Column(nullable = false)
+    @Column
     private Double salarioContratual;
 
-    @Column(nullable = false)
+    @Column
     private Integer cargaHoraria;
 
     @Enumerated(EnumType.STRING)
     private ModalidadeContratual modalidadeContratual;
 
-    @Column(nullable = false)
+    @Column
     private String telefone;
 
     @Enumerated(EnumType.STRING)
     private EstadoCivil estadoCivil;
 
-<<<<<<< Updated upstream
     @Column
-=======
-    @Column(nullable = false)
-    @TituloEleitoral(message = "Informe um título de eleitor válido")
->>>>>>> Stashed changes
     private String tituloEleitor;
 
-    @Column(nullable = false)
+    @Column
     private String reservista;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate dataNasc;
 
-    @Column(nullable = false)
+    @Column
     private String pisPasep;
 
-    @Column(nullable = false)
+    @Column
     private String registroProfissional;
 
-<<<<<<< Updated upstream
     @Column
-=======
-    @Column(nullable = false)
-    @Email(message = "Informe um e-mail válido")
->>>>>>> Stashed changes
     private String email;
 
-    @Column(nullable = false)
+    @Column
     private String sindicato;
 
-    @Column(nullable = false)
+    @Column
     private String setor;
 
     @Enumerated(EnumType.STRING)
@@ -88,7 +73,7 @@ public class Funcionario extends EntityID {
     @Column
     private String cnh;
 
-    @Column(nullable = false)
+    @Column
     private LocalDate dataAdmissao;
 
     @ManyToOne
@@ -102,59 +87,58 @@ public class Funcionario extends EntityID {
     @JoinColumn(name = "filiacao_id")
     private Filiacao filiacao;
 
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Dependentes> dependentes;
 
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private List<Dependentes>  dependentes;
-
-    @Column(nullable = false)
+    @Column
     private String racaCor;
 
-    @Column(nullable = false)
+    @Column
     private String religiao;
 
-    @Column(nullable = false)
+    @Column
     private Boolean doadorSangue;
 
     @Enumerated(EnumType.STRING)
     private Genero genero;
 
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Certificacoes> certificacoeses = new ArrayList<>();
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<Certificacoes> certificacoes;
 
     @Enumerated(EnumType.STRING)
     private Turno turno;
 
-    @Column(nullable = false)
+    @Column
     private String nacionalidade;
 
-    @Column(nullable = false)
+    @Column
     private String redeSocial;
 
-    @Column(nullable = false)
+    @Column
     private String areaAtuacao;
 
-    @Column(nullable = false)
+    @Column
     private String matricula;
 
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<ExpAnterior> expAnteriors = new ArrayList<>();
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<ExpAnterior> expAnterior;
 
-    @Column(nullable = false)
+    @Column
     private String idioma;
 
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<DadosBancarios> dadosBancarioses = new ArrayList<>();
+    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    private List<DadosBancarios> dadosBancarios;
 
     @Column
     private Integer horaExtra;
 
-    @Column(nullable = false)
+    @Column
     private LocalTime horaEntrada;
 
-    @Column(nullable = false)
+    @Column
     private LocalTime horaSaida;
 
 
@@ -396,28 +380,28 @@ public class Funcionario extends EntityID {
         this.genero = genero;
     }
 
-    public List<DadosBancarios> getDadosBancarioses() {
-        return dadosBancarioses;
+    public List<DadosBancarios> getDadosBancarios() {
+        return dadosBancarios;
     }
 
-    public void setDadosBancarioses(List<DadosBancarios> dadosBancarioses) {
-        this.dadosBancarioses = dadosBancarioses;
+    public void setDadosBancarios(List<DadosBancarios> dadosBancarios) {
+        this.dadosBancarios = dadosBancarios;
     }
 
-    public List<ExpAnterior> getExpAnteriors() {
-        return expAnteriors;
+    public List<ExpAnterior> getExpAnterior() {
+        return expAnterior;
     }
 
-    public void setExpAnteriors(List<ExpAnterior> expAnteriors) {
-        this.expAnteriors = expAnteriors;
+    public void setExpAnterior(List<ExpAnterior> expAnterior) {
+        this.expAnterior = expAnterior;
     }
 
-    public List<Certificacoes> getCertificacoeses() {
-        return certificacoeses;
+    public List<Certificacoes> getCertificacoes() {
+        return certificacoes;
     }
 
-    public void setCertificacoeses(List<Certificacoes> certificacoeses) {
-        this.certificacoeses = certificacoeses;
+    public void setCertificacoes(List<Certificacoes> certificacoes) {
+        this.certificacoes = certificacoes;
     }
 
     public Turno getTurno() {
@@ -534,16 +518,16 @@ public class Funcionario extends EntityID {
                 ", religiao='" + religiao + '\'' +
                 ", doadorSangue=" + doadorSangue +
                 ", genero=" + genero +
-                ", certificacoes=" + certificacoeses +
+                ", certificacoes=" + certificacoes +
                 ", turno=" + turno +
                 ", nacionalidade='" + nacionalidade + '\'' +
                 ", redeSocial='" + redeSocial + '\'' +
                 ", areaAtuacao='" + areaAtuacao + '\'' +
                 ", matricula='" + matricula + '\'' +
                 ", status=" + status +
-                ", expAnterior=" + expAnteriors +
+                ", expAnterior=" + expAnterior +
                 ", idioma='" + idioma + '\'' +
-                ", dadosBancarios=" + dadosBancarioses +
+                ", dadosBancarios=" + dadosBancarios +
                 ", horaExtra=" + horaExtra +
                 ", horaEntrada=" + horaEntrada +
                 ", horaSaida=" + horaSaida +

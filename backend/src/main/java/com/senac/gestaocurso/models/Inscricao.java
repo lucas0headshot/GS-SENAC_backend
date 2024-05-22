@@ -27,26 +27,8 @@ public class Inscricao extends EntityID {
     @JoinColumn(name = "turma_id")
     private Turma turma;
 
-<<<<<<< Updated upstream
-    public Turma getTurma() {
-        return turma;
-    }
-
-    public void setTurma(Turma turma) {
-        this.turma = turma;
-    }
-=======
->>>>>>> Stashed changes
-
-
     public Inscricao() {
     }
-
-<<<<<<< Updated upstream
-
-
-=======
->>>>>>> Stashed changes
     public Funcionario getInscrito() {
         return inscrito;
     }
@@ -86,8 +68,6 @@ public class Inscricao extends EntityID {
     public void setTurma(Turma turma) {
         this.turma = turma;
     }
-
-
 
     @Override
     public String toString() {
