@@ -4,6 +4,8 @@ package com.senac.gestaocurso.service;
 import com.senac.gestaocurso.models.DadosBancarios;
 import com.senac.gestaocurso.repository.DadosBancariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,9 +15,11 @@ import java.util.Optional;
 public class DadosBancariosService {
     @Autowired
     private DadosBancariosRepository dadosBancariosRepository;
-    public DadosBancarios salvar(DadosBancarios entity) {return dadosBancariosRepository.save(entity);}
-    public List<DadosBancarios> buscaTodos() {
-        return dadosBancariosRepository.findAll();
+    public DadosBancarios salvar(DadosBancarios entity) {
+        return dadosBancariosRepository.save(entity);
+    }
+    public Page<DadosBancarios> buscaTodos(Pageable pageable) {
+        return dadosBancariosRepository.findAll(pageable);
     }
     public DadosBancarios buscaPorId(Long id) {
         return dadosBancariosRepository.findById(id).orElse(null);

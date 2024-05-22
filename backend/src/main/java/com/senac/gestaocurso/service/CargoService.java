@@ -4,6 +4,8 @@ package com.senac.gestaocurso.service;
 import com.senac.gestaocurso.models.Cargo;
 import com.senac.gestaocurso.repository.CargoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -17,8 +19,8 @@ public class CargoService {
     public Cargo salvar(Cargo entity) {
         return cargoRepository.save(entity);
     }
-    public List<Cargo> buscaTodos() {
-        return cargoRepository.findAll();
+    public Page<Cargo> buscaTodos(Pageable pageable) {
+        return cargoRepository.findAll(pageable);
     }
     public Cargo buscaPorId(Long id) {
         return cargoRepository.findById(id).orElse(null);

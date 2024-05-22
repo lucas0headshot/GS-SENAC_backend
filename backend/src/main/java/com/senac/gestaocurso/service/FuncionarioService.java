@@ -1,23 +1,36 @@
 package com.senac.gestaocurso.service;
 
-import com.senac.gestaocurso.models.Funcionario;
+import com.senac.gestaocurso.models.*;
 import com.senac.gestaocurso.repository.FuncionarioRepository;
+import com.senac.gestaocurso.strategy.NovaValidacaoFuncionarioStrategy;
+import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class FuncionarioService {
 
     @Autowired
     private FuncionarioRepository funcionarioRepository;
+    @Autowired
+    private List<NovaValidacaoFuncionarioStrategy> novaValidacaoFuncionarioStrategies;
+    @Autowired
+    private List<ValidarImplementacaoListasStrategy> validarImplementacaoListasStrategies;
 
-    public Funcionario salvar(Funcionario entity) {return funcionarioRepository.save(entity);}
+    public Funcionario salvar(Funcionario entity) {
+        novaValidacaoFuncionarioStrategies.forEach(validacao -> validacao.validar(entity));
+        validarImplementacaoListasStrategies.forEach(validacao -> validacao.lista(entity));
+        return funcionarioRepository.save(entity);
+    }
 
-    public List<Funcionario> buscaTodos() {
-        return funcionarioRepository.findAll();
+    public Page<Funcionario> buscaTodos(Pageable pageable) {
+        return funcionarioRepository.findAll(pageable);
     }
     public Funcionario buscaPorId(Long id) {
         return funcionarioRepository.findById(id).orElse(null);
@@ -35,10 +48,10 @@ public class FuncionarioService {
             funcionario.setAreaAtuacao(alterado.getAreaAtuacao());
             funcionario.setCpf(alterado.getCpf());
             funcionario.setCargaHoraria(alterado.getCargaHoraria());
-            funcionario.setDadosBancarioses(alterado.getDadosBancarioses());
+            funcionario.setDadosBancarios(alterado.getDadosBancarios());
             funcionario.setCtbs(alterado.getCtbs());
-            funcionario.setCertificacoeses(alterado.getCertificacoeses());
-            funcionario.setExpAnteriors(alterado.getExpAnteriors());
+            funcionario.setCertificacoes(alterado.getCertificacoes());
+            funcionario.setExpAnterior(alterado.getExpAnterior());
             funcionario.setDependentes(alterado.getDependentes());
             funcionario.setTituloEleitor(alterado.getTituloEleitor());
             funcionario.setTipoRH(alterado.getTipoRH());

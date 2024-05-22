@@ -4,6 +4,9 @@ package com.senac.gestaocurso.resource;
 import com.senac.gestaocurso.models.Curso;
 import com.senac.gestaocurso.service.CursoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +22,14 @@ public class CursoController {
     @PostMapping()
     public ResponseEntity salvar(@RequestBody Curso curso){
         Curso save = cursoService.salvar(curso);
-        return ResponseEntity.created(URI.create("/cursos/salvar" + curso.getId())).body(save);
+        return ResponseEntity.created(URI.create("/api/cursos" + curso.getId())).body(save);
     }
 
     @GetMapping
-    public  ResponseEntity findAll() {
-        List<Curso> cursos = cursoService.buscaTodos();
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "0") int size) {
+        Pageable pageable = PageRequest.of(page, size);
+        Page<Curso> cursos = cursoService.buscaTodos(pageable);
         return ResponseEntity.ok(cursos);
     }
     @GetMapping("/{id}")
