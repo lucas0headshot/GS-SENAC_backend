@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/dependentes")
-public class DependentesController extends AbstractController {
+public class DependentesController {
     @Autowired
     private DependentesService dependentesService;
 
@@ -25,7 +25,8 @@ public class DependentesController extends AbstractController {
     }
 
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "0") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Dependentes> dependentes = dependentesService.buscaTodos(pageable);
         return ResponseEntity.ok(dependentes);

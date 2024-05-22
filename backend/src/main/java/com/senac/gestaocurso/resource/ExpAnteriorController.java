@@ -15,7 +15,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/experiencias")
-public class ExpAnteriorController extends AbstractController {
+public class ExpAnteriorController {
     @Autowired
     private ExpAnteriorService expAnteriorService;
 
@@ -26,7 +26,8 @@ public class ExpAnteriorController extends AbstractController {
     }
 
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "0") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<ExpAnterior> expAnteriors = expAnteriorService.buscaTodos(pageable);
         return ResponseEntity.ok(expAnteriors);

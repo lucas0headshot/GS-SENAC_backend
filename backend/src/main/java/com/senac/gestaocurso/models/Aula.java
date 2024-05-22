@@ -14,7 +14,7 @@ public class Aula extends EntityID {
     @JoinColumn(name = "materia_id")
     private Materia materia;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate dia;
 
     @ManyToOne(cascade = CascadeType.ALL)

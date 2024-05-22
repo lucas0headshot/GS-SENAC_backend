@@ -15,38 +15,38 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/avaliacao")
-public class AvaliacaoController extends AbstractController {
-      @Autowired
-      private AvaliacaoService avaliacaoService;
+public class AvaliacaoController {
+    public class FuncionarioController {
+        @Autowired
+        private AvaliacaoService avaliacaoService;
 
-  
-  
-      @PostMapping()
-      public ResponseEntity salvar(@RequestBody Avaliacao avaliacoes) {
-          Avaliacao save = avaliacaoService.salvar(avaliacoes);
-          return ResponseEntity.created(URI.create("/api/avaliacao" + avaliacoes.getId())).body(save);
-      }
-
-
-      @GetMapping
-      public ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "10") int size) {
-          Pageable pageable = PageRequest.of(page, size);
-          Page<Avaliacao> avaliacoes = avaliacaoService.buscaTodos(pageable);
-          return ResponseEntity.ok(avaliacoes);
-      }
-
-      @GetMapping("/{id}")
-      public ResponseEntity findById(@PathVariable("id") Long id) {
-          Avaliacao avaliacao = avaliacaoService.buscaPorId(id);
-          return ResponseEntity.ok().body(avaliacao);
-      }
+        @PostMapping()
+        public ResponseEntity salvar(@RequestBody Avaliacao avaliacoes) {
+            Avaliacao save = avaliacaoService.salvar(avaliacoes);
+            return ResponseEntity.created(URI.create("/api/avaliacao" + avaliacoes.getId())).body(save);
+        }
 
 
-      @DeleteMapping("{id}")
-      public ResponseEntity remove(@PathVariable("id") Long id) {
-          avaliacaoService.remover(id);
-          return ResponseEntity.noContent().build();
-      }
+        @GetMapping
+        public ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
+                                      @RequestParam(defaultValue = "0") int size) {
+            Pageable pageable = PageRequest.of(page, size);
+            Page<Avaliacao> avaliacoes = avaliacaoService.buscaTodos(pageable);
+            return ResponseEntity.ok(avaliacoes);
+        }
+
+        @GetMapping("/{id}")
+        public ResponseEntity findById(@PathVariable("id") Long id) {
+            Avaliacao avaliacao = avaliacaoService.buscaPorId(id);
+            return ResponseEntity.ok().body(avaliacao);
+        }
+
+
+        @DeleteMapping("{id}")
+        public ResponseEntity remove(@PathVariable("id") Long id) {
+            avaliacaoService.remover(id);
+            return ResponseEntity.noContent().build();
+        }
 
         /**
          * Reparar classe Avaliacao para alterar o service, mapeamento esta certo
@@ -57,3 +57,4 @@ public class AvaliacaoController extends AbstractController {
         */
         }
     }
+

@@ -2,11 +2,9 @@ package com.senac.gestaocurso.models;
 
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.gestaocurso.enums.Escolaridade;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -24,11 +22,21 @@ public class Dependentes extends EntityID {
     private LocalDate dataNasc;
 
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name = "funcionario_id")
+    @JsonIgnore
+    private Funcionario funcionario;
+
 
     public Dependentes() {
     }
 
-
+    public Dependentes(String nome, Escolaridade escolaridade, LocalDate dataNasc, Funcionario funcionario) {
+        this.nome = nome;
+        this.escolaridade = escolaridade;
+        this.dataNasc = dataNasc;
+        this.funcionario = funcionario;
+    }
 
     public String getNome() {
         return nome;

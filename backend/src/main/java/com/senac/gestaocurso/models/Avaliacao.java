@@ -19,7 +19,7 @@ public class Avaliacao extends EntityID {
     @JoinColumn(name = "aluno_id")
     private Inscricao aluno;
 
-    @Column
+    @Column(nullable = false)
     private String nome;
 
     @Column
@@ -27,7 +27,7 @@ public class Avaliacao extends EntityID {
     @Max(value = 10, message = "A nota deve ser no máximo 10")
     private Integer nota;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate data;
 
 

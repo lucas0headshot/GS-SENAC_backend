@@ -2,10 +2,8 @@ package com.senac.gestaocurso.models;
 
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.persistence.*;
 
 import java.time.LocalDate;
 
@@ -13,20 +11,22 @@ import java.time.LocalDate;
 
 @Entity
 public class ExpAnterior extends EntityID {
+    @Column(nullable = false)
     private String descricao;
 
     @ManyToOne
     @JoinColumn(name = "cargo_id")
     private Cargo cargo;
 
-    @Column
+    @Column(nullable = false)
     private LocalDate periodoFinal;
 
-    @Column
-    private LocalDate peridoInicial;
+    @Column(nullable = false)
+    private LocalDate periodoInicial;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "funcionario_id")
+    @JsonIgnore
     private Funcionario funcionario;
 
 
@@ -34,7 +34,13 @@ public class ExpAnterior extends EntityID {
     public ExpAnterior() {
     }
 
-
+    public ExpAnterior(String descricao, Cargo cargo, LocalDate periodoFinal, LocalDate peridoInicial, Funcionario funcionario) {
+        this.descricao = descricao;
+        this.cargo = cargo;
+        this.periodoFinal = periodoFinal;
+        this.periodoInicial = peridoInicial;
+        this.funcionario = funcionario;
+    }
 
     public Funcionario getFuncionario() {
         return funcionario;
@@ -68,12 +74,12 @@ public class ExpAnterior extends EntityID {
         this.periodoFinal = periodoFinal;
     }
 
-    public LocalDate getPeridoInicial() {
-        return peridoInicial;
+    public LocalDate getPeriodoInicial() {
+        return periodoInicial;
     }
 
-    public void setPeridoInicial(LocalDate peridoInicial) {
-        this.peridoInicial = peridoInicial;
+    public void setPeriodoInicial(LocalDate peridoInicial) {
+        this.periodoInicial = peridoInicial;
     }
 
 
@@ -84,7 +90,7 @@ public class ExpAnterior extends EntityID {
                 "descricao='" + descricao + '\'' +
                 ", cargo=" + cargo +
                 ", periodoFinal=" + periodoFinal +
-                ", peridoInicial=" + peridoInicial +
+                ", peridoInicial=" + periodoInicial +
                 '}';
     }
 }
