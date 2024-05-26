@@ -1,4 +1,4 @@
-package com.senac.gestaocurso.strategy.impl;
+package com.senac.gestaocurso.strategy.funcionarioValidacaoImp;
 
 import com.senac.gestaocurso.enterprise.ValidationException;
 import com.senac.gestaocurso.models.Funcionario;
@@ -8,19 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidarTituloEleitor implements NovaValidacaoFuncionarioStrategy {
+public class ValidarReservista implements NovaValidacaoFuncionarioStrategy {
 
     @Autowired
     private FuncionarioRepository repository;
 
     @Override
     public void validar(Funcionario funcionario) {
-        if (tituloValidado(funcionario.getTituloEleitor())){
-            throw new ValidationException("Título de Eleitor já cadastrado");
+        if (reservistaValidado(funcionario.getReservista())){
+            throw new ValidationException("Reservista já cadastrada");
         }
     }
 
-    private boolean tituloValidado(String titulo){
-        return repository.findByTituloEleitor(titulo) != null;
+    private boolean reservistaValidado(String reservista){
+        return repository.findByReservista(reservista) != null;
     }
 }
