@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ValidarListaDadosBancarios implements ValidarImplementacaoListasStrategy {
+public class ImplementaListaDadoBancario implements ValidarImplementacaoListasStrategy {
     @Override
     public void lista(Funcionario funcionario) {
-        if (!funcionario.getDadosBancarios().isEmpty()) {
+        if (validaLista(funcionario)) {
             List<DadosBancarios> dadosBancariosList = funcionario.getDadosBancarios()
                     .stream()
                     .map(dadosBancariosIn -> new DadosBancarios(
@@ -25,5 +25,11 @@ public class ValidarListaDadosBancarios implements ValidarImplementacaoListasStr
 
             funcionario.setDadosBancarios(dadosBancariosList);
         }
+    }
+
+    private boolean validaLista(Funcionario funcionario){
+        if (!funcionario.getDadosBancarios().isEmpty()) return true;
+
+        return false;
     }
 }

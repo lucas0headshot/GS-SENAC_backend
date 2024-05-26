@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ValidarListaExpAnterior implements ValidarImplementacaoListasStrategy {
+public class ImplementaListaExperienciaAnterior implements ValidarImplementacaoListasStrategy {
     @Override
     public void lista(Funcionario funcionario) {
-        if (!funcionario.getExpAnterior().isEmpty()) {
+        if (validaLista(funcionario)) {
             List<ExpAnterior> expAnteriorList = funcionario.getExpAnterior()
                     .stream()
                     .map(expAnteriorIn -> new ExpAnterior(
@@ -25,5 +25,11 @@ public class ValidarListaExpAnterior implements ValidarImplementacaoListasStrate
 
             funcionario.setExpAnterior(expAnteriorList);
         }
+    }
+
+    private boolean validaLista(Funcionario funcionario){
+        if (!funcionario.getExpAnterior().isEmpty()) return true;
+
+        return false;
     }
 }

@@ -9,12 +9,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ValidarListaDependentes implements ValidarImplementacaoListasStrategy {
+public class ImplementaListaDependente implements ValidarImplementacaoListasStrategy {
 
 
     @Override
     public void lista(Funcionario funcionario) {
-     if (!funcionario.getDependentes().isEmpty()){
+     if (validaLista(funcionario)){
          List<Dependentes> dependentesList = funcionario.getDependentes()
                  .stream()
                  .map(dependentesIn -> new Dependentes(
@@ -26,5 +26,11 @@ public class ValidarListaDependentes implements ValidarImplementacaoListasStrate
 
          funcionario.setDependentes(dependentesList);
      }
+    }
+
+    private boolean validaLista(Funcionario funcionario){
+        if (!funcionario.getDependentes().isEmpty()) return true;
+
+        return false;
     }
 }

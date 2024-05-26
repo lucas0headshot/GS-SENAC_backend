@@ -9,10 +9,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ValidarListaCertificacoes implements ValidarImplementacaoListasStrategy {
+public class ImplementaListaCertificacao implements ValidarImplementacaoListasStrategy {
     @Override
     public void lista(Funcionario funcionario) {
-        if (!funcionario.getCertificacoes().isEmpty()) {
+        if (validaLista(funcionario)) {
             List<Certificacoes> certificacoesList = funcionario.getCertificacoes()
                     .stream()
                     .map(certificacoesIn -> new Certificacoes(
@@ -24,5 +24,11 @@ public class ValidarListaCertificacoes implements ValidarImplementacaoListasStra
 
             funcionario.setCertificacoes(certificacoesList);
         }
+    }
+
+    private Boolean validaLista(Funcionario funcionario){
+        if (!funcionario.getCertificacoes().isEmpty()) return true;
+
+        return false;
     }
 }
