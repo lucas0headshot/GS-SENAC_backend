@@ -1,8 +1,6 @@
 package com.senac.gestaocurso.resource;
 
-import com.senac.gestaocurso.models.Funcionario;
-import com.senac.gestaocurso.models.Inscricao;
-import com.senac.gestaocurso.service.FuncionarioService;
+import com.senac.gestaocurso.models.domain.Inscricao;
 import com.senac.gestaocurso.service.InscricaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.List;
+
 @RestController
 @RequestMapping("api/inscricao")
 public class InscricaoController {

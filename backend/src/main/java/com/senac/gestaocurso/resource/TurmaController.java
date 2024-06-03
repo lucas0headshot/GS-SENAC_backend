@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.resource;
 
 
-import com.senac.gestaocurso.models.Turma;
+import com.senac.gestaocurso.models.domain.Turma;
 import com.senac.gestaocurso.service.TurmaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,7 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.List;
+
 @RestController
 @RequestMapping("api/turma")
 public class TurmaController {

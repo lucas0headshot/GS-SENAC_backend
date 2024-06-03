@@ -1,14 +1,13 @@
 package com.senac.gestaocurso.service;
 
 
-import com.senac.gestaocurso.models.Avaliacao;
+import com.senac.gestaocurso.models.domain.Avaliacao;
 import com.senac.gestaocurso.repository.AvaliacaoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service

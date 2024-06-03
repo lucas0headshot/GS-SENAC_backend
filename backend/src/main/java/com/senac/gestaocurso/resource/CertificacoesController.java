@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.resource;
 
-import com.senac.gestaocurso.models.Certificacao;
+import com.senac.gestaocurso.models.domain.Certificacao;
 import com.senac.gestaocurso.service.CertificacoesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

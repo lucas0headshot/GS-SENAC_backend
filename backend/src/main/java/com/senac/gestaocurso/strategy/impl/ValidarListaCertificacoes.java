@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.strategy.impl;
 
-import com.senac.gestaocurso.models.Certificacao;
+import com.senac.gestaocurso.models.domain.Certificacao;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
 import org.springframework.stereotype.Component;
