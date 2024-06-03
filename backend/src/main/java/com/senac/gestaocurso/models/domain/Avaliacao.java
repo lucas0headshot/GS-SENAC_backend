@@ -1,9 +1,11 @@
-package com.senac.gestaocurso.models;
+package com.senac.gestaocurso.models.domain;
 
 
 
+import com.senac.gestaocurso.models.EntityID;
 import jakarta.persistence.*;
-
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 import java.time.LocalDate;
 
 
@@ -22,6 +24,8 @@ public class Avaliacao extends EntityID {
     private String nome;
 
     @Column
+    @Min(value = 0, message = "A nota deve ser no mínimo 0")
+    @Max(value = 10, message = "A nota deve ser no máximo 10")
     private Integer nota;
 
     @Column(nullable = false)

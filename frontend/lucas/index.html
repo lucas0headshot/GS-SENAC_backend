@@ -13,116 +13,58 @@
         
         <!-- Custom CSS -->
         <link rel="stylesheet" href="assets/css/style.css">
+        <link rel="stylesheet" href="assets/css/background.css">
+        <link rel="stylesheet" href="assets/css/components/btn-roxo.css">
     </head>
-    <body>
-        <header>
-            <nav class="navbar navbar-expand-lg bg-dark">
-                <div class="container-fluid">
-                    <a href="#" class="navbar-brand text-white">
-                        <img src="assets/images/favicon.png" alt="Logo" class="img-fluid mx-auto border-0">
-                        Gestão de Cursos
-                    </a>
-                </div>
-            </nav>
-        </header>
-        
+    <body class="bg-personalizado container">
+        <main>
+            <!-- Form Login -->
+                <form id="formLogin">
+                    <h3>Entrar</h3>
 
-        <main class="bg-personalizado">
-            <div class="container d-flex align-items-center justify-content-center">
-                <!-- Card Login -->
-                    <div class="card col-lg-4 col-md-6 col-sm-12 p-1 bg-body shadow-sm" id="entrar">
-                        <div class="card-header bg-body border-0 rounded-0">
-                            <h3 class="card-title">Entre na sua conta!</h3>
+                    <div class="form-control bg-transparent border-0">
+                        <input class="form-control" type="email" id="email_login" name="email_login" placeholder="Digite seu e-mail">
+                        <input class="form-control" type="password" autocomplete="current-password" name="senha_login" id="senha_login" placeholder="Digite sua senha">
+
+                        <div class="d-flex align-items-center justify-content-center">
+                            <button class="btn btn-md btn-primary btn-roxo" type="submit">Entrar</button>
                         </div>
 
-                        <div class="card-body">
-                            <form id="formLogin">
-                                <div class="row">
-                                    <div class="form-control mb-3 border-0">
-                                        <label for="usuario" class="form-label fw-bold">Usuário</label>
-                                        <input type="text" class="form-control" name="usuario" maxlength="100" placeholder="Digite seu usuário" id="usuario">
-                                    </div>
+                        <p><strong>Não tem conta? Cadastre-se </strong><a href="#" id="aCadastrarConta"><strong>clicando aqui.</strong></a></p>
+                    </div>
+                </form>
+            <!-- /Form Login -->
 
-                                    <div class="form-control mb-3 border-0">
-                                        <label for="senha" class="form-label fw-bold">Senha </label>
-                                        <input type="password" name="senha" class="form-control" maxlength="100" placeholder="Digite sua senha">
-                                    </div>
-                                </div>
 
-                                <div class="text-center pt-1 pb-1">
-                                    <button type="submit" class="btn btn-md btn-primary" name="entrar" id="btnEntrar">Entrar</button>
-                                </div>
-                            </form>
-                        </div>
+            
+            <!-- Form Cadastro -->
+                <form id="formCadastro" class="d-none">
+                    <h3>Cadastrar</h3>
 
-                        <div class="card-footer bg-body m-0 border-0">
-                            <div class="card-text text-center fs-5">
-                                <p>Ainda não possui uma?</p>
-                                <a href="#" id="aCadastrarConta">Crie uma clicando aqui</a>
+                    <div class="form-control bg-transparent border-0">
+                        <div class="form-control bg-transparent border-0">
+                            <input class="form-control" type="email" id="email_cadastro" name="email_cadastro" placeholder="Digite seu e-mail">
+                            <input class="form-control" type="password" autocomplete="new-password" name="senha_cadastro" id="senha_cadastro" placeholder="Digite sua senha">
+                            <input class="form-control" type="password" name="repita_senha_cadastro" id="repita_senha_cadastro" placeholder="Repita sua senha">
+    
+                            <div class="d-flex align-items-center justify-content-center">
+                                <button class="btn btn-md btn-primary btn-roxo" type="submit">Entrar</button>
                             </div>
+    
+                            <p><strong>Já possui conta? Entre </strong><a href="#" id="aPossuiConta"><strong>clicando aqui.</strong></a></p>
                         </div>
                     </div>
-                <!-- /Card Login -->
-
-
-                <!-- Card Cadastro -->
-                    <div class="card col-lg-4 col-md-6 col-sm-12 p-1 bg-body d-none" id="cadastrar">
-                        <div class="card-header bg-body border-0 rounded-0">
-                            <h3 class="card-title">Crie sua conta!</h3>
-                        </div>
-
-                        <div class="card-body">
-                            <form id="formCadastro">
-                                <div class="row">
-                                    <div class="col-auto mb-3 form-control border-0">
-                                        <label for="usuario_cadastro" class="form-label fw-bold">Usuário</label>
-                                        <input type="text" class="form-control" name="usuario_cadastro" maxlength="100" placeholder="Digite seu usuário" id="usuario_cadastro">
-                                    </div>
-
-                                    <div class="col-auto mb-3 form-control border-0">
-                                        <label for="email_cadastro" class="form-label fw-bold">E-mail</label>
-                                        <input type="email" class="form-control" name="email_cadastro" maxlength="100" placeholder="Digite seu email" id="email_cadastro">
-                                    </div>
-
-                                    <div class="col form-control mb-3 border-0">
-                                        <label for="senha_cadastro" class="form-label fw-bold">Senha</label>
-                                        <input type="password" name="senha_cadastro" class="form-control" maxlength="100" placeholder="Digite sua senha">
-                                    </div>
-
-                                    <div class="col form-control d-none mb-3 border-0">
-                                        <label for="repita_senha_cadastro" class="form-label fw-bold">Repita sua senha</label>
-                                        <input type="password" name="repita_senha_cadastro" id="repita_senha_cadastro" class="form-control" maxlength="100" placeholder="Re-digite sua senha">
-                                    </div>
-                                </div>
-
-                                <div class="card-text text-center">
-                                    <button class="btn btn-md btn-primary" type="submit" id="btnCriar" name="criar">Criar</button>
-                                </div>
-                            </form>
-
-                            <div class="card-footer bg-body m-0 border-0">
-                                <div class="card-text text-center">
-                                    <a href="#" id="aPossuiConta" class="fs-5">Já tenho conta</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                <!-- /Card Cadastro -->
-            </div>
+                </form>
+            <!-- /Form Cadastro -->
         </main>
-
-
-        <footer class="footer text-center p-1 bg-dark text-white">
-            <p class="fs-5">Desenvolvido por Lucas ©2024</p>
-        </footer>
 
 
 
         <!-- Dependências -->
-            <!-- JQuery -->
+            <!-- JQuery v3.7.1 -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             
-            <!-- Jquery Validate -->
+            <!-- Jquery Validate v1.20.0 -->
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/jquery.validate.min.js" integrity="sha512-WMEKGZ7L5LWgaPeJtw9MBM4i5w5OSBlSjTjCtSnvFJGSVD26gE5+Td12qN5pvWXhuWaWcVwF++F7aqu9cvqP0A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/additional-methods.min.js" integrity="sha512-TiQST7x/0aMjgVTcep29gi+q5Lk5gVTUPE9XgN0g96rwtjEjLpod4mlBRKWHeBcvGBAEvJBmfDqh2hfMMmg+5A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.20.0/localization/messages_pt_BR.min.js" integrity="sha512-wj+JXy2ZCuKQjw7d4LJkn78dvQsWfKIQjITZa2QPiEJ//LYwN2OHKGFPN9ZuZ2EUxtDMVV3Y5YdUdQwZT7FuCA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

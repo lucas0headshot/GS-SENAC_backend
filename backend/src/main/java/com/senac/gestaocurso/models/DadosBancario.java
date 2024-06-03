@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 
 
 @Entity
-public class DadosBancarios extends EntityID {
+public class DadosBancario extends EntityID {
     @Column(nullable = false)
     private String banco;
 
@@ -28,10 +28,10 @@ public class DadosBancarios extends EntityID {
 
 
 
-    public DadosBancarios() {
+    public DadosBancario() {
     }
 
-    public DadosBancarios(String banco, String agencia, String conta, TipoContaBancaria tipoContaBancaria, Funcionario funcionario) {
+    public DadosBancario(String banco, String agencia, String conta, TipoContaBancaria tipoContaBancaria, Funcionario funcionario) {
         this.banco = banco;
         this.agencia = agencia;
         this.conta = conta;
