@@ -1,7 +1,8 @@
-package com.senac.gestaocurso.models;
+package com.senac.gestaocurso.models.domain;
 
 
 
+import com.senac.gestaocurso.models.EntityID;
 import jakarta.persistence.*;
 
 import java.time.LocalDate;
@@ -31,6 +32,8 @@ public class Turma extends EntityID {
     @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Inscricao> inscritos = new ArrayList<>();
 
+    @Column
+    private Integer limiteQtdInscricao;
 
 
     public Turma() {
@@ -86,15 +89,26 @@ public class Turma extends EntityID {
         this.curso = curso;
     }
 
+    public Integer getLimiteQtdInscricao() {
+        return limiteQtdInscricao;
+    }
+
+    public void setLimiteQtdInscricao(Integer limiteQtdInscricao) {
+        this.limiteQtdInscricao = limiteQtdInscricao;
+    }
+
 
 
     @Override
     public String toString() {
         return "Turma{" +
-                "nomeTurma='" + nome + '\'' +
-                ", inscritos=" + inscritos +
+                "curso=" + curso +
+                ", nome='" + nome + '\'' +
                 ", dataInicio=" + dataInicio +
                 ", dataFinal=" + dataFinal +
+                ", descricao='" + descricao + '\'' +
+                ", inscritos=" + inscritos +
+                ", limiteQtdInscricao=" + limiteQtdInscricao +
                 '}';
     }
 }
