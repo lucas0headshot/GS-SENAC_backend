@@ -2,6 +2,7 @@ package com.senac.gestaocurso.models;
 
 
 
+import com.senac.gestaocurso.models.domain.Frequencia;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;

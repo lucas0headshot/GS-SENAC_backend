@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.strategy.impl;
 
-import com.senac.gestaocurso.models.Certificacoes;
+import com.senac.gestaocurso.models.domain.Certificacao;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
 import org.springframework.stereotype.Component;
@@ -13,16 +13,16 @@ public class ValidarListaCertificacoes implements ValidarImplementacaoListasStra
     @Override
     public void lista(Funcionario funcionario) {
         if (!funcionario.getCertificacoes().isEmpty()) {
-            List<Certificacoes> certificacoesList = funcionario.getCertificacoes()
+            List<Certificacao> certificacaoList = funcionario.getCertificacoes()
                     .stream()
-                    .map(certificacoesIn -> new Certificacoes(
+                    .map(certificacoesIn -> new Certificacao(
                             certificacoesIn.getNome(),
                             certificacoesIn.getCargaHoraria(),
                             certificacoesIn.getDataEmissao(),
                             funcionario))
                     .collect(Collectors.toList());
 
-            funcionario.setCertificacoes(certificacoesList);
+            funcionario.setCertificacoes(certificacaoList);
         }
     }
 }

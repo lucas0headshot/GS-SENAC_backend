@@ -1,15 +1,12 @@
 package com.senac.gestaocurso.service;
 
-import com.senac.gestaocurso.models.Funcionario;
-import com.senac.gestaocurso.models.Materia;
-import com.senac.gestaocurso.repository.FuncionarioRepository;
+import com.senac.gestaocurso.models.domain.Materia;
 import com.senac.gestaocurso.repository.MateriaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
