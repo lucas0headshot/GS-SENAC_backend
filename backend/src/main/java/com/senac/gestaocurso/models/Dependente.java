@@ -11,7 +11,7 @@ import java.time.LocalDate;
 
 
 @Entity
-public class Dependentes extends EntityID {
+public class Dependente extends EntityID {
     @Column
     private String nome;
 
@@ -28,10 +28,10 @@ public class Dependentes extends EntityID {
     private Funcionario funcionario;
 
 
-    public Dependentes() {
+    public Dependente() {
     }
 
-    public Dependentes(String nome, Escolaridade escolaridade, LocalDate dataNasc, Funcionario funcionario) {
+    public Dependente(String nome, Escolaridade escolaridade, LocalDate dataNasc, Funcionario funcionario) {
         this.nome = nome;
         this.escolaridade = escolaridade;
         this.dataNasc = dataNasc;

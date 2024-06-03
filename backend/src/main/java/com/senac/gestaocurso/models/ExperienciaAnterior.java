@@ -10,7 +10,7 @@ import java.time.LocalDate;
 
 
 @Entity
-public class ExpAnterior extends EntityID {
+public class ExperienciaAnterior extends EntityID {
     @Column(nullable = false)
     private String descricao;
 
@@ -31,10 +31,10 @@ public class ExpAnterior extends EntityID {
 
 
 
-    public ExpAnterior() {
+    public ExperienciaAnterior() {
     }
 
-    public ExpAnterior(String descricao, Cargo cargo, LocalDate periodoFinal, LocalDate peridoInicial, Funcionario funcionario) {
+    public ExperienciaAnterior(String descricao, Cargo cargo, LocalDate periodoFinal, LocalDate peridoInicial, Funcionario funcionario) {
         this.descricao = descricao;
         this.cargo = cargo;
         this.periodoFinal = periodoFinal;
