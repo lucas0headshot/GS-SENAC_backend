@@ -123,7 +123,7 @@ public class Funcionario extends EntityID {
     private Status status;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<ExpAnterior> expAnterior;
+    private List<ExperienciaAnterior> experienciaAnterior;
 
     @Column
     private String idioma;
@@ -387,12 +387,12 @@ public class Funcionario extends EntityID {
         this.dadosBancarios = dadosBancarios;
     }
 
-    public List<ExpAnterior> getExpAnterior() {
-        return expAnterior;
+    public List<ExperienciaAnterior> getExpAnterior() {
+        return experienciaAnterior;
     }
 
-    public void setExpAnterior(List<ExpAnterior> expAnterior) {
-        this.expAnterior = expAnterior;
+    public void setExpAnterior(List<ExperienciaAnterior> experienciaAnterior) {
+        this.experienciaAnterior = experienciaAnterior;
     }
 
     public List<Certificacao> getCertificacoes() {
@@ -524,7 +524,7 @@ public class Funcionario extends EntityID {
                 ", areaAtuacao='" + areaAtuacao + '\'' +
                 ", matricula='" + matricula + '\'' +
                 ", status=" + status +
-                ", expAnterior=" + expAnterior +
+                ", expAnterior=" + experienciaAnterior +
                 ", idioma='" + idioma + '\'' +
                 ", dadosBancarios=" + dadosBancarios +
                 ", horaExtra=" + horaExtra +

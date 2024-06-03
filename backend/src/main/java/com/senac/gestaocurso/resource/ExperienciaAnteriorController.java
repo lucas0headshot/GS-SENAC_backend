@@ -1,8 +1,8 @@
 package com.senac.gestaocurso.resource;
 
 
-import com.senac.gestaocurso.models.ExpAnterior;
-import com.senac.gestaocurso.service.ExpAnteriorService;
+import com.senac.gestaocurso.models.ExperienciaAnterior;
+import com.senac.gestaocurso.service.ExperienciaAnteriorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -10,41 +10,40 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
-import java.util.List;
 
 
 @RestController
 @RequestMapping("/api/experiencias")
-public class ExpAnteriorController {
+public class ExperienciaAnteriorController {
     @Autowired
-    private ExpAnteriorService expAnteriorService;
+    private ExperienciaAnteriorService experienciaAnteriorService;
 
     @PostMapping()
-    public ResponseEntity salvar(@RequestBody ExpAnterior expAnterior) {
-        ExpAnterior save = expAnteriorService.salvar(expAnterior);
-        return ResponseEntity.created(URI.create("/api/experiencias" + expAnterior.getId())).body(save);
+    public ResponseEntity salvar(@RequestBody ExperienciaAnterior experienciaAnterior) {
+        ExperienciaAnterior save = experienciaAnteriorService.salvar(experienciaAnterior);
+        return ResponseEntity.created(URI.create("/api/experiencias" + experienciaAnterior.getId())).body(save);
     }
 
     @GetMapping
     public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<ExpAnterior> expAnteriors = expAnteriorService.buscaTodos(pageable);
+        Page<ExperienciaAnterior> expAnteriors = experienciaAnteriorService.buscaTodos(pageable);
         return ResponseEntity.ok(expAnteriors);
     }
     @GetMapping("/{id}")
     public  ResponseEntity findById(@PathVariable("id") Long id){
-        ExpAnterior expAnterior = expAnteriorService.buscaPorId(id);
-        return ResponseEntity.ok().body(expAnterior);
+        ExperienciaAnterior experienciaAnterior = experienciaAnteriorService.buscaPorId(id);
+        return ResponseEntity.ok().body(experienciaAnterior);
     }
 
     @DeleteMapping("{id}")
     public  ResponseEntity remove(@PathVariable("id") Long id){
-        expAnteriorService.remover(id);
+        experienciaAnteriorService.remover(id);
         return ResponseEntity.noContent().build();
     }
     @PutMapping("{id}")
-    public  ResponseEntity update(@PathVariable("id") Long id, @RequestBody ExpAnterior entity){
-        ExpAnterior alterado = expAnteriorService.alterar(id, entity);
+    public  ResponseEntity update(@PathVariable("id") Long id, @RequestBody ExperienciaAnterior entity){
+        ExperienciaAnterior alterado = experienciaAnteriorService.alterar(id, entity);
         return  ResponseEntity.ok().body(alterado);
     }
 }
