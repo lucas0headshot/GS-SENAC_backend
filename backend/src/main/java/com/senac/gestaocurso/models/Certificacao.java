@@ -9,7 +9,7 @@ import java.time.LocalDate;
 
 
 @Entity
-public class Certificacoes extends EntityID {
+public class Certificacao extends EntityID {
     @Column(nullable = false)
     private String nome;
 
@@ -26,10 +26,10 @@ public class Certificacoes extends EntityID {
 
 
 
-    public Certificacoes() {
+    public Certificacao() {
     }
 
-    public Certificacoes(String nome, Integer cargaHoraria, LocalDate dataEmissao, Funcionario funcionario) {
+    public Certificacao(String nome, Integer cargaHoraria, LocalDate dataEmissao, Funcionario funcionario) {
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
         this.dataEmissao = dataEmissao;

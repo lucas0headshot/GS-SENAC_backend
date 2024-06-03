@@ -1,38 +1,37 @@
 package com.senac.gestaocurso.service;
 
 
-import com.senac.gestaocurso.models.DadosBancarios;
+import com.senac.gestaocurso.models.DadosBancario;
 import com.senac.gestaocurso.repository.DadosBancariosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
 public class DadosBancariosService {
     @Autowired
     private DadosBancariosRepository dadosBancariosRepository;
-    public DadosBancarios salvar(DadosBancarios entity) {
+    public DadosBancario salvar(DadosBancario entity) {
         return dadosBancariosRepository.save(entity);
     }
-    public Page<DadosBancarios> buscaTodos(Pageable pageable) {
+    public Page<DadosBancario> buscaTodos(Pageable pageable) {
         return dadosBancariosRepository.findAll(pageable);
     }
-    public DadosBancarios buscaPorId(Long id) {
+    public DadosBancario buscaPorId(Long id) {
         return dadosBancariosRepository.findById(id).orElse(null);
     }
-    public DadosBancarios alterar(Long id, DadosBancarios alterado) {
-        Optional<DadosBancarios> encontrado = dadosBancariosRepository.findById(id);
+    public DadosBancario alterar(Long id, DadosBancario alterado) {
+        Optional<DadosBancario> encontrado = dadosBancariosRepository.findById(id);
         if ((encontrado.isPresent())) {
-            DadosBancarios dadosBancarios = encontrado.get();
-            dadosBancarios.setBanco(alterado.getBanco());
-            dadosBancarios.setAgencia(alterado.getAgencia());
-            dadosBancarios.setConta(alterado.getConta());
-            dadosBancarios.setTipoContaBancaria(alterado.getTipoContaBancaria());
-            return dadosBancariosRepository.save(dadosBancarios);
+            DadosBancario dadosBancario = encontrado.get();
+            dadosBancario.setBanco(alterado.getBanco());
+            dadosBancario.setAgencia(alterado.getAgencia());
+            dadosBancario.setConta(alterado.getConta());
+            dadosBancario.setTipoContaBancaria(alterado.getTipoContaBancaria());
+            return dadosBancariosRepository.save(dadosBancario);
         }
         return null;
     }

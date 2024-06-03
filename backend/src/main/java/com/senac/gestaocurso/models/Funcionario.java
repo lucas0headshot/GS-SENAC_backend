@@ -6,7 +6,6 @@ import com.senac.gestaocurso.enums.*;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -88,7 +87,7 @@ public class Funcionario extends EntityID {
     private Filiacao filiacao;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Dependentes> dependentes;
+    private List<Dependente> dependentes;
 
     @Column
     private String racaCor;
@@ -103,7 +102,7 @@ public class Funcionario extends EntityID {
     private Genero genero;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Certificacoes> certificacoes;
+    private List<Certificacao> certificacoes;
 
     @Enumerated(EnumType.STRING)
     private Turno turno;
@@ -130,7 +129,7 @@ public class Funcionario extends EntityID {
     private String idioma;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<DadosBancarios> dadosBancarios;
+    private List<DadosBancario> dadosBancarios;
 
     @Column
     private Integer horaExtra;
@@ -340,11 +339,11 @@ public class Funcionario extends EntityID {
         this.filiacao = filiacao;
     }
 
-    public List<Dependentes> getDependentes() {
+    public List<Dependente> getDependentes() {
         return dependentes;
     }
 
-    public void setDependentes(List<Dependentes> dependentes) {
+    public void setDependentes(List<Dependente> dependentes) {
         this.dependentes = dependentes;
     }
 
@@ -380,11 +379,11 @@ public class Funcionario extends EntityID {
         this.genero = genero;
     }
 
-    public List<DadosBancarios> getDadosBancarios() {
+    public List<DadosBancario> getDadosBancarios() {
         return dadosBancarios;
     }
 
-    public void setDadosBancarios(List<DadosBancarios> dadosBancarios) {
+    public void setDadosBancarios(List<DadosBancario> dadosBancarios) {
         this.dadosBancarios = dadosBancarios;
     }
 
@@ -396,11 +395,11 @@ public class Funcionario extends EntityID {
         this.expAnterior = expAnterior;
     }
 
-    public List<Certificacoes> getCertificacoes() {
+    public List<Certificacao> getCertificacoes() {
         return certificacoes;
     }
 
-    public void setCertificacoes(List<Certificacoes> certificacoes) {
+    public void setCertificacoes(List<Certificacao> certificacoes) {
         this.certificacoes = certificacoes;
     }
 

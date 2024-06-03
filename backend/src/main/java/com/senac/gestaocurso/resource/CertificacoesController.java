@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.resource;
 
-import com.senac.gestaocurso.models.Certificacoes;
+import com.senac.gestaocurso.models.Certificacao;
 import com.senac.gestaocurso.service.CertificacoesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/certificacoes")
@@ -19,21 +18,21 @@ public class CertificacoesController {
         private CertificacoesService certificacoesService;
 
         @PostMapping()
-        public ResponseEntity salvar(@RequestBody Certificacoes certificacoes){
-            Certificacoes save = certificacoesService.salvar(certificacoes);
-            return ResponseEntity.created(URI.create("/api/certificacoes" + certificacoes.getId())).body(save);
+        public ResponseEntity salvar(@RequestBody Certificacao certificacao){
+            Certificacao save = certificacoesService.salvar(certificacao);
+            return ResponseEntity.created(URI.create("/api/certificacoes" + certificacao.getId())).body(save);
         }
 
         @GetMapping
         public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Certificacoes> certificacoes = certificacoesService.buscaTodos(pageable);
+            Page<Certificacao> certificacoes = certificacoesService.buscaTodos(pageable);
             return ResponseEntity.ok(certificacoes);
         }
         @GetMapping("/{id}")
         public  ResponseEntity findById(@PathVariable("id") Long id){
-            Certificacoes certificacoes = certificacoesService.buscaPorId(id);
-            return ResponseEntity.ok().body(certificacoes);
+            Certificacao certificacao = certificacoesService.buscaPorId(id);
+            return ResponseEntity.ok().body(certificacao);
         }
 
         @DeleteMapping("{id}")
@@ -43,8 +42,8 @@ public class CertificacoesController {
         }
 
         @PutMapping("{id}")
-        public  ResponseEntity update(@PathVariable("id") Long id, @RequestBody Certificacoes entity){
-            Certificacoes alterado = certificacoesService.alterar(id, entity);
+        public  ResponseEntity update(@PathVariable("id") Long id, @RequestBody Certificacao entity){
+            Certificacao alterado = certificacoesService.alterar(id, entity);
             return  ResponseEntity.ok().body(alterado);
         }
     }

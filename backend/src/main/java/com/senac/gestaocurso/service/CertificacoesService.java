@@ -1,15 +1,13 @@
 package com.senac.gestaocurso.service;
 
 
-import com.senac.gestaocurso.models.Aula;
-import com.senac.gestaocurso.models.Certificacoes;
+import com.senac.gestaocurso.models.Certificacao;
 import com.senac.gestaocurso.repository.CertifcacoesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 
 
@@ -17,24 +15,24 @@ import java.util.Optional;
 public class CertificacoesService {
     @Autowired
     private CertifcacoesRepository certifcacoesRepository;
-    public Certificacoes salvar(Certificacoes entity) {
+    public Certificacao salvar(Certificacao entity) {
         return certifcacoesRepository.save(entity);
     }
 
-    public Page<Certificacoes> buscaTodos(Pageable pageable) {
+    public Page<Certificacao> buscaTodos(Pageable pageable) {
         return certifcacoesRepository.findAll(pageable);
     }
-    public Certificacoes buscaPorId(Long id) {
+    public Certificacao buscaPorId(Long id) {
         return certifcacoesRepository.findById(id).orElse(null);
     }
-    public Certificacoes alterar(Long id, Certificacoes alterado) {
-        Optional<Certificacoes> encontrado = certifcacoesRepository.findById(id);
+    public Certificacao alterar(Long id, Certificacao alterado) {
+        Optional<Certificacao> encontrado = certifcacoesRepository.findById(id);
         if ((encontrado.isPresent())) {
-            Certificacoes certificacoes = encontrado.get();
-            certificacoes.setNome(alterado.getNome());
-            certificacoes.setCargaHoraria(alterado.getCargaHoraria());
-            certificacoes.setDataEmissao(alterado.getDataEmissao());
-            return certifcacoesRepository.save(certificacoes);
+            Certificacao certificacao = encontrado.get();
+            certificacao.setNome(alterado.getNome());
+            certificacao.setCargaHoraria(alterado.getCargaHoraria());
+            certificacao.setDataEmissao(alterado.getDataEmissao());
+            return certifcacoesRepository.save(certificacao);
         }
         return null;
     }
