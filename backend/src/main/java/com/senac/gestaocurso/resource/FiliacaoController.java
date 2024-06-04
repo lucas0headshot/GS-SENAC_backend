@@ -24,8 +24,7 @@ public class FiliacaoController {
     }
 
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
-                                   @RequestParam(defaultValue = "0") int size) {
+    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Filiacao> filiacao = filiacaoService.buscaTodos(pageable);
         return ResponseEntity.ok(filiacao);

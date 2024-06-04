@@ -1,7 +1,9 @@
-package com.senac.gestaocurso.models;
+package com.senac.gestaocurso.models.domain;
 
 
 
+import com.senac.gestaocurso.models.EntityID;
+import com.senac.gestaocurso.models.Funcionario;
 import jakarta.persistence.*;
 
 

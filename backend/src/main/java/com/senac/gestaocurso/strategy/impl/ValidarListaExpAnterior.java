@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.strategy.impl;
 
-import com.senac.gestaocurso.models.ExpAnterior;
+import com.senac.gestaocurso.models.ExperienciaAnterior;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
 import org.springframework.stereotype.Component;
@@ -13,9 +13,9 @@ public class ValidarListaExpAnterior implements ValidarImplementacaoListasStrate
     @Override
     public void lista(Funcionario funcionario) {
         if (!funcionario.getExpAnterior().isEmpty()) {
-            List<ExpAnterior> expAnteriorList = funcionario.getExpAnterior()
+            List<ExperienciaAnterior> experienciaAnteriorList = funcionario.getExpAnterior()
                     .stream()
-                    .map(expAnteriorIn -> new ExpAnterior(
+                    .map(expAnteriorIn -> new ExperienciaAnterior(
                             expAnteriorIn.getDescricao(),
                             expAnteriorIn.getCargo(),
                             expAnteriorIn.getPeriodoFinal(),
@@ -23,7 +23,7 @@ public class ValidarListaExpAnterior implements ValidarImplementacaoListasStrate
                             funcionario))
                     .collect(Collectors.toList());
 
-            funcionario.setExpAnterior(expAnteriorList);
+            funcionario.setExpAnterior(experienciaAnteriorList);
         }
     }
 }
