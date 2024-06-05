@@ -15,7 +15,7 @@ public class ImplementaListaDependente implements ValidarImplementacaoListasStra
     @Override
     public void lista(Funcionario funcionario) {
      if (validaLista(funcionario)){
-         List<Dependentes> dependentesList = funcionario.getDependentes()
+         List<Dependente> dependenteList = funcionario.getDependentes()
                  .stream()
                  .map(dependentesIn -> new Dependente(
                          dependentesIn.getNome(),

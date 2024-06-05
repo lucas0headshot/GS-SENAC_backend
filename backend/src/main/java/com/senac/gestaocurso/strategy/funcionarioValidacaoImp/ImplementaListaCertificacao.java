@@ -13,7 +13,7 @@ public class ImplementaListaCertificacao implements ValidarImplementacaoListasSt
     @Override
     public void lista(Funcionario funcionario) {
         if (validaLista(funcionario)) {
-            List<Certificacoes> certificacoesList = funcionario.getCertificacoes()
+            List<Certificacao> certificacaoList = funcionario.getCertificacoes()
                     .stream()
                     .map(certificacoesIn -> new Certificacao(
                             certificacoesIn.getNome(),
