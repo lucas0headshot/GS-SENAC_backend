@@ -1,4 +1,4 @@
-package com.senac.gestaocurso.strategy.impl;
+package com.senac.gestaocurso.strategy.funcionarioValidacaoImp;
 
 import com.senac.gestaocurso.enterprise.ValidationException;
 import com.senac.gestaocurso.models.Funcionario;
@@ -8,19 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValdiarReservista implements NovaValidacaoFuncionarioStrategy {
+public class ValidarCnh implements NovaValidacaoFuncionarioStrategy {
 
     @Autowired
     private FuncionarioRepository repository;
 
     @Override
     public void validar(Funcionario funcionario) {
-        if (reservistaValidado(funcionario.getReservista())){
-            throw new ValidationException("Reservista já cadastrada");
+        if (cnhValidado(funcionario.getCnh())){
+            throw new ValidationException("CNH já cadastrado");
         }
     }
 
-    private boolean reservistaValidado(String reservista){
-        return repository.findByReservista(reservista) != null;
+    private boolean cnhValidado(String cnh){
+        return repository.findByCnh(cnh) != null;
     }
 }

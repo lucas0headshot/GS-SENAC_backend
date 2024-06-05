@@ -1,4 +1,4 @@
-package com.senac.gestaocurso.strategy.impl;
+package com.senac.gestaocurso.strategy.funcionarioValidacaoImp;
 
 import com.senac.gestaocurso.models.domain.Certificacao;
 import com.senac.gestaocurso.models.Funcionario;
@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ValidarListaCertificacoes implements ValidarImplementacaoListasStrategy {
+public class ImplementaListaCertificacao implements ValidarImplementacaoListasStrategy {
     @Override
     public void lista(Funcionario funcionario) {
-        if (!funcionario.getCertificacoes().isEmpty()) {
-            List<Certificacao> certificacaoList = funcionario.getCertificacoes()
+        if (validaLista(funcionario)) {
+            List<Certificacoes> certificacoesList = funcionario.getCertificacoes()
                     .stream()
                     .map(certificacoesIn -> new Certificacao(
                             certificacoesIn.getNome(),
@@ -24,5 +24,11 @@ public class ValidarListaCertificacoes implements ValidarImplementacaoListasStra
 
             funcionario.setCertificacoes(certificacaoList);
         }
+    }
+
+    private Boolean validaLista(Funcionario funcionario){
+        if (!funcionario.getCertificacoes().isEmpty()) return true;
+
+        return false;
     }
 }

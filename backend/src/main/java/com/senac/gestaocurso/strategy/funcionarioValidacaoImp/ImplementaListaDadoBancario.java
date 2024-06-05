@@ -1,4 +1,4 @@
-package com.senac.gestaocurso.strategy.impl;
+package com.senac.gestaocurso.strategy.funcionarioValidacaoImp;
 
 import com.senac.gestaocurso.models.DadosBancario;
 import com.senac.gestaocurso.models.Funcionario;
@@ -9,11 +9,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ValidarListaDadosBancarios implements ValidarImplementacaoListasStrategy {
+public class ImplementaListaDadoBancario implements ValidarImplementacaoListasStrategy {
     @Override
     public void lista(Funcionario funcionario) {
-        if (!funcionario.getDadosBancarios().isEmpty()) {
-            List<DadosBancario> dadosBancarioList = funcionario.getDadosBancarios()
+        if (validaLista(funcionario)) {
+            List<DadosBancarios> dadosBancariosList = funcionario.getDadosBancarios()
                     .stream()
                     .map(dadosBancariosIn -> new DadosBancario(
                             dadosBancariosIn.getBanco(),
@@ -25,5 +25,11 @@ public class ValidarListaDadosBancarios implements ValidarImplementacaoListasStr
 
             funcionario.setDadosBancarios(dadosBancarioList);
         }
+    }
+
+    private boolean validaLista(Funcionario funcionario){
+        if (!funcionario.getDadosBancarios().isEmpty()) return true;
+
+        return false;
     }
 }
