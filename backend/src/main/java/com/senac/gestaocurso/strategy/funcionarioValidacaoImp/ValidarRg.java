@@ -1,4 +1,4 @@
-package com.senac.gestaocurso.strategy.impl;
+package com.senac.gestaocurso.strategy.funcionarioValidacaoImp;
 
 import com.senac.gestaocurso.enterprise.ValidationException;
 import com.senac.gestaocurso.models.Funcionario;
@@ -8,19 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidarEmail implements NovaValidacaoFuncionarioStrategy {
+public class ValidarRg implements NovaValidacaoFuncionarioStrategy {
 
     @Autowired
     private FuncionarioRepository repository;
 
     @Override
     public void validar(Funcionario funcionario) {
-        if (emailValidado(funcionario.getEmail())){
-            throw new ValidationException("Email já está em uso");
+        if (rgValidado(funcionario.getRg())){
+            throw new ValidationException("RG já cadastrado");
         }
     }
 
-    private boolean emailValidado(String email){
-        return repository.findByEmail(email) != null;
+    private boolean rgValidado(String rg){
+        return repository.findByRg(rg) != null;
     }
 }

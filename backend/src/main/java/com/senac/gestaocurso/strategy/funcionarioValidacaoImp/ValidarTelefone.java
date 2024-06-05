@@ -1,4 +1,4 @@
-package com.senac.gestaocurso.strategy.impl;
+package com.senac.gestaocurso.strategy.funcionarioValidacaoImp;
 
 import com.senac.gestaocurso.enterprise.ValidationException;
 import com.senac.gestaocurso.models.Funcionario;
@@ -8,19 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidarCtbs implements NovaValidacaoFuncionarioStrategy {
+public class ValidarTelefone implements NovaValidacaoFuncionarioStrategy {
 
     @Autowired
     private FuncionarioRepository repository;
 
     @Override
     public void validar(Funcionario funcionario) {
-        if (ctbsValidado(funcionario.getCtbs())){
-            throw new ValidationException("CTBS já cadastrado");
+        if (telefoneValidado(funcionario.getTelefone())){
+            throw new ValidationException("Telefone já cadastrado");
         }
     }
 
-    private boolean ctbsValidado(String ctbs){
-        return repository.findByCtbs(ctbs) != null;
+    private boolean telefoneValidado(String telefone){
+        return repository.findByTelefone(telefone) != null;
     }
 }

@@ -1,4 +1,4 @@
-package com.senac.gestaocurso.strategy.impl;
+package com.senac.gestaocurso.strategy.funcionarioValidacaoImp;
 
 import com.senac.gestaocurso.enterprise.ValidationException;
 import com.senac.gestaocurso.models.Funcionario;
@@ -8,19 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ValidarPisPasep implements NovaValidacaoFuncionarioStrategy {
+public class ValidarMatricula implements NovaValidacaoFuncionarioStrategy {
 
     @Autowired
     private FuncionarioRepository repository;
 
     @Override
     public void validar(Funcionario funcionario) {
-        if (pisPasepValidado(funcionario.getPisPasep())){
-            throw new ValidationException("PIS/PASEP já cadastrado");
+        if (matriculaValidado(funcionario.getMatricula())){
+            throw new ValidationException("Matrícula já cadastrada");
         }
     }
 
-    private boolean pisPasepValidado(String pispasep){
-        return repository.findByPisPasep(pispasep) != null;
+    private boolean matriculaValidado(String matricula){
+        return repository.findByMatricula(matricula) != null;
     }
 }
