@@ -1,4 +1,4 @@
-package com.senac.gestaocurso.strategy.impl;
+package com.senac.gestaocurso.strategy.funcionarioValidacaoImp;
 
 import com.senac.gestaocurso.models.Dependente;
 import com.senac.gestaocurso.models.Funcionario;
@@ -9,13 +9,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
-public class ValidarListaDependentes implements ValidarImplementacaoListasStrategy {
+public class ImplementaListaDependente implements ValidarImplementacaoListasStrategy {
 
 
     @Override
     public void lista(Funcionario funcionario) {
-     if (!funcionario.getDependentes().isEmpty()){
-         List<Dependente> dependenteList = funcionario.getDependentes()
+     if (validaLista(funcionario)){
+         List<Dependentes> dependentesList = funcionario.getDependentes()
                  .stream()
                  .map(dependentesIn -> new Dependente(
                          dependentesIn.getNome(),
@@ -26,5 +26,11 @@ public class ValidarListaDependentes implements ValidarImplementacaoListasStrate
 
          funcionario.setDependentes(dependenteList);
      }
+    }
+
+    private boolean validaLista(Funcionario funcionario){
+        if (!funcionario.getDependentes().isEmpty()) return true;
+
+        return false;
     }
 }
