@@ -45,12 +45,12 @@
 ## 🛠 Tecnologias
 
 **Back-End**
-- [![Java](https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white)](https://www.java.com/)
+- [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com/)
 - [![SpringBoot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot)
 
 **Front-End**
 - [![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
-- [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+- [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 
 **BD**
 - [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
@@ -63,7 +63,7 @@
 <table>
   <tr>
     <td align="center"><a href="https://github.com/lucas0headshot"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/81264339?s=100&v=4" width="100px;" alt=""/><br /><sub><b>Lucas</b></sub><br /><a href="#" title="Tech Lead">👨🏻‍💻</a></a></td>
-    <td align="center"><a href="https://github.com/JuannCarloss"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/113259173?s=100&v=4" width="100px;" alt=""/><br /><sub><b>Juan</b></sub><br /><a href="#" title="Tech Lead">👨🏻‍💻</a></a></td>
+    <td align="center"><a href="https://github.com/JuannCarloss"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/113259173?s=100&v=4" width="100px;" alt=""/><br /><sub><b>Juan</b></sub><br /><a href="#" title="Full-Stack">👨🏻‍💻</a></a></td>
     <td align="center"><a href="https://github.com/Carrerogabriel"><img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/132373775?s=100&v=4" width="100px;" alt=""/><br /><sub><b>Gabriel</b></sub><br /><a href="#" title="Full-Stack">👨🏻‍💻</a></a></td>
   </tr>
 </table>
