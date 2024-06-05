@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.resource;
 
 
-import com.senac.gestaocurso.models.Avaliacao;
+import com.senac.gestaocurso.models.domain.Avaliacao;
 import com.senac.gestaocurso.service.AvaliacaoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/avaliacao")
@@ -28,8 +27,7 @@ public class AvaliacaoController {
 
 
         @GetMapping
-        public ResponseEntity findAll(@RequestParam(defaultValue = "0") int page,
-                                      @RequestParam(defaultValue = "0") int size) {
+        public ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
             Pageable pageable = PageRequest.of(page, size);
             Page<Avaliacao> avaliacoes = avaliacaoService.buscaTodos(pageable);
             return ResponseEntity.ok(avaliacoes);

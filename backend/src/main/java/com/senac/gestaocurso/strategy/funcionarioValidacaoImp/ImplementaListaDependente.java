@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.strategy.funcionarioValidacaoImp;
 
-import com.senac.gestaocurso.models.Dependentes;
+import com.senac.gestaocurso.models.Dependente;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
 import org.springframework.stereotype.Component;
@@ -17,14 +17,14 @@ public class ImplementaListaDependente implements ValidarImplementacaoListasStra
      if (validaLista(funcionario)){
          List<Dependentes> dependentesList = funcionario.getDependentes()
                  .stream()
-                 .map(dependentesIn -> new Dependentes(
+                 .map(dependentesIn -> new Dependente(
                          dependentesIn.getNome(),
                          dependentesIn.getEscolaridade(),
                          dependentesIn.getDataNasc(),
                          funcionario))
                  .collect(Collectors.toList());
 
-         funcionario.setDependentes(dependentesList);
+         funcionario.setDependentes(dependenteList);
      }
     }
 

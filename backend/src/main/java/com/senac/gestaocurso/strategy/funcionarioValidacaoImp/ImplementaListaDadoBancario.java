@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.strategy.funcionarioValidacaoImp;
 
-import com.senac.gestaocurso.models.DadosBancarios;
+import com.senac.gestaocurso.models.DadosBancario;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
 import org.springframework.stereotype.Component;
@@ -15,7 +15,7 @@ public class ImplementaListaDadoBancario implements ValidarImplementacaoListasSt
         if (validaLista(funcionario)) {
             List<DadosBancarios> dadosBancariosList = funcionario.getDadosBancarios()
                     .stream()
-                    .map(dadosBancariosIn -> new DadosBancarios(
+                    .map(dadosBancariosIn -> new DadosBancario(
                             dadosBancariosIn.getBanco(),
                             dadosBancariosIn.getAgencia(),
                             dadosBancariosIn.getAgencia(),
@@ -23,7 +23,7 @@ public class ImplementaListaDadoBancario implements ValidarImplementacaoListasSt
                             funcionario))
                     .collect(Collectors.toList());
 
-            funcionario.setDadosBancarios(dadosBancariosList);
+            funcionario.setDadosBancarios(dadosBancarioList);
         }
     }
 

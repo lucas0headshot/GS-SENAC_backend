@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.repository;
 
 import com.senac.gestaocurso.enterprise.CustomQuerydslPredicateExecutor;
-import com.senac.gestaocurso.models.Turma;
+import com.senac.gestaocurso.models.domain.Turma;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

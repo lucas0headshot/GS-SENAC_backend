@@ -3,10 +3,10 @@ package com.senac.gestaocurso.models;
 
 
 import com.senac.gestaocurso.enums.*;
+import com.senac.gestaocurso.models.domain.Certificacao;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -88,7 +88,7 @@ public class Funcionario extends EntityID {
     private Filiacao filiacao;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Dependentes> dependentes;
+    private List<Dependente> dependentes;
 
     @Column
     private String racaCor;
@@ -103,7 +103,7 @@ public class Funcionario extends EntityID {
     private Genero genero;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<Certificacoes> certificacoes;
+    private List<Certificacao> certificacoes;
 
     @Enumerated(EnumType.STRING)
     private Turno turno;
@@ -124,13 +124,13 @@ public class Funcionario extends EntityID {
     private Status status;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<ExpAnterior> expAnterior;
+    private List<ExperienciaAnterior> experienciaAnterior;
 
     @Column
     private String idioma;
 
     @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
-    private List<DadosBancarios> dadosBancarios;
+    private List<DadosBancario> dadosBancarios;
 
     @Column
     private Integer horaExtra;
@@ -340,11 +340,11 @@ public class Funcionario extends EntityID {
         this.filiacao = filiacao;
     }
 
-    public List<Dependentes> getDependentes() {
+    public List<Dependente> getDependentes() {
         return dependentes;
     }
 
-    public void setDependentes(List<Dependentes> dependentes) {
+    public void setDependentes(List<Dependente> dependentes) {
         this.dependentes = dependentes;
     }
 
@@ -380,27 +380,27 @@ public class Funcionario extends EntityID {
         this.genero = genero;
     }
 
-    public List<DadosBancarios> getDadosBancarios() {
+    public List<DadosBancario> getDadosBancarios() {
         return dadosBancarios;
     }
 
-    public void setDadosBancarios(List<DadosBancarios> dadosBancarios) {
+    public void setDadosBancarios(List<DadosBancario> dadosBancarios) {
         this.dadosBancarios = dadosBancarios;
     }
 
-    public List<ExpAnterior> getExpAnterior() {
-        return expAnterior;
+    public List<ExperienciaAnterior> getExpAnterior() {
+        return experienciaAnterior;
     }
 
-    public void setExpAnterior(List<ExpAnterior> expAnterior) {
-        this.expAnterior = expAnterior;
+    public void setExpAnterior(List<ExperienciaAnterior> experienciaAnterior) {
+        this.experienciaAnterior = experienciaAnterior;
     }
 
-    public List<Certificacoes> getCertificacoes() {
+    public List<Certificacao> getCertificacoes() {
         return certificacoes;
     }
 
-    public void setCertificacoes(List<Certificacoes> certificacoes) {
+    public void setCertificacoes(List<Certificacao> certificacoes) {
         this.certificacoes = certificacoes;
     }
 
@@ -525,7 +525,7 @@ public class Funcionario extends EntityID {
                 ", areaAtuacao='" + areaAtuacao + '\'' +
                 ", matricula='" + matricula + '\'' +
                 ", status=" + status +
-                ", expAnterior=" + expAnterior +
+                ", expAnterior=" + experienciaAnterior +
                 ", idioma='" + idioma + '\'' +
                 ", dadosBancarios=" + dadosBancarios +
                 ", horaExtra=" + horaExtra +

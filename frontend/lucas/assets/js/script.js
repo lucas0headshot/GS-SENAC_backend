@@ -1,26 +1,26 @@
 $(function() {
     /*
-        Funções modal Login
+        Funções form Login
     */
         $('#formLogin').validate({
             onsubmit: true,
 
             rules: {
-                usuario: {
+                email_login: {
                     required: true
                 },
 
-                senha: {
+                senha_login: {
                     required: true
                 }
             },
 
             messages: {
-                usuario: {
-                    required: "Informe seu nome de usuário"
+                email_login: {
+                    required: "Informe seu e-mail"
                 },
 
-                senha: {
+                senha_login: {
                     required: "Informe sua senha"
                 }
             },
@@ -43,32 +43,28 @@ $(function() {
             e.preventDefault();
 
             if ($(this).valid()) {
-                alert(`Bem-vindo, ${$('#usuario').val()}!`);
+                alert(`Bem-vindo, ${$('#email_login').val()}!`);
                 return location.reload();
             }
         });
 
 
         $('#aCadastrarConta').click(function() {
-            $('#entrar').addClass('d-none');
-            return $('#cadastrar').removeClass('d-none');
+            $('#formLogin').addClass('d-none');
+            return $('#formCadastro').removeClass('d-none');
         });
     /*
-        /Funções modal Login
+        /Funções form Login
     */
 
 
     /*
-        Funções modal Cadastro
+        Funções form Cadastro
     */
         $('#formCadastro').validate({
             onsubmit: true,
 
             rules: {
-                usuario_cadastro: {
-                    required: true
-                },
-
                 email_cadastro: {
                     required: true
                 },
@@ -84,10 +80,6 @@ $(function() {
             },
 
             messages: {
-                usuario_cadastro: {
-                    required: "Informe seu nome de usuário"
-                },
-
                 email_cadastro: {
                     required: "Informe seu e-mail"
                 },
@@ -120,7 +112,7 @@ $(function() {
             e.preventDefault();
 
             if ($(this).valid()) {
-                alert(`Bem-vindo, ${$('#nome_cadastro').val()}!`);
+                alert(`Bem-vindo, ${$('#email_cadastro').val()}!`);
                 return location.reload();
             }
         });
@@ -130,10 +122,10 @@ $(function() {
         });
 
         $('#aPossuiConta').click(function() {
-            $('#cadastrar').addClass('d-none');
-            return $('#entrar').removeClass('d-none');
+            $('#formCadastro').addClass('d-none');
+            return $('#formLogin').removeClass('d-none');
         });
     /*
-        /Funções modal Cadastro
+        /Funções form Cadastro
     */
 });
