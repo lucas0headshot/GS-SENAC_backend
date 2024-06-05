@@ -13,7 +13,7 @@ public class ImplementaListaDadoBancario implements ValidarImplementacaoListasSt
     @Override
     public void lista(Funcionario funcionario) {
         if (validaLista(funcionario)) {
-            List<DadosBancarios> dadosBancariosList = funcionario.getDadosBancarios()
+            List<DadosBancario> dadosBancarioList = funcionario.getDadosBancarios()
                     .stream()
                     .map(dadosBancariosIn -> new DadosBancario(
                             dadosBancariosIn.getBanco(),

@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.strategy.aulaValidacaoImp;
 
 import com.senac.gestaocurso.enterprise.ValidationException;
-import com.senac.gestaocurso.models.Aula;
+import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.repository.AulaRepository;
 import com.senac.gestaocurso.strategy.NovaValidacaoAulaStrategy;
 import org.springframework.beans.factory.annotation.Autowired;

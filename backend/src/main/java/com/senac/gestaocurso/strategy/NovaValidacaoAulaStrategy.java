@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.strategy;
 
-import com.senac.gestaocurso.models.Aula;
+import com.senac.gestaocurso.models.domain.Aula;
 
 public interface NovaValidacaoAulaStrategy {
 
