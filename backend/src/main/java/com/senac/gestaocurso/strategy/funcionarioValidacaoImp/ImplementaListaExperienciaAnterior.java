@@ -13,7 +13,7 @@ public class ImplementaListaExperienciaAnterior implements ValidarImplementacaoL
     @Override
     public void lista(Funcionario funcionario) {
         if (validaLista(funcionario)) {
-            List<ExpAnterior> expAnteriorList = funcionario.getExpAnterior()
+            List<ExperienciaAnterior> experienciaAnteriorList = funcionario.getExpAnterior()
                     .stream()
                     .map(expAnteriorIn -> new ExperienciaAnterior(
                             expAnteriorIn.getDescricao(),
