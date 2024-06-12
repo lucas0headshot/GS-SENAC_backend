@@ -154,7 +154,6 @@ public class Funcionario extends EntityID {
     }
 
 
-
     public String getNome() {
         return nome;
     }
@@ -387,22 +386,6 @@ public class Funcionario extends EntityID {
         this.genero = genero;
     }
 
-    public List<DadosBancario> getDadosBancarios() {
-        return dadosBancarios;
-    }
-
-    public void setDadosBancarios(List<DadosBancario> dadosBancarios) {
-        this.dadosBancarios = dadosBancarios;
-    }
-
-    public List<ExperienciaAnterior> getExpAnterior() {
-        return experienciaAnterior;
-    }
-
-    public void setExpAnterior(List<ExperienciaAnterior> experienciaAnterior) {
-        this.experienciaAnterior = experienciaAnterior;
-    }
-
     public List<Certificacao> getCertificacoes() {
         return certificacoes;
     }
@@ -459,6 +442,13 @@ public class Funcionario extends EntityID {
         this.status = status;
     }
 
+    public List<ExperienciaAnterior> getExperienciaAnterior() {
+        return experienciaAnterior;
+    }
+
+    public void setExperienciaAnterior(List<ExperienciaAnterior> experienciaAnterior) {
+        this.experienciaAnterior = experienciaAnterior;
+    }
 
     public String getIdioma() {
         return idioma;
@@ -468,6 +458,13 @@ public class Funcionario extends EntityID {
         this.idioma = idioma;
     }
 
+    public List<DadosBancario> getDadosBancarios() {
+        return dadosBancarios;
+    }
+
+    public void setDadosBancarios(List<DadosBancario> dadosBancarios) {
+        this.dadosBancarios = dadosBancarios;
+    }
 
     public Integer getHoraExtra() {
         return horaExtra;
