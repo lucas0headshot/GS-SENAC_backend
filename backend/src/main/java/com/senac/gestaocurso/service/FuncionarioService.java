@@ -51,7 +51,7 @@ public class FuncionarioService {
             funcionario.setDadosBancarios(alterado.getDadosBancarios());
             funcionario.setCtbs(alterado.getCtbs());
             funcionario.setCertificacoes(alterado.getCertificacoes());
-            funcionario.setExpAnterior(alterado.getExpAnterior());
+            funcionario.setExperienciaAnterior(alterado.getExperienciaAnterior());
             funcionario.setDependentes(alterado.getDependentes());
             funcionario.setTituloEleitor(alterado.getTituloEleitor());
             funcionario.setTipoRH(alterado.getTipoRH());
