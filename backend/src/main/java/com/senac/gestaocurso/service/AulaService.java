@@ -17,10 +17,10 @@ public class AulaService {
     private AulaRepository aulaRepository;
 
     @Autowired
-    private List<NovaValidacaoAulaStrategy> novaValidacaoAulaStrategies;
+    private NovaValidacaoAulaStrategy novaValidacaoAulaStrategy;
 
     public Aula salvar(Aula entity){
-        novaValidacaoAulaStrategies.forEach(validar -> validar.validar(entity));
+        novaValidacaoAulaStrategy.validar(entity);
         return aulaRepository.save(entity);
     }
 
