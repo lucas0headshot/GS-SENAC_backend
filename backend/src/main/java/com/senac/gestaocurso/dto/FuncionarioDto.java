@@ -1,16 +1,23 @@
 package com.senac.gestaocurso.dto;
 
+import com.senac.gestaocurso.models.Funcionario;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 
-public class FuncionarioDto implements Serializable {
-    private final Long id;
-    private final String nome;
-    private final String cpf;
-    private final String rg;
-    private final String endereco;
-    private final String ctbs;
+public class FuncionarioDto   {
+    private  Long id;
+    private  String nome;
+    private  String cpf;
+    private  String rg;
+    private  String endereco;
+    private  String ctbs;
+
+
+    public FuncionarioDto() {
+
+    }
 
     public FuncionarioDto(Long id, String nome, String cpf, String rg, String endereco, String ctbs) {
         this.id = id;
@@ -25,52 +32,69 @@ public class FuncionarioDto implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getCpf() {
         return cpf;
     }
 
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
     public String getRg() {
         return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
     }
 
     public String getEndereco() {
         return endereco;
     }
 
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
+    }
+
     public String getCtbs() {
         return ctbs;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FuncionarioDto entity = (FuncionarioDto) o;
-        return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.nome, entity.nome) &&
-                Objects.equals(this.cpf, entity.cpf) &&
-                Objects.equals(this.rg, entity.rg) &&
-                Objects.equals(this.endereco, entity.endereco) &&
-                Objects.equals(this.ctbs, entity.ctbs);
+    public void setCtbs(String ctbs) {
+        this.ctbs = ctbs;
+    }
+    public static FuncionarioDto fromEntity(Funcionario entity) {
+        return new FuncionarioDto(
+                entity.getId(),
+                entity.getNome(),
+                entity.getCpf(),
+                entity.getRg(),
+                entity.getEndereco(),
+                entity.getCtbs()
+        );
+    }
+    public Funcionario toEntity() {
+        Funcionario entity = new Funcionario();
+        entity.setId(this.id);
+        entity.setNome(this.nome);
+        entity.setCpf(this.cpf);
+        entity.setRg(this.rg);
+        entity.setEndereco(this.endereco);
+        entity.setCtbs(this.ctbs);
+
+        return entity;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, nome, cpf, rg, endereco, ctbs);
-    }
-
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "nome = " + nome + ", " +
-                "cpf = " + cpf + ", " +
-                "rg = " + rg + ", " +
-                "endereco = " + endereco + ", " +
-                "ctbs = " + ctbs + ")";
-    }
 }
