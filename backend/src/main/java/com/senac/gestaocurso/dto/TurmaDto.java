@@ -1,16 +1,21 @@
 package com.senac.gestaocurso.dto;
 
+import com.senac.gestaocurso.models.domain.Turma;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 
-public class TurmaDto implements Serializable {
-    private final String nome;
-    private final LocalDate dataInicio;
-    private final LocalDate dataFinal;
-    private final String descricao;
-    private final Integer limiteQtdInscricao;
+public class TurmaDto {
+    private  String nome;
+    private  LocalDate dataInicio;
+    private  LocalDate dataFinal;
+    private  String descricao;
+    private  Integer limiteQtdInscricao;
+
+    public TurmaDto() {}
+
 
     public TurmaDto(String nome, LocalDate dataInicio, LocalDate dataFinal, String descricao, Integer limiteQtdInscricao) {
         this.nome = nome;
@@ -24,46 +29,64 @@ public class TurmaDto implements Serializable {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public LocalDate getDataInicio() {
         return dataInicio;
+    }
+
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
     }
 
     public LocalDate getDataFinal() {
         return dataFinal;
     }
 
+    public void setDataFinal(LocalDate dataFinal) {
+        this.dataFinal = dataFinal;
+    }
+
     public String getDescricao() {
         return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public Integer getLimiteQtdInscricao() {
         return limiteQtdInscricao;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TurmaDto entity = (TurmaDto) o;
-        return Objects.equals(this.nome, entity.nome) &&
-                Objects.equals(this.dataInicio, entity.dataInicio) &&
-                Objects.equals(this.dataFinal, entity.dataFinal) &&
-                Objects.equals(this.descricao, entity.descricao) &&
-                Objects.equals(this.limiteQtdInscricao, entity.limiteQtdInscricao);
+    public void setLimiteQtdInscricao(Integer limiteQtdInscricao) {
+        this.limiteQtdInscricao = limiteQtdInscricao;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(nome, dataInicio, dataFinal, descricao, limiteQtdInscricao);
+
+    public static TurmaDto fromEntityList(Turma entity){
+        return new TurmaDto(
+
+                entity.getNome(),
+                entity.getDataInicio(),
+                entity.getDataFinal(),
+                entity.getDescricao(),
+                entity.getLimiteQtdInscricao()
+        );
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "nome = " + nome + ", " +
-                "dataInicio = " + dataInicio + ", " +
-                "dataFinal = " + dataFinal + ", " +
-                "descricao = " + descricao + ", " +
-                "limiteQtdInscricao = " + limiteQtdInscricao + ")";
+    public Turma toEntity(){
+
+        Turma entity = new Turma();
+
+                entity.setNome(this.nome);
+                entity.setDataInicio(this.dataInicio);
+                entity.setDataFinal(this.dataFinal);
+                entity.setDescricao(this.descricao);
+                entity.setLimiteQtdInscricao(this.limiteQtdInscricao);
+                return entity;
+
     }
 }
