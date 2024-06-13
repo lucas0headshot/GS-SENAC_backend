@@ -1,15 +1,21 @@
 package com.senac.gestaocurso.dto;
 
+import com.senac.gestaocurso.models.domain.Certificacao;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 
-public class CertificacoesDto implements Serializable {
-    private final Long id;
-    private final String nome;
-    private final Integer cargaHoraria;
-    private final LocalDate dataEmissao;
+public class CertificacoesDto   {
+    private  Long id;
+    private  String nome;
+    private  Integer cargaHoraria;
+    private  LocalDate dataEmissao;
+
+    public CertificacoesDto(){
+
+    }
 
     public CertificacoesDto(Long id, String nome, Integer cargaHoraria, LocalDate dataEmissao) {
         this.id = id;
@@ -19,43 +25,58 @@ public class CertificacoesDto implements Serializable {
     }
 
     public Long getId() {
+
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Integer getCargaHoraria() {
         return cargaHoraria;
+    }
+
+    public void setCargaHoraria(Integer cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
     }
 
     public LocalDate getDataEmissao() {
         return dataEmissao;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CertificacoesDto entity = (CertificacoesDto) o;
-        return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.nome, entity.nome) &&
-                Objects.equals(this.cargaHoraria, entity.cargaHoraria) &&
-                Objects.equals(this.dataEmissao, entity.dataEmissao);
+    public void setDataEmissao(LocalDate dataEmissao) {
+        this.dataEmissao = dataEmissao;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, nome, cargaHoraria, dataEmissao);
+    public static CertificacoesDto fromEntityList(Certificacao entity){
+        return new CertificacoesDto(
+
+                entity.getId(),
+                entity.getNome(),
+                entity.getCargaHoraria(),
+                entity.getDataEmissao()
+        );
+    }
+    public Certificacao toEntity (){
+
+        Certificacao entity = new Certificacao();
+
+        entity.setId(this.id);
+        entity.setNome(this.nome);
+        entity.setCargaHoraria(this.cargaHoraria);
+        entity.setDataEmissao(this.dataEmissao);
+
+        return  entity;
+
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "nome = " + nome + ", " +
-                "cargaHoraria = " + cargaHoraria + ", " +
-                "dataEmissao = " + dataEmissao + ")";
-    }
 }

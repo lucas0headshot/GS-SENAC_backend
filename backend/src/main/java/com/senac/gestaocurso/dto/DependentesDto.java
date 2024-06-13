@@ -1,16 +1,19 @@
 package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.enums.Escolaridade;
+import com.senac.gestaocurso.models.Dependente;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 
-public class DependentesDto implements Serializable {
-    private final String nome;
-    private final Escolaridade escolaridade;
-    private final LocalDate dataNasc;
+public class DependentesDto {
+    private  String nome;
+    private  Escolaridade escolaridade;
+    private  LocalDate dataNasc;
+
+    public DependentesDto(){}
 
     public DependentesDto(String nome, Escolaridade escolaridade, LocalDate dataNasc) {
         this.nome = nome;
@@ -22,34 +25,43 @@ public class DependentesDto implements Serializable {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Escolaridade getEscolaridade() {
         return escolaridade;
+    }
+
+    public void setEscolaridade(Escolaridade escolaridade) {
+        this.escolaridade = escolaridade;
     }
 
     public LocalDate getDataNasc() {
         return dataNasc;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DependentesDto entity = (DependentesDto) o;
-        return Objects.equals(this.nome, entity.nome) &&
-                Objects.equals(this.escolaridade, entity.escolaridade) &&
-                Objects.equals(this.dataNasc, entity.dataNasc);
+    public void setDataNasc(LocalDate dataNasc) {
+        this.dataNasc = dataNasc;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(nome, escolaridade, dataNasc);
+    public static DependentesDto fromEntityList(Dependente entity){
+        return new DependentesDto(
+
+                entity.getNome(),
+                entity.getEscolaridade(),
+                entity.getDataNasc()
+
+        );
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "nome = " + nome + ", " +
-                "escolaridade = " + escolaridade + ", " +
-                "dataNasc = " + dataNasc + ")";
+    public Dependente toEntity (){
+
+        Dependente entity = new Dependente();
+
+                entity.setNome(this.nome);
+                entity.setEscolaridade(this.escolaridade);
+                entity.setDataNasc(this.dataNasc);
+                return entity;
     }
 }

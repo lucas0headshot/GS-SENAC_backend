@@ -1,14 +1,18 @@
 package com.senac.gestaocurso.dto;
 
+import com.senac.gestaocurso.models.domain.Feedback;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 
-public class FeedbackDto implements Serializable {
-    private final String feedback;
-    private final Integer nota;
-    private final LocalDate data;
+public class FeedbackDto  {
+    private  String feedback;
+    private  Integer nota;
+    private  LocalDate data;
+
+    public FeedbackDto(){}
 
     public FeedbackDto(String feedback, Integer nota, LocalDate data) {
         this.feedback = feedback;
@@ -20,34 +24,43 @@ public class FeedbackDto implements Serializable {
         return feedback;
     }
 
+    public void setFeedback(String feedback) {
+        this.feedback = feedback;
+    }
+
     public Integer getNota() {
         return nota;
+    }
+
+    public void setNota(Integer nota) {
+        this.nota = nota;
     }
 
     public LocalDate getData() {
         return data;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FeedbackDto entity = (FeedbackDto) o;
-        return Objects.equals(this.feedback, entity.feedback) &&
-                Objects.equals(this.nota, entity.nota) &&
-                Objects.equals(this.data, entity.data);
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(feedback, nota, data);
+    public static FeedbackDto fromEntityList(FeedbackDto entity){
+        return new FeedbackDto(
+
+                entity.getFeedback(),
+                entity.getNota(),
+                entity.getData()
+        );
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "feedback = " + feedback + ", " +
-                "nota = " + nota + ", " +
-                "data = " + data + ")";
+    public  Feedback toEntity(){
+
+        Feedback entity = new Feedback();
+
+                entity.setFeedback(this.feedback);
+                entity.setNota(this.nota);
+                entity.setData(this.data);
+                return entity;
+
     }
 }

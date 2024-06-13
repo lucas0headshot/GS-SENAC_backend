@@ -1,16 +1,19 @@
 package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.enums.TipoContaBancaria;
+import com.senac.gestaocurso.models.DadosBancario;
 
 import java.io.Serializable;
 import java.util.Objects;
 
 
-public class DadosBancariosDto implements Serializable {
-    private final String banco;
-    private final String agencia;
-    private final String conta;
-    private final TipoContaBancaria tipoContaBancaria;
+public class DadosBancariosDto {
+    private  String banco;
+    private  String agencia;
+    private  String conta;
+    private  TipoContaBancaria tipoContaBancaria;
+
+    public DadosBancariosDto(){}
 
     public DadosBancariosDto(String banco, String agencia, String conta, TipoContaBancaria tipoContaBancaria) {
         this.banco = banco;
@@ -23,40 +26,52 @@ public class DadosBancariosDto implements Serializable {
         return banco;
     }
 
+    public void setBanco(String banco) {
+        this.banco = banco;
+    }
+
     public String getAgencia() {
         return agencia;
+    }
+
+    public void setAgencia(String agencia) {
+        this.agencia = agencia;
     }
 
     public String getConta() {
         return conta;
     }
 
+    public void setConta(String conta) {
+        this.conta = conta;
+    }
+
     public TipoContaBancaria getTipoContaBancaria() {
         return tipoContaBancaria;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        DadosBancariosDto entity = (DadosBancariosDto) o;
-        return Objects.equals(this.banco, entity.banco) &&
-                Objects.equals(this.agencia, entity.agencia) &&
-                Objects.equals(this.conta, entity.conta) &&
-                Objects.equals(this.tipoContaBancaria, entity.tipoContaBancaria);
+    public void setTipoContaBancaria(TipoContaBancaria tipoContaBancaria) {
+        this.tipoContaBancaria = tipoContaBancaria;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(banco, agencia, conta, tipoContaBancaria);
+    public static DadosBancariosDto fromEntityList (DadosBancario entity){
+        return new DadosBancariosDto(
+
+                entity.getBanco(),
+                entity.getAgencia(),
+                entity.getConta(),
+                entity.getTipoContaBancaria()
+        );
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "banco = " + banco + ", " +
-                "agencia = " + agencia + ", " +
-                "conta = " + conta + ", " +
-                "tipoContaBancaria = " + tipoContaBancaria + ")";
+    public DadosBancario toEntity(){
+
+        DadosBancario entity = new DadosBancario();
+
+                entity.setBanco(this.banco);
+                entity.setAgencia(this.agencia);
+                entity.setConta(this.conta);
+                entity.setTipoContaBancaria(this.tipoContaBancaria);
+                return entity;
     }
 }
