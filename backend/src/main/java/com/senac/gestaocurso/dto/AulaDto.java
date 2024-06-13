@@ -1,13 +1,18 @@
 package com.senac.gestaocurso.dto;
 
+import com.senac.gestaocurso.models.domain.Aula;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 
-public class AulaDto implements Serializable {
-    private final Long id;
-    private final LocalDate dia;
+public class AulaDto   {
+    private  Long id;
+    private  LocalDate dia;
+
+    public AulaDto() {}
+
 
     public AulaDto(Long id, LocalDate dia) {
         this.id = id;
@@ -18,28 +23,32 @@ public class AulaDto implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public LocalDate getDia() {
         return dia;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AulaDto entity = (AulaDto) o;
-        return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.dia, entity.dia);
+    public void setDia(LocalDate dia) {
+        this.dia = dia;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, dia);
-    }
+        public static AulaDto fromEntityList (Aula entity){
+            return new AulaDto(
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "dia = " + dia + ")";
-    }
+                    entity.getId(),
+                    entity.getDia()
+            );
+        }
+
+        public Aula toEntity(){
+            Aula entity = new Aula();
+
+            entity.setDia(this.dia);
+            entity.setId(this.id);
+
+            return entity;
+        }
 }
