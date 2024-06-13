@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.service;
 
+import com.senac.gestaocurso.dto.FuncionarioDto;
 import com.senac.gestaocurso.models.*;
 import com.senac.gestaocurso.repository.FuncionarioRepository;
 import com.senac.gestaocurso.strategy.NovaValidacaoFuncionarioStrategy;
@@ -29,8 +30,9 @@ public class FuncionarioService {
         return funcionarioRepository.save(entity);
     }
 
-    public Page<Funcionario> buscaTodos(Pageable pageable) {
-        return funcionarioRepository.findAll(pageable);
+    public Page<FuncionarioDto> buscaTodos(Pageable pageable) {
+        Page<Funcionario> funcionariosPage = funcionarioRepository.findAll(pageable);
+        return funcionariosPage.map(FuncionarioDto::fromEntity);
     }
     public Funcionario buscaPorId(Long id) {
         return funcionarioRepository.findById(id).orElse(null);
