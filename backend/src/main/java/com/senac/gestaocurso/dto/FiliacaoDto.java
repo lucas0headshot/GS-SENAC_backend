@@ -1,14 +1,18 @@
 package com.senac.gestaocurso.dto;
 
+import com.senac.gestaocurso.models.Filiacao;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 
-public class FiliacaoDto implements Serializable {
-    private final String nomePai;
-    private final String telefonePai;
-    private final String nomeMae;
-    private final String telefoneMae;
+public class FiliacaoDto {
+    private  String nomePai;
+    private  String telefonePai;
+    private  String nomeMae;
+    private  String telefoneMae;
+
+    public FiliacaoDto(){}
 
     public FiliacaoDto(String nomePai, String telefonePai, String nomeMae, String telefoneMae) {
         this.nomePai = nomePai;
@@ -21,40 +25,51 @@ public class FiliacaoDto implements Serializable {
         return nomePai;
     }
 
+    public void setNomePai(String nomePai) {
+        this.nomePai = nomePai;
+    }
+
     public String getTelefonePai() {
         return telefonePai;
+    }
+
+    public void setTelefonePai(String telefonePai) {
+        this.telefonePai = telefonePai;
     }
 
     public String getNomeMae() {
         return nomeMae;
     }
 
+    public void setNomeMae(String nomeMae) {
+        this.nomeMae = nomeMae;
+    }
+
     public String getTelefoneMae() {
         return telefoneMae;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FiliacaoDto entity = (FiliacaoDto) o;
-        return Objects.equals(this.nomePai, entity.nomePai) &&
-                Objects.equals(this.telefonePai, entity.telefonePai) &&
-                Objects.equals(this.nomeMae, entity.nomeMae) &&
-                Objects.equals(this.telefoneMae, entity.telefoneMae);
+    public void setTelefoneMae(String telefoneMae) {
+        this.telefoneMae = telefoneMae;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(nomePai, telefonePai, nomeMae, telefoneMae);
+    public static FiliacaoDto fromEntityList(Filiacao entity){
+        return new FiliacaoDto(
+
+                entity.getNomePai(),
+                entity.getTelefonePai(),
+                entity.getNomeMae(),
+                entity.getTelefoneMae()
+        );
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "nomePai = " + nomePai + ", " +
-                "telefonePai = " + telefonePai + ", " +
-                "nomeMae = " + nomeMae + ", " +
-                "telefoneMae = " + telefoneMae + ")";
+    public Filiacao toEntity(){
+        Filiacao entity = new Filiacao();
+
+                entity.setNomePai(this.nomePai);
+                entity.setTelefonePai(this.telefonePai);
+                entity.setNomeMae(this.nomeMae);
+                entity.setTelefoneMae(this.telefoneMae);
+                return entity;
     }
 }
