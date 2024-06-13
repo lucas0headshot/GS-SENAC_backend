@@ -1,12 +1,16 @@
 package com.senac.gestaocurso.dto;
 
+import com.senac.gestaocurso.models.domain.Materia;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 
-public class MateriaDto implements Serializable {
-    private final String nome;
-    private final Integer cargaHoraria;
+public class MateriaDto {
+    private  String nome;
+    private  Integer cargaHoraria;
+
+    public MateriaDto(){}
 
     public MateriaDto(String nome, Integer cargaHoraria) {
         this.nome = nome;
@@ -17,28 +21,32 @@ public class MateriaDto implements Serializable {
         return nome;
     }
 
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
     public Integer getCargaHoraria() {
         return cargaHoraria;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        MateriaDto entity = (MateriaDto) o;
-        return Objects.equals(this.nome, entity.nome) &&
-                Objects.equals(this.cargaHoraria, entity.cargaHoraria);
+    public void setCargaHoraria(Integer cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(nome, cargaHoraria);
+    public static MateriaDto fromEntityList(Materia entity){
+        return new MateriaDto(
+
+                entity.getNome(),
+                entity.getCargaHoraria()
+        );
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "nome = " + nome + ", " +
-                "cargaHoraria = " + cargaHoraria + ")";
+    public Materia toEntity(){
+
+        Materia entity = new Materia();
+
+                entity.setNome(this.nome);
+                entity.setCargaHoraria(this.cargaHoraria);
+                return entity;
     }
 }
