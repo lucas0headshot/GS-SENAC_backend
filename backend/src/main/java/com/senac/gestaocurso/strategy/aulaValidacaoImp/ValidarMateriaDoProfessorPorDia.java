@@ -3,15 +3,21 @@ package com.senac.gestaocurso.strategy.aulaValidacaoImp;
 import com.senac.gestaocurso.enterprise.ValidationException;
 import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.repository.AulaRepository;
+import com.senac.gestaocurso.repository.FuncionarioRepository;
 import com.senac.gestaocurso.strategy.NovaValidacaoAulaStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
+@Component
 public class ValidarMateriaDoProfessorPorDia implements NovaValidacaoAulaStrategy {
 
     @Autowired
-    private AulaRepository repository;
+    private AulaRepository aulaRepository;
+
+    @Autowired
+    private FuncionarioRepository funcionarioRepository;
 
     @Override
     public void validar(Aula aula) {
@@ -20,8 +26,8 @@ public class ValidarMateriaDoProfessorPorDia implements NovaValidacaoAulaStrateg
         }
     }
 
-    private boolean validaMateriaPorDia(LocalDate dia, Long idProfessor){
-        return repository.findByDia(dia) != null &&
-                repository.findByProfessor(idProfessor) != null;
+    private boolean validaMateriaPorDia(LocalDate dia, Long id){
+        return aulaRepository.findByDia(dia) != null &&
+                funcionarioRepository.findById(id) != null;
     }
 }
