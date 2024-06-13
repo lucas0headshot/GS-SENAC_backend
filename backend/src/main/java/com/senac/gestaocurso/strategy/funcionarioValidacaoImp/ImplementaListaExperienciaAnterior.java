@@ -13,7 +13,7 @@ public class ImplementaListaExperienciaAnterior implements ValidarImplementacaoL
     @Override
     public void lista(Funcionario funcionario) {
         if (validaLista(funcionario)) {
-            List<ExperienciaAnterior> experienciaAnteriorList = funcionario.getExpAnterior()
+            List<ExperienciaAnterior> experienciaAnteriorList = funcionario.getExperienciaAnterior()
                     .stream()
                     .map(expAnteriorIn -> new ExperienciaAnterior(
                             expAnteriorIn.getDescricao(),
@@ -23,12 +23,12 @@ public class ImplementaListaExperienciaAnterior implements ValidarImplementacaoL
                             funcionario))
                     .collect(Collectors.toList());
 
-            funcionario.setExpAnterior(experienciaAnteriorList);
+            funcionario.setExperienciaAnterior(experienciaAnteriorList);
         }
     }
 
     private boolean validaLista(Funcionario funcionario){
-        if (!funcionario.getExpAnterior().isEmpty()) return true;
+        if (!funcionario.getExperienciaAnterior().isEmpty()) return true;
 
         return false;
     }
