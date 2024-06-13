@@ -1,16 +1,21 @@
 package com.senac.gestaocurso.dto;
 
+import com.senac.gestaocurso.models.domain.Avaliacao;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 
-public class AvaliacaoDto implements Serializable {
-    private final Long id;
-    private final String nome;
-    private final Integer nota;
-    private final LocalDate data;
+public class AvaliacaoDto   {
+    private  Long id;
+    private  String nome;
+    private  Integer nota;
+    private  LocalDate data;
 
+    public AvaliacaoDto(){
+
+    }
     public AvaliacaoDto(Long id, String nome, Integer nota, LocalDate data) {
         this.id = id;
         this.nome = nome;
@@ -22,40 +27,51 @@ public class AvaliacaoDto implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNome() {
         return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Integer getNota() {
         return nota;
     }
 
+    public void setNota(Integer nota) {
+        this.nota = nota;
+    }
+
     public LocalDate getData() {
         return data;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AvaliacaoDto entity = (AvaliacaoDto) o;
-        return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.nome, entity.nome) &&
-                Objects.equals(this.nota, entity.nota) &&
-                Objects.equals(this.data, entity.data);
+    public void setData(LocalDate data) {
+        this.data = data;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, nome, nota, data);
+    public static AvaliacaoDto fromEntityList (Avaliacao entity){
+        return new AvaliacaoDto(
+
+                entity.getId(),
+                entity.getNome(),
+                entity.getNota(),
+                entity.getData()
+        );
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "nome = " + nome + ", " +
-                "nota = " + nota + ", " +
-                "data = " + data + ")";
+    public Avaliacao toEntity(){
+        Avaliacao entity = new Avaliacao();
+
+        entity.setId(this.id);
+        entity.setNome(this.nome);
+        entity.setNota(this.nota);
+        entity.setData(this.data);
+        return  entity;
     }
 }
