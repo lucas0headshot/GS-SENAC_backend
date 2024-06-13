@@ -1,16 +1,19 @@
 package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.enums.Status;
+import com.senac.gestaocurso.models.domain.Inscricao;
 
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
 
 
-public class InscricaoDto implements Serializable {
-    private final LocalDate data;
-    private final Status status;
-    private final Integer valor;
+public class InscricaoDto {
+    private  LocalDate data;
+    private  Status status;
+    private  Integer valor;
+
+    public InscricaoDto(){}
 
     public InscricaoDto(LocalDate data, Status status, Integer valor) {
         this.data = data;
@@ -22,34 +25,42 @@ public class InscricaoDto implements Serializable {
         return data;
     }
 
+    public void setData(LocalDate data) {
+        this.data = data;
+    }
+
     public Status getStatus() {
         return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     public Integer getValor() {
         return valor;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        InscricaoDto entity = (InscricaoDto) o;
-        return Objects.equals(this.data, entity.data) &&
-                Objects.equals(this.status, entity.status) &&
-                Objects.equals(this.valor, entity.valor);
+    public void setValor(Integer valor) {
+        this.valor = valor;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(data, status, valor);
+    public static InscricaoDto fromEntityList(Inscricao entity){
+        return new InscricaoDto(
+
+                entity.getData(),
+                entity.getStatus(),
+                entity.getValor()
+        );
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "data = " + data + ", " +
-                "status = " + status + ", " +
-                "valor = " + valor + ")";
+    public Inscricao toEntity(){
+
+        Inscricao entity = new Inscricao();
+
+                entity.setData(this.data);
+                entity.setStatus(this.status);
+                entity.setValor(this.valor);
+                return entity;
     }
 }
