@@ -1,14 +1,18 @@
 package com.senac.gestaocurso.dto;
 
+import com.senac.gestaocurso.models.Cargo;
+
 import java.io.Serializable;
 import java.util.Objects;
 
 
-public class CargoDto implements Serializable {
-    private final Long id;
-    private final String descricao;
-    private final String nivel;
-    private final Boolean comissionado;
+public class CargoDto   {
+    private  Long id;
+    private  String descricao;
+    private  String nivel;
+    private  Boolean comissionado;
+
+    public CargoDto(){}
 
     public CargoDto(Long id, String descricao, String nivel, Boolean comissionado) {
         this.id = id;
@@ -21,40 +25,53 @@ public class CargoDto implements Serializable {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getDescricao() {
         return descricao;
+    }
+
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
     public String getNivel() {
         return nivel;
     }
 
+    public void setNivel(String nivel) {
+        this.nivel = nivel;
+    }
+
     public Boolean getComissionado() {
         return comissionado;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CargoDto entity = (CargoDto) o;
-        return Objects.equals(this.id, entity.id) &&
-                Objects.equals(this.descricao, entity.descricao) &&
-                Objects.equals(this.nivel, entity.nivel) &&
-                Objects.equals(this.comissionado, entity.comissionado);
+    public void setComissionado(Boolean comissionado) {
+        this.comissionado = comissionado;
     }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, descricao, nivel, comissionado);
+    public static CargoDto fromEntityList(Cargo entity){
+        return new CargoDto(
+
+                entity.getId(),
+                entity.getDescricao(),
+                entity.getNivel(),
+                entity.getComissionado()
+        );
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "(" +
-                "id = " + id + ", " +
-                "descricao = " + descricao + ", " +
-                "nivel = " + nivel + ", " +
-                "comissionado = " + comissionado + ")";
+    public Cargo toEntity(){
+
+        Cargo entity = new Cargo();
+
+        entity.setId(this.id);
+        entity.setDescricao(this.descricao);
+        entity.setNivel(this.nivel);
+        entity.setComissionado(this.comissionado);
+
+        return  entity;
     }
 }
