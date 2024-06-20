@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.resource;
 
-import com.senac.gestaocurso.enterprise.ValidationException;
+import com.senac.gestaocurso.enterprise.exception.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
