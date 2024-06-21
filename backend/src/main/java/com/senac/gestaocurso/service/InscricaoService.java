@@ -1,7 +1,9 @@
 package com.senac.gestaocurso.service;
 
+import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.domain.Inscricao;
 import com.senac.gestaocurso.repository.InscricaoRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,28 +14,40 @@ import java.util.Optional;
 public class InscricaoService {
 
     @Autowired
+    private ModelMapper modelMapper;
+
+    @Autowired
     private InscricaoRepository inscricaoRepository;
+
     public Inscricao salvar(Inscricao entity) {
         return inscricaoRepository.save(entity);
     }
+
     public Page<Inscricao> buscaTodos(Pageable pageable) {
-        return inscricaoRepository.findAll(pageable);
+        var list = inscricaoRepository.findAll(pageable);
+
+        if (list.isEmpty()){
+            throw new NotFoundException("Nenhuma inscrição encontrada");
+        }
+
+        return list;
     }
+
     public Inscricao buscaPorId(Long id) {
-        return inscricaoRepository.findById(id).orElse(null);
+        return inscricaoRepository.findById(id).orElseThrow(() -> new NotFoundException("Inscrição não encontrada"));
     }
+
     public Inscricao alterar(Long id, Inscricao alterado) {
         Optional<Inscricao> encontrado = inscricaoRepository.findById(id);
-        if ((encontrado.isPresent())) {
+        if (encontrado.isPresent()) {
             Inscricao inscricao = encontrado.get();
-            inscricao.setData(alterado.getData());
-            inscricao.setStatus(alterado.getStatus());
-            inscricao.setInscrito(alterado.getInscrito());
-            inscricao.setValor(alterado.getValor());
+            modelMapper.map(alterado, inscricao);
             return inscricaoRepository.save(inscricao);
         }
-        return null;
+        throw new NotFoundException("Inscriçãonão encontrada");
     }
-    public void remover(Long id) {inscricaoRepository.deleteById(id);
+
+    public void remover(Long id) {
+        inscricaoRepository.deleteById(id);
     }
 }

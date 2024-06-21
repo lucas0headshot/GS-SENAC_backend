@@ -7,10 +7,9 @@ import com.senac.gestaocurso.service.ChamadaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import java.awt.print.Pageable;
-
 
 
 @RestController
@@ -30,13 +29,13 @@ public class ChamadaController extends AbstractController {
 
     @GetMapping
     public ResponseEntity buscaTodos(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
-        Pageable pageable = (Pageable) PageRequest.of(page, size);
+        Pageable pageable = PageRequest.of(page, size);
         Page<Chamada> chamadas = service.buscaTodos(pageable);
         return ResponseEntity.ok(chamadas);
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity buscaPorId(@RequestParam("id") Long id) {
+    public ResponseEntity buscaPorId(@PathVariable("id") Long id) {
         return ResponseEntity.ok().body(service.buscaPorId(id));
     }
 

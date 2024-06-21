@@ -1,6 +1,7 @@
 package com.senac.gestaocurso.resource;
 
 
+import com.senac.gestaocurso.dto.FuncionarioDto;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.service.FuncionarioService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +29,7 @@ public class FuncionarioController extends AbstractController{
     @GetMapping
     public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Funcionario> funcionarios = funcionarioService.buscaTodos(pageable);
+        Page<FuncionarioDto> funcionarios = funcionarioService.buscaTodos(pageable);
         return ResponseEntity.ok(funcionarios);
     }
     @GetMapping("/{id}")

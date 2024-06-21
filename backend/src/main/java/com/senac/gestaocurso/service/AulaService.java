@@ -1,18 +1,21 @@
 package com.senac.gestaocurso.service;
 
+import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.repository.AulaRepository;
 import com.senac.gestaocurso.strategy.NovaValidacaoAulaStrategy;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.Optional;
 @Service
 public class AulaService {
 
+    @Autowired
+    private ModelMapper modelMapper;
     @Autowired
     private AulaRepository aulaRepository;
 
@@ -25,23 +28,26 @@ public class AulaService {
     }
 
     public Page<Aula> buscaTodos(Pageable pageable){
-        return aulaRepository.findAll(pageable);
+        var list = aulaRepository.findAll(pageable);
+        if (list.isEmpty()){
+            throw new NotFoundException("nenhuma aula encontrada");
+        }
+        return list;
     }
 
     public Aula buscaPorId(Long id){
-        return aulaRepository.findById(id).orElse(null);
+        return aulaRepository.findById(id).orElseThrow(() -> new NotFoundException("aula não encontrada"));
     }
 
     public Aula alterar(Long id, Aula alterado){
         Optional<Aula> encontrado = aulaRepository.findById(id);
-        if ((encontrado.isPresent())) {
+        if (encontrado.isPresent()) {
             Aula aula = encontrado.get();
-            aula.setMateria(alterado.getMateria());
-            aula.setDia(alterado.getDia());
+            modelMapper.map(alterado, aula);
             return aulaRepository.save(aula);
         }
 
-        return null;
+        throw new NotFoundException("aula não encontrada");
     }
 
     public void remover(Long id) {aulaRepository.deleteById(id);

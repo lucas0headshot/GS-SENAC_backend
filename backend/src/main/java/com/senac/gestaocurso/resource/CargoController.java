@@ -15,7 +15,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/cargos")
 
-public class CargoController {
+public class CargoController extends AbstractController{
     @Autowired
     private CargoService cargoService;
 

@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.strategy.funcionarioValidacaoImp;
 
-import com.senac.gestaocurso.enterprise.ValidationException;
+import com.senac.gestaocurso.enterprise.exception.ValidationException;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.repository.FuncionarioRepository;
 import com.senac.gestaocurso.strategy.NovaValidacaoFuncionarioStrategy;

@@ -1,6 +1,7 @@
 package com.senac.gestaocurso.resource;
 
-import com.senac.gestaocurso.enterprise.ValidationException;
+import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -26,9 +27,6 @@ public abstract class AbstractController {
         errors.put("erro", collect.toString());
         return errors;
     }
-
-
-
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(ValidationException.class)
     public Map<String, String> handleValidationExceptions422(
@@ -37,4 +35,13 @@ public abstract class AbstractController {
         errors.put("erro", ex.getMessage());
         return errors;
     }
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(NotFoundException.class)
+    public Map<String, String> handleValidationExceptions404(
+            NotFoundException ex) {
+        Map<String, String> errors = new HashMap<>();
+        errors.put("erro", ex.getMessage());
+        return errors;
+    }
+
 }
