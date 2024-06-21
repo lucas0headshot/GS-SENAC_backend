@@ -4,6 +4,8 @@ package com.senac.gestaocurso.resource;
 import com.senac.gestaocurso.dto.FuncionarioDto;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.service.FuncionarioService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,33 +21,41 @@ public class FuncionarioController extends AbstractController{
     @Autowired
     private FuncionarioService funcionarioService;
 
-    @PostMapping()
+    @Tag(name = "FUNCIONARIO")
+    @Operation(summary = "Salva novo funcionario")
+    @PostMapping
     public ResponseEntity salvar(@RequestBody Funcionario funcionario){
         Funcionario save = funcionarioService.salvar(funcionario);
         return ResponseEntity.created(URI.create("/api/funcionario" + funcionario.getId())).body(save);
     }
 
-
+    @Tag(name = "FUNCIONARIO")
+    @Operation(summary = "Lista todos os funcionarios")
     @GetMapping
     public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<FuncionarioDto> funcionarios = funcionarioService.buscaTodos(pageable);
         return ResponseEntity.ok(funcionarios);
     }
+
+    @Tag(name = "FUNCIONARIO")
+    @Operation(summary = "Busca funcionario por ID")
     @GetMapping("/{id}")
     public  ResponseEntity findById(@PathVariable("id") Long id){
         Funcionario funcionario = funcionarioService.buscaPorId(id);
         return ResponseEntity.ok().body(funcionario);
     }
 
-
-
+    @Tag(name = "FUNCIONARIO")
+    @Operation(summary = "Deleta funcionario por ID")
     @DeleteMapping("{id}")
     public  ResponseEntity remove(@PathVariable("id") Long id){
         funcionarioService.remover(id);
         return ResponseEntity.noContent().build();
     }
 
+    @Tag(name = "FUNCIONARIO")
+    @Operation(summary = "Atualiza funcionario por ID")
     @PutMapping("{id}")
     public  ResponseEntity update(@PathVariable("id") Long id, @RequestBody Funcionario entity){
         Funcionario alterado = funcionarioService.alterar(id, entity);

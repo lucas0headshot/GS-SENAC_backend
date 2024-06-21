@@ -2,6 +2,8 @@ package com.senac.gestaocurso.resource;
 
 import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.service.AulaService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -17,6 +19,8 @@ public class AulaController {
     @Autowired
     private AulaService aulaService;
 
+    @Tag(name = "AULAS")
+    @Operation(summary = "Salvar novas aulas")
     @PostMapping()
     public ResponseEntity salvar(@RequestBody Aula aulas){
         Aula save = aulaService.salvar(aulas);
@@ -24,24 +28,32 @@ public class AulaController {
     }
 
 
+    @Tag(name = "AULAS")
+    @Operation(summary = "Lista todas as aulas")
     @GetMapping
     public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<Aula> aulas = aulaService.buscaTodos(pageable);
         return ResponseEntity.ok(aulas);
     }
+    @Tag(name = "AULAS")
+    @Operation(summary = "Busca aulas por ID")
     @GetMapping("/{id}")
     public  ResponseEntity findById(@PathVariable("id") Long id){
         Aula aulas = aulaService.buscaPorId(id);
         return ResponseEntity.ok().body(aulas);
     }
 
+    @Tag(name = "AULAS")
+    @Operation(summary = "Deleta aulas por ID")
     @DeleteMapping("{id}")
     public  ResponseEntity remove(@PathVariable("id") Long id){
         aulaService.remover(id);
         return ResponseEntity.noContent().build();
     }
 
+    @Tag(name = "AULAS")
+    @Operation(summary = "Atualiza aulas existentes por ID")
     @PutMapping("{id}")
     public  ResponseEntity update(@PathVariable("id") Long id, @RequestBody Aula entity){
         Aula alterado = aulaService.alterar(id, entity);

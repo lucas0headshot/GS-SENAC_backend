@@ -3,6 +3,8 @@ package com.senac.gestaocurso.resource;
 
 import com.senac.gestaocurso.models.domain.Avaliacao;
 import com.senac.gestaocurso.service.AvaliacaoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +21,8 @@ public class AvaliacaoController {
         @Autowired
         private AvaliacaoService avaliacaoService;
 
+        @Tag(name = "AVALIACAO")
+        @Operation(summary = "Salvar novas avaliacoes")
         @PostMapping()
         public ResponseEntity salvar(@RequestBody Avaliacao avaliacoes) {
             Avaliacao save = avaliacaoService.salvar(avaliacoes);
@@ -26,6 +30,8 @@ public class AvaliacaoController {
         }
 
 
+        @Tag(name = "AVALIACAO")
+        @Operation(summary = "Lista todas avaliacoes")
         @GetMapping
         public ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
             Pageable pageable = PageRequest.of(page, size);
@@ -33,13 +39,16 @@ public class AvaliacaoController {
             return ResponseEntity.ok(avaliacoes);
         }
 
+        @Tag(name = "AVALIACAO")
+        @Operation(summary = "Busca avaliacoes por ID")
         @GetMapping("/{id}")
         public ResponseEntity findById(@PathVariable("id") Long id) {
             Avaliacao avaliacao = avaliacaoService.buscaPorId(id);
             return ResponseEntity.ok().body(avaliacao);
         }
 
-
+        @Tag(name = "AVALIACAO")
+        @Operation(summary = "Deleta avaliacoes por ID")
         @DeleteMapping("{id}")
         public ResponseEntity remove(@PathVariable("id") Long id) {
             avaliacaoService.remover(id);
