@@ -1,10 +1,12 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.FuncionarioDto;
+import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.*;
 import com.senac.gestaocurso.repository.FuncionarioRepository;
 import com.senac.gestaocurso.strategy.NovaValidacaoFuncionarioStrategy;
 import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -18,9 +20,14 @@ import java.util.stream.Collectors;
 public class FuncionarioService {
 
     @Autowired
+    private ModelMapper modelMapper;
+
+    @Autowired
     private FuncionarioRepository funcionarioRepository;
+
     @Autowired
     private List<NovaValidacaoFuncionarioStrategy> novaValidacaoFuncionarioStrategies;
+
     @Autowired
     private List<ValidarImplementacaoListasStrategy> validarImplementacaoListasStrategies;
 
@@ -32,62 +39,28 @@ public class FuncionarioService {
 
     public Page<FuncionarioDto> buscaTodos(Pageable pageable) {
         Page<Funcionario> funcionariosPage = funcionarioRepository.findAll(pageable);
+
+        if (funcionariosPage.isEmpty()){
+            throw new NotFoundException("Nenhum funcionário encontrado");
+        }
         return funcionariosPage.map(FuncionarioDto::fromEntity);
     }
     public Funcionario buscaPorId(Long id) {
-        return funcionarioRepository.findById(id).orElse(null);
+        return funcionarioRepository.findById(id).orElseThrow(() -> new NotFoundException("Funcionário não encontrado"));
     }
+
     public Funcionario alterar(Long id, Funcionario alterado) {
         Optional<Funcionario> encontrado = funcionarioRepository.findById(id);
-        if ((encontrado.isPresent())) {
-
+        if (encontrado.isPresent()) {
             Funcionario funcionario = encontrado.get();
-            funcionario.setEmail(alterado.getEmail());
-            funcionario.setNome(alterado.getNome());
-            funcionario.setEndereco(alterado.getEndereco());
-            funcionario.setCargo(alterado.getCargo());
-            funcionario.setCnh(alterado.getCnh());
-            funcionario.setAreaAtuacao(alterado.getAreaAtuacao());
-            funcionario.setCpf(alterado.getCpf());
-            funcionario.setCargaHoraria(alterado.getCargaHoraria());
-            funcionario.setDadosBancarios(alterado.getDadosBancarios());
-            funcionario.setCtbs(alterado.getCtbs());
-            funcionario.setCertificacoes(alterado.getCertificacoes());
-            funcionario.setExperienciaAnterior(alterado.getExperienciaAnterior());
-            funcionario.setDependentes(alterado.getDependentes());
-            funcionario.setTituloEleitor(alterado.getTituloEleitor());
-            funcionario.setTipoRH(alterado.getTipoRH());
-            funcionario.setTelefone(alterado.getTelefone());
-            funcionario.setReservista(alterado.getReservista());
-            funcionario.setStatus(alterado.getStatus());
-            funcionario.setRg(alterado.getRg());
-            funcionario.setSalarioContratual(alterado.getSalarioContratual());
-            funcionario.setModalidadeContratual(alterado.getModalidadeContratual());
-            funcionario.setDataNasc(alterado.getDataNasc());
-            funcionario.setPisPasep(alterado.getPisPasep());
-            funcionario.setRegistroProfissional(alterado.getRegistroProfissional());
-            funcionario.setSindicato(alterado.getSindicato());
-            funcionario.setSetor(alterado.getSetor());
-            funcionario.setDataAdmissao(alterado.getDataAdmissao());
-            funcionario.setFiliacao(alterado.getFiliacao());
-            funcionario.setRacaCor(alterado.getRacaCor());
-            funcionario.setReligiao(alterado.getReligiao());
-            funcionario.setDoadorSangue(alterado.getDoadorSangue());
-            funcionario.setGenero(alterado.getGenero());
-            funcionario.setTurno(alterado.getTurno());
-            funcionario.setNacionalidade(alterado.getNacionalidade());
-            funcionario.setRedeSocial(alterado.getRedeSocial());
-            funcionario.setMatricula(alterado.getMatricula());
-            funcionario.setIdioma(alterado.getIdioma());
-            funcionario.setHoraExtra(alterado.getHoraExtra());
-            funcionario.setHoraEntrada(alterado.getHoraEntrada());
-            funcionario.setHoraSaida(alterado.getHoraSaida());
-
+            modelMapper.map(alterado, funcionario);
             return funcionarioRepository.save(funcionario);
         }
-        return null;
+        throw new NotFoundException("Funcionário não encontrado");
     }
-    public void remover(Long id) {funcionarioRepository.deleteById(id);
+
+    public void remover(Long id) {
+        funcionarioRepository.deleteById(id);
     }
 
 }
