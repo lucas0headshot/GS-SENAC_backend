@@ -52,7 +52,7 @@ public class ExpAnteriorDto  {
         this.periodoInicial = periodoInicial;
     }
 
-    public static ExpAnteriorDto fromEntityList(ExperienciaAnterior entity){
+    public static ExpAnteriorDto fromEntity(ExperienciaAnterior entity){
         return new ExpAnteriorDto(
 
                 entity.getId(),
