@@ -55,7 +55,7 @@ public class AvaliacaoDto   {
         this.data = data;
     }
 
-    public static AvaliacaoDto fromEntityList (Avaliacao entity){
+    public static AvaliacaoDto fromEntity (Avaliacao entity){
         return new AvaliacaoDto(
 
                 entity.getId(),
