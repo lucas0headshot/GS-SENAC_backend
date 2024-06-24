@@ -55,7 +55,7 @@ public class CursoDto   {
         this.id = id;
     }
 
-    public static CursoDto fromEntityList(Curso entity){
+    public static CursoDto fromEntity(Curso entity){
         return new CursoDto(
 
                 entity.getId(),
