@@ -15,7 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("api/materia")
-public class MateriaController {
+public class MateriaController extends AbstractController{
     @Autowired
     private MateriaService materiaService;
 

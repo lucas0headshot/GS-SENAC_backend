@@ -15,7 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("api/inscricao")
-public class InscricaoController {
+public class InscricaoController extends AbstractController{
     @Autowired
     private InscricaoService inscricaoService;
 
