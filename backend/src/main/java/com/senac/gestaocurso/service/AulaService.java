@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.service;
 
+import com.senac.gestaocurso.dto.AulaDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.repository.AulaRepository;
@@ -27,12 +28,13 @@ public class AulaService {
         return aulaRepository.save(entity);
     }
 
-    public Page<Aula> buscaTodos(Pageable pageable){
-        var list = aulaRepository.findAll(pageable);
-        if (list.isEmpty()){
-            throw new NotFoundException("nenhuma aula encontrada");
+    public Page<AulaDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Aula> aulasPage = aulaRepository.findAll(filter, Aula.class, pageable);
+
+        if (aulasPage.isEmpty()){
+            throw new NotFoundException("Nenhum funcionário encontrado");
         }
-        return list;
+        return aulasPage.map(AulaDto::fromEntity);
     }
 
     public Aula buscaPorId(Long id){
