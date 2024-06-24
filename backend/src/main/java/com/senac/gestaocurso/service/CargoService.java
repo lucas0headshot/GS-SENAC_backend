@@ -1,8 +1,11 @@
 package com.senac.gestaocurso.service;
 
 
+import com.senac.gestaocurso.dto.AulaDto;
+import com.senac.gestaocurso.dto.CargoDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.Cargo;
+import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.repository.CargoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +25,13 @@ public class CargoService {
     public Cargo salvar(Cargo entity) {
         return cargoRepository.save(entity);
     }
-    public Page<Cargo> buscaTodos(Pageable pageable) {
-        var list = cargoRepository.findAll(pageable);
-        if (list.isEmpty()){
-            throw new NotFoundException("nenhum cargo encontrado");
+    public Page<CargoDto> buscaTodos(Pageable pageable) {
+        Page<Cargo> cargoPage = cargoRepository.findAll(pageable);
+
+        if (cargoPage.isEmpty()){
+            throw new NotFoundException("Nenhum funcionário encontrado");
         }
-        return list;
+        return cargoPage.map(CargoDto::fromEntity);
     }
     public Cargo buscaPorId(Long id) {
         return cargoRepository.findById(id).orElseThrow(() -> new NotFoundException("cargo não encontrado"));
