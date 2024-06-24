@@ -1,6 +1,9 @@
 package com.senac.gestaocurso.service;
 
+import com.senac.gestaocurso.dto.AulaDto;
+import com.senac.gestaocurso.dto.InscricaoDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.models.domain.Inscricao;
 import com.senac.gestaocurso.repository.InscricaoRepository;
 import org.modelmapper.ModelMapper;
@@ -23,14 +26,13 @@ public class InscricaoService {
         return inscricaoRepository.save(entity);
     }
 
-    public Page<Inscricao> buscaTodos(Pageable pageable) {
-        var list = inscricaoRepository.findAll(pageable);
+    public Page<InscricaoDto> buscaTodos(Pageable pageable) {
+        Page<Inscricao> inscricaoPage = inscricaoRepository.findAll(pageable);
 
-        if (list.isEmpty()){
-            throw new NotFoundException("Nenhuma inscrição encontrada");
+        if (inscricaoPage.isEmpty()){
+            throw new NotFoundException("Nenhum funcionário encontrado");
         }
-
-        return list;
+        return inscricaoPage.map(InscricaoDto::fromEntity);
     }
 
     public Inscricao buscaPorId(Long id) {
