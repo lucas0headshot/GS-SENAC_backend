@@ -35,7 +35,7 @@ public class AulaDto   {
         this.dia = dia;
     }
 
-        public static AulaDto fromEntityList (Aula entity){
+        public static AulaDto fromEntity (Aula entity){
             return new AulaDto(
 
                     entity.getId(),
