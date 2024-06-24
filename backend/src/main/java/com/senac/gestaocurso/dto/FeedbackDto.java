@@ -44,7 +44,7 @@ public class FeedbackDto  {
         this.data = data;
     }
 
-    public static FeedbackDto fromEntityList(FeedbackDto entity){
+    public static FeedbackDto fromEntity(FeedbackDto entity){
         return new FeedbackDto(
 
                 entity.getFeedback(),
