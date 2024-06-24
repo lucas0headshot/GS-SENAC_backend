@@ -12,14 +12,14 @@ import java.time.LocalDate;
 
 @Entity
 public class Aula extends EntityID {
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "materia_id")
     private Materia materia;
 
     @Column(nullable = false)
     private LocalDate dia;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "professor_id")
     private Funcionario professor;
 
