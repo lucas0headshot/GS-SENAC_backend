@@ -16,7 +16,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("api/dadosbancarios")
-public class DadosBancariosController {
+public class DadosBancariosController extends AbstractController{
     @Autowired
     private DadosBancariosService dadosBancariosService;
 

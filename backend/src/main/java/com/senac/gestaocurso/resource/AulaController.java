@@ -15,7 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/aulas")
-public class AulaController {
+public class AulaController extends AbstractController{
     @Autowired
     private AulaService aulaService;
 

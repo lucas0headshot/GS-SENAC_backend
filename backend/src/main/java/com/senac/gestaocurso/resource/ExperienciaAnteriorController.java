@@ -16,7 +16,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/experiencias")
-public class ExperienciaAnteriorController {
+public class ExperienciaAnteriorController extends AbstractController{
     @Autowired
     private ExperienciaAnteriorService experienciaAnteriorService;
 

@@ -15,7 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("api/frequencia")
-public class FrequenciaController {
+public class FrequenciaController extends AbstractController{
     @Autowired
     private FrequenciaService frequenciaService;
 

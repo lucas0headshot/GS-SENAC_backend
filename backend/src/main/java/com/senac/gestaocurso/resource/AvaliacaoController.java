@@ -16,7 +16,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/avaliacao")
-public class AvaliacaoController {
+public class AvaliacaoController extends AbstractController{
     public class FuncionarioController {
         @Autowired
         private AvaliacaoService avaliacaoService;
