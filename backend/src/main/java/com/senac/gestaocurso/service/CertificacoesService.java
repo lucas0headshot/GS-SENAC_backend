@@ -1,7 +1,10 @@
 package com.senac.gestaocurso.service;
 
 
+import com.senac.gestaocurso.dto.AulaDto;
+import com.senac.gestaocurso.dto.CertificacoesDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.models.domain.Certificacao;
 import com.senac.gestaocurso.repository.CertifcacoesRepository;
 import org.modelmapper.ModelMapper;
@@ -23,13 +26,13 @@ public class CertificacoesService {
         return certifcacoesRepository.save(entity);
     }
 
-    public Page<Certificacao> buscaTodos(Pageable pageable) {
-        var list = certifcacoesRepository.findAll(pageable);
+    public Page<CertificacoesDto> buscaTodos(Pageable pageable) {
+        Page<Certificacao> certificacaoPage = certifcacoesRepository.findAll(pageable);
 
-        if (list.isEmpty()){
-            throw new NotFoundException("nenhuma certificação encontrada");
+        if (certificacaoPage.isEmpty()){
+            throw new NotFoundException("Nenhum funcionário encontrado");
         }
-        return list;
+        return certificacaoPage.map(CertificacoesDto::fromEntity);
     }
     public Certificacao buscaPorId(Long id) {
         return certifcacoesRepository.findById(id).orElseThrow(() -> new NotFoundException("certificação não encontrada"));
