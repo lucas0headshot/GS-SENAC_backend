@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.resource;
 
+import com.senac.gestaocurso.dto.MateriaDto;
 import com.senac.gestaocurso.models.domain.Materia;
 import com.senac.gestaocurso.service.MateriaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,9 +32,11 @@ public class MateriaController extends AbstractController{
     @Tag(name = "MATERIA")
     @Operation(summary = "Lista todas as materias")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Materia> materias = materiaService.buscaTodos(pageable);
+        Page<MateriaDto> materias = materiaService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(materias);
     }
 
