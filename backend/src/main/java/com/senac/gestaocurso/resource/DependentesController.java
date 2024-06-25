@@ -1,6 +1,7 @@
 package com.senac.gestaocurso.resource;
 
 
+import com.senac.gestaocurso.dto.DependentesDto;
 import com.senac.gestaocurso.models.Dependente;
 import com.senac.gestaocurso.service.DependentesService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,9 +31,11 @@ public class DependentesController extends AbstractController{
     @Tag(name = "DEPENDENTES")
     @Operation(summary = "Lista todos os dependentes")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Dependente> dependentes = dependentesService.buscaTodos(pageable);
+        Page<DependentesDto> dependentes = dependentesService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(dependentes);
     }
 
