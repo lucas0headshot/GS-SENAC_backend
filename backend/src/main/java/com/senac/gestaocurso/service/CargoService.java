@@ -25,11 +25,11 @@ public class CargoService {
     public Cargo salvar(Cargo entity) {
         return cargoRepository.save(entity);
     }
-    public Page<CargoDto> buscaTodos(Pageable pageable) {
-        Page<Cargo> cargoPage = cargoRepository.findAll(pageable);
+    public Page<CargoDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Cargo> cargoPage = cargoRepository.findAll(filter, Cargo.class, pageable);
 
         if (cargoPage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new NotFoundException("Nenhum cargo encontrado");
         }
         return cargoPage.map(CargoDto::fromEntity);
     }
