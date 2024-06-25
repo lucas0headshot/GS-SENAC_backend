@@ -27,11 +27,11 @@ public class MateriaService {
         return materiaRepository.save(entity);
     }
 
-    public Page<MateriaDto> buscaTodos(Pageable pageable) {
-        Page<Materia> materiaPage = materiaRepository.findAll(pageable);
+    public Page<MateriaDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Materia> materiaPage = materiaRepository.findAll(filter, Materia.class, pageable);
 
         if (materiaPage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new NotFoundException("Nenhuma matéria encontrada");
         }
         return materiaPage.map(MateriaDto::fromEntity);
     }
