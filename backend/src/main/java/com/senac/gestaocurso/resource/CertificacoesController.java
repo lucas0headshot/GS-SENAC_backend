@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.resource;
 
+import com.senac.gestaocurso.dto.CertificacoesDto;
 import com.senac.gestaocurso.models.domain.Certificacao;
 import com.senac.gestaocurso.service.CertificacoesService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,9 +31,11 @@ public class CertificacoesController extends AbstractController{
     @Tag(name = "CERTIFICACOES")
     @Operation(summary = "Listar todas as certificacoes")
     @GetMapping
-    public ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                  @RequestParam(defaultValue = "0") int page,
+                                  @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Certificacao> certificacoes = certificacoesService.buscaTodos(pageable);
+        Page<CertificacoesDto> certificacoes = certificacoesService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(certificacoes);
     }
 
