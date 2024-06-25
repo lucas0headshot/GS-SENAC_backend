@@ -28,11 +28,11 @@ public class DadosBancariosService {
         return dadosBancariosRepository.save(entity);
     }
 
-    public Page<DadosBancariosDto> buscaTodos(Pageable pageable) {
-        Page<DadosBancario> dadosBancarioPage = dadosBancariosRepository.findAll(pageable);
+    public Page<DadosBancariosDto> buscaTodos(String filter, Pageable pageable) {
+        Page<DadosBancario> dadosBancarioPage = dadosBancariosRepository.findAll(filter, DadosBancario.class, pageable);
 
         if (dadosBancarioPage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new NotFoundException("Dados bancarios não encontrado");
         }
         return dadosBancarioPage.map(DadosBancariosDto::fromEntity);
     }
