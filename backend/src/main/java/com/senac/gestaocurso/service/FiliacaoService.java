@@ -1,7 +1,10 @@
 package com.senac.gestaocurso.service;
 
+import com.senac.gestaocurso.dto.AulaDto;
+import com.senac.gestaocurso.dto.FiliacaoDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.Filiacao;
+import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.repository.FiliacaoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,14 +27,13 @@ public class FiliacaoService {
         return filiacaoRepository.save(entity);
     }
 
-    public Page<Filiacao> buscaTodos(Pageable pageable) {
-        var list = filiacaoRepository.findAll(pageable);
+    public Page<FiliacaoDto> buscaTodos(Pageable pageable) {
+        Page<Filiacao> filiacaoPage = filiacaoRepository.findAll(pageable);
 
-        if (list.isEmpty()){
-            throw new NotFoundException("Nenhuma filiação encontrada");
+        if (filiacaoPage.isEmpty()){
+            throw new NotFoundException("Nenhum funcionário encontrado");
         }
-
-        return list;
+        return filiacaoPage.map(FiliacaoDto::fromEntity);
     }
 
     public Filiacao buscaPorId(Long id) {

@@ -54,7 +54,7 @@ public class DadosBancariosDto {
         this.tipoContaBancaria = tipoContaBancaria;
     }
 
-    public static DadosBancariosDto fromEntityList (DadosBancario entity){
+    public static DadosBancariosDto fromEntity (DadosBancario entity){
         return new DadosBancariosDto(
 
                 entity.getBanco(),

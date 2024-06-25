@@ -33,7 +33,7 @@ public class MateriaDto {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public static MateriaDto fromEntityList(Materia entity){
+    public static MateriaDto fromEntity(Materia entity){
         return new MateriaDto(
 
                 entity.getNome(),

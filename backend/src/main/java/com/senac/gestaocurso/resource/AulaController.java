@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.resource;
 
+import com.senac.gestaocurso.dto.AulaDto;
 import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.service.AulaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -16,6 +17,8 @@ import java.net.URI;
 @RestController
 @RequestMapping("/api/aulas")
 public class AulaController extends AbstractController{
+
+
     @Autowired
     private AulaService aulaService;
 
@@ -31,9 +34,11 @@ public class AulaController extends AbstractController{
     @Tag(name = "AULAS")
     @Operation(summary = "Lista todas as aulas")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Aula> aulas = aulaService.buscaTodos(pageable);
+        Page<AulaDto> aulas = aulaService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(aulas);
     }
     @Tag(name = "AULAS")

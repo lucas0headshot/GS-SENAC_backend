@@ -57,7 +57,7 @@ public class CertificacoesDto   {
         this.dataEmissao = dataEmissao;
     }
 
-    public static CertificacoesDto fromEntityList(Certificacao entity){
+    public static CertificacoesDto fromEntity(Certificacao entity){
         return new CertificacoesDto(
 
                 entity.getId(),

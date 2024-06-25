@@ -45,7 +45,7 @@ public class DependentesDto {
         this.dataNasc = dataNasc;
     }
 
-    public static DependentesDto fromEntityList(Dependente entity){
+    public static DependentesDto fromEntity(Dependente entity){
         return new DependentesDto(
 
                 entity.getNome(),

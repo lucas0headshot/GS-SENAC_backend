@@ -1,6 +1,9 @@
 package com.senac.gestaocurso.service;
 
+import com.senac.gestaocurso.dto.AulaDto;
+import com.senac.gestaocurso.dto.TurmaDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.models.domain.Turma;
 import com.senac.gestaocurso.repository.TurmaRepository;
 import org.modelmapper.ModelMapper;
@@ -23,14 +26,13 @@ public class TurmaService {
         return turmaRepository.save(entity);
     }
 
-    public Page<Turma> buscaTodos(Pageable pageable) {
-        var list = turmaRepository.findAll(pageable);
+    public Page<TurmaDto> buscaTodos(Pageable pageable) {
+        Page<Turma> turmaPage = turmaRepository.findAll(pageable);
 
-        if (list.isEmpty()){
-            throw new NotFoundException("Nenhuma turma encontrada");
+        if (turmaPage.isEmpty()){
+            throw new NotFoundException("Nenhum funcionário encontrado");
         }
-
-        return list;
+        return turmaPage.map(TurmaDto::fromEntity);
     }
 
     public Turma buscaPorId(Long id) {

@@ -53,7 +53,7 @@ public class CargoDto   {
         this.comissionado = comissionado;
     }
 
-    public static CargoDto fromEntityList(Cargo entity){
+    public static CargoDto fromEntity(Cargo entity){
         return new CargoDto(
 
                 entity.getId(),

@@ -1,7 +1,10 @@
 package com.senac.gestaocurso.service;
 
 
+import com.senac.gestaocurso.dto.AulaDto;
+import com.senac.gestaocurso.dto.CursoDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.models.domain.Curso;
 import com.senac.gestaocurso.repository.CursoRepository;
 import org.modelmapper.ModelMapper;
@@ -24,14 +27,13 @@ public class CursoService {
         return cursoRepository.save(entity);
     }
 
-    public Page<Curso> buscaTodos(Pageable pageable) {
-        var list = cursoRepository.findAll(pageable);
+    public Page<CursoDto> buscaTodos(Pageable pageable) {
+        Page<Curso> cursoPage = cursoRepository.findAll(pageable);
 
-        if (list.isEmpty()){
-            throw new NotFoundException("Nenhum curso encontrado");
+        if (cursoPage.isEmpty()){
+            throw new NotFoundException("Nenhum funcionário encontrado");
         }
-
-        return list;
+        return cursoPage.map(CursoDto::fromEntity);
     }
 
     public Curso buscaPorId(Long id) {

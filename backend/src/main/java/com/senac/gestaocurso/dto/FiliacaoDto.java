@@ -53,7 +53,7 @@ public class FiliacaoDto {
         this.telefoneMae = telefoneMae;
     }
 
-    public static FiliacaoDto fromEntityList(Filiacao entity){
+    public static FiliacaoDto fromEntity(Filiacao entity){
         return new FiliacaoDto(
 
                 entity.getNomePai(),

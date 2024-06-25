@@ -1,6 +1,9 @@
 package com.senac.gestaocurso.service;
 
+import com.senac.gestaocurso.dto.AulaDto;
+import com.senac.gestaocurso.dto.MateriaDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.models.domain.Materia;
 import com.senac.gestaocurso.repository.MateriaRepository;
 import org.modelmapper.ModelMapper;
@@ -24,14 +27,13 @@ public class MateriaService {
         return materiaRepository.save(entity);
     }
 
-    public Page<Materia> buscaTodos(Pageable pageable) {
-        var list = materiaRepository.findAll(pageable);
+    public Page<MateriaDto> buscaTodos(Pageable pageable) {
+        Page<Materia> materiaPage = materiaRepository.findAll(pageable);
 
-        if (list.isEmpty()){
-            throw new NotFoundException("Nenhuma matéria encontrada");
+        if (materiaPage.isEmpty()){
+            throw new NotFoundException("Nenhum funcionário encontrado");
         }
-
-        return list;
+        return materiaPage.map(MateriaDto::fromEntity);
     }
 
     public Materia buscaPorId(Long id) {

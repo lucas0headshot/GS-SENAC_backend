@@ -1,7 +1,10 @@
 package com.senac.gestaocurso.service;
 
 
+import com.senac.gestaocurso.dto.AulaDto;
+import com.senac.gestaocurso.dto.AvaliacaoDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.models.domain.Avaliacao;
 import com.senac.gestaocurso.repository.AvaliacaoRepository;
 import org.modelmapper.ModelMapper;
@@ -22,14 +25,13 @@ public class AvaliacaoService {
     public Avaliacao salvar(Avaliacao entity) {
         return avaliacaoRepository.save(entity);
     }
-    public Page<Avaliacao> buscaTodos(Pageable pageable) {
-        var list = avaliacaoRepository.findAll(pageable);
+    public Page<AvaliacaoDto> buscaTodos(Pageable pageable) {
+        Page<Avaliacao> avaliacaoPage = avaliacaoRepository.findAll(pageable);
 
-        if (list.isEmpty()){
-            throw new NotFoundException("nenhuma avaliação encontrada");
+        if (avaliacaoPage.isEmpty()){
+            throw new NotFoundException("Nenhum funcionário encontrado");
         }
-
-        return list;
+        return avaliacaoPage.map(AvaliacaoDto::fromEntity);
     }
     public Avaliacao buscaPorId(Long id) {
         return avaliacaoRepository.findById(id).orElseThrow(() -> new NotFoundException("avaliação não encontrada"));

@@ -45,7 +45,7 @@ public class InscricaoDto {
         this.valor = valor;
     }
 
-    public static InscricaoDto fromEntityList(Inscricao entity){
+    public static InscricaoDto fromEntity(Inscricao entity){
         return new InscricaoDto(
 
                 entity.getData(),

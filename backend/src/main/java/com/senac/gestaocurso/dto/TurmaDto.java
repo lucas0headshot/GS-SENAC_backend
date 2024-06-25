@@ -66,7 +66,7 @@ public class TurmaDto {
     }
 
 
-    public static TurmaDto fromEntityList(Turma entity){
+    public static TurmaDto fromEntity(Turma entity){
         return new TurmaDto(
 
                 entity.getNome(),
