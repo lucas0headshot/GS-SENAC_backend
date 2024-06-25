@@ -1,6 +1,7 @@
 package com.senac.gestaocurso.resource;
 
 
+import com.senac.gestaocurso.dto.TurmaDto;
 import com.senac.gestaocurso.models.domain.Turma;
 import com.senac.gestaocurso.service.TurmaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -32,9 +33,11 @@ public class TurmaController extends AbstractController{
     @Tag(name = "TURMA")
     @Operation(summary = "Lista todas as turmas")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Turma> funcionarios = turmaService.buscaTodos(pageable);
+        Page<TurmaDto> funcionarios = turmaService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(funcionarios);
     }
 
