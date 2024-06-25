@@ -37,8 +37,8 @@ public class FuncionarioService {
         return funcionarioRepository.save(entity);
     }
 
-    public Page<FuncionarioDto> buscaTodos(Pageable pageable) {
-        Page<Funcionario> funcionariosPage = funcionarioRepository.findAll(pageable);
+    public Page<FuncionarioDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Funcionario> funcionariosPage = funcionarioRepository.findAll(filter, Funcionario.class, pageable);
 
         if (funcionariosPage.isEmpty()){
             throw new NotFoundException("Nenhum funcionário encontrado");
