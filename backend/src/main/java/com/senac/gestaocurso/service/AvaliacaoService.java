@@ -25,11 +25,11 @@ public class AvaliacaoService {
     public Avaliacao salvar(Avaliacao entity) {
         return avaliacaoRepository.save(entity);
     }
-    public Page<AvaliacaoDto> buscaTodos(Pageable pageable) {
-        Page<Avaliacao> avaliacaoPage = avaliacaoRepository.findAll(pageable);
+    public Page<AvaliacaoDto> buscaTodos(String filter,Pageable pageable) {
+        Page<Avaliacao> avaliacaoPage = avaliacaoRepository.findAll(filter, Avaliacao.class, pageable);
 
         if (avaliacaoPage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new NotFoundException("Nenhuma avaliação encontrada");
         }
         return avaliacaoPage.map(AvaliacaoDto::fromEntity);
     }
