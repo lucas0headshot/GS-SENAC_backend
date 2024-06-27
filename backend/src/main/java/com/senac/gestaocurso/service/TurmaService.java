@@ -26,11 +26,11 @@ public class TurmaService {
         return turmaRepository.save(entity);
     }
 
-    public Page<TurmaDto> buscaTodos(Pageable pageable) {
-        Page<Turma> turmaPage = turmaRepository.findAll(pageable);
+    public Page<TurmaDto> buscaTodos(String filter,Pageable pageable) {
+        Page<Turma> turmaPage = turmaRepository.findAll(filter, Turma.class, pageable);
 
         if (turmaPage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new NotFoundException("Nenhuma turma encontrada");
         }
         return turmaPage.map(TurmaDto::fromEntity);
     }

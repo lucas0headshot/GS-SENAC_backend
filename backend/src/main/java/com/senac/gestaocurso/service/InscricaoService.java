@@ -26,11 +26,11 @@ public class InscricaoService {
         return inscricaoRepository.save(entity);
     }
 
-    public Page<InscricaoDto> buscaTodos(Pageable pageable) {
-        Page<Inscricao> inscricaoPage = inscricaoRepository.findAll(pageable);
+    public Page<InscricaoDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Inscricao> inscricaoPage = inscricaoRepository.findAll(filter, Inscricao.class, pageable);
 
         if (inscricaoPage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new NotFoundException("Nenhuma Inscrição encontrada");
         }
         return inscricaoPage.map(InscricaoDto::fromEntity);
     }
@@ -46,7 +46,7 @@ public class InscricaoService {
             modelMapper.map(alterado, inscricao);
             return inscricaoRepository.save(inscricao);
         }
-        throw new NotFoundException("Inscriçãonão encontrada");
+        throw new NotFoundException("Inscrição não encontrada");
     }
 
     public void remover(Long id) {

@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.resource;
 
+import com.senac.gestaocurso.dto.InscricaoDto;
 import com.senac.gestaocurso.models.domain.Inscricao;
 import com.senac.gestaocurso.service.InscricaoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,9 +31,11 @@ public class InscricaoController extends AbstractController{
     @Tag(name = "INSCRICAO")
     @Operation(summary = "Lista todas as inscricoes")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Inscricao> inscricao = inscricaoService.buscaTodos(pageable);
+        Page<InscricaoDto> inscricao = inscricaoService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(inscricao);
     }
 

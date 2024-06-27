@@ -32,9 +32,11 @@ public class FuncionarioController extends AbstractController{
     @Tag(name = "FUNCIONARIO")
     @Operation(summary = "Lista todos os funcionarios")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<FuncionarioDto> funcionarios = funcionarioService.buscaTodos(pageable);
+        Page<FuncionarioDto> funcionarios = funcionarioService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(funcionarios);
     }
 

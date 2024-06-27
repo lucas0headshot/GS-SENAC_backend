@@ -1,6 +1,7 @@
 package com.senac.gestaocurso.resource;
 
 
+import com.senac.gestaocurso.dto.CursoDto;
 import com.senac.gestaocurso.models.domain.Curso;
 import com.senac.gestaocurso.service.CursoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -31,9 +32,11 @@ public class CursoController extends AbstractController{
     @Tag(name = "CURSOS")
     @Operation(summary = "Lista todos os cursos")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Curso> cursos = cursoService.buscaTodos(pageable);
+        Page<CursoDto> cursos = cursoService.buscaTodos(filter,pageable);
         return ResponseEntity.ok(cursos);
     }
 

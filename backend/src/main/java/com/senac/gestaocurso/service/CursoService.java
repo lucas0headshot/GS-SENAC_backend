@@ -27,11 +27,11 @@ public class CursoService {
         return cursoRepository.save(entity);
     }
 
-    public Page<CursoDto> buscaTodos(Pageable pageable) {
-        Page<Curso> cursoPage = cursoRepository.findAll(pageable);
+    public Page<CursoDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Curso> cursoPage = cursoRepository.findAll(filter, Curso.class ,pageable);
 
         if (cursoPage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new NotFoundException("Nenhum curso encontrado");
         }
         return cursoPage.map(CursoDto::fromEntity);
     }

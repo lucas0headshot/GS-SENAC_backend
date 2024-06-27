@@ -28,11 +28,11 @@ public class DependentesService {
         return dependentesRepository.save(entity);
     }
 
-    public Page<DependentesDto> buscaTodos(Pageable pageable) {
-        Page<Dependente> dependentePage = dependentesRepository.findAll(pageable);
+    public Page<DependentesDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Dependente> dependentePage = dependentesRepository.findAll(filter, Dependente.class, pageable);
 
         if (dependentePage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new NotFoundException("Nenhum Dependente encontrado");
         }
         return dependentePage.map(DependentesDto::fromEntity);
     }

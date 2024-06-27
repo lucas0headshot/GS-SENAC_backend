@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.resource;
 
+import com.senac.gestaocurso.dto.FiliacaoDto;
 import com.senac.gestaocurso.models.Filiacao;
 import com.senac.gestaocurso.service.FiliacaoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -30,9 +31,11 @@ public class FiliacaoController extends AbstractController{
     @Tag(name = "FILIACAO")
     @Operation(summary = "Lista todas as filiacoes")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Filiacao> filiacao = filiacaoService.buscaTodos(pageable);
+        Page<FiliacaoDto> filiacao = filiacaoService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(filiacao);
     }
 

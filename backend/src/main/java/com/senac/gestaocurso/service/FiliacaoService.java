@@ -27,11 +27,11 @@ public class FiliacaoService {
         return filiacaoRepository.save(entity);
     }
 
-    public Page<FiliacaoDto> buscaTodos(Pageable pageable) {
-        Page<Filiacao> filiacaoPage = filiacaoRepository.findAll(pageable);
+    public Page<FiliacaoDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Filiacao> filiacaoPage = filiacaoRepository.findAll(filter, Filiacao.class, pageable);
 
         if (filiacaoPage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new NotFoundException("Não há Filiação");
         }
         return filiacaoPage.map(FiliacaoDto::fromEntity);
     }

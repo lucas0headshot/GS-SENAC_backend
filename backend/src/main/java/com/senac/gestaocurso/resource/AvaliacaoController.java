@@ -1,6 +1,7 @@
 package com.senac.gestaocurso.resource;
 
 
+import com.senac.gestaocurso.dto.AvaliacaoDto;
 import com.senac.gestaocurso.models.domain.Avaliacao;
 import com.senac.gestaocurso.service.AvaliacaoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -33,9 +34,11 @@ public class AvaliacaoController extends AbstractController{
         @Tag(name = "AVALIACAO")
         @Operation(summary = "Lista todas avaliacoes")
         @GetMapping
-        public ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+        public ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                      @RequestParam(defaultValue = "0") int page,
+                                      @RequestParam(defaultValue = "1") int size) {
             Pageable pageable = PageRequest.of(page, size);
-            Page<Avaliacao> avaliacoes = avaliacaoService.buscaTodos(pageable);
+            Page<AvaliacaoDto> avaliacoes = avaliacaoService.buscaTodos(filter,pageable);
             return ResponseEntity.ok(avaliacoes);
         }
 

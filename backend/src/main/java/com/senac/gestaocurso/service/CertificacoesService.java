@@ -26,11 +26,11 @@ public class CertificacoesService {
         return certifcacoesRepository.save(entity);
     }
 
-    public Page<CertificacoesDto> buscaTodos(Pageable pageable) {
-        Page<Certificacao> certificacaoPage = certifcacoesRepository.findAll(pageable);
+    public Page<CertificacoesDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Certificacao> certificacaoPage = certifcacoesRepository.findAll(filter, Certificacao.class, pageable);
 
         if (certificacaoPage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new NotFoundException("Nenhuma certificaçãp encontrado");
         }
         return certificacaoPage.map(CertificacoesDto::fromEntity);
     }
