@@ -21,8 +21,14 @@ public class Chamada extends EntityID {
 
 
 
-    public Chamada() {}
+    public Chamada() {
 
+    }
+
+    public Chamada(Funcionario professor, List<Frequencia> frequencias) {
+        this.professor = professor;
+        this.frequencias = frequencias;
+    }
 
     public Funcionario getProfessor() {
         return professor;
@@ -40,12 +46,47 @@ public class Chamada extends EntityID {
         this.frequencias = frequencias;
     }
 
-
     @Override
     public String toString() {
         return "Chamada{" +
                 "professor=" + professor +
                 ", frequencias=" + frequencias +
                 '}';
+    }
+
+    public static class Builder{
+        private Funcionario professor;
+
+        private List<Frequencia> frequencias = new ArrayList<>();
+
+        private Builder(){
+
+        }
+        public static Builder create(){
+            return new Builder();
+        }
+
+        public static Builder from(Chamada chamada){
+            Builder builder = new Builder();
+
+            builder.professor = chamada.professor;
+            builder.frequencias = chamada.frequencias;
+
+            return builder;
+        }
+
+        public Builder professor(Funcionario professor){
+            this.professor = professor;
+            return this;
+        }
+
+        public Builder frequencias(List<Frequencia> frequencias){
+            this.frequencias = frequencias;
+            return this;
+        }
+
+        public Chamada build(){
+            return new Chamada(professor, frequencias);
+        }
     }
 }

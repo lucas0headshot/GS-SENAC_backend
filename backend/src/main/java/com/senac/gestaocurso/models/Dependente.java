@@ -21,12 +21,10 @@ public class Dependente extends EntityID {
     @Column
     private LocalDate dataNasc;
 
-
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "funcionario_id")
     @JsonIgnore
     private Funcionario funcionario;
-
 
     public Dependente() {
     }
@@ -62,8 +60,6 @@ public class Dependente extends EntityID {
         this.dataNasc = dataNasc;
     }
 
-
-
     @Override
     public String toString() {
         return "Dependentes{" +
@@ -71,5 +67,55 @@ public class Dependente extends EntityID {
                 ", escolaridade=" + escolaridade +
                 ", dataNasc=" + dataNasc +
                 '}';
+    }
+
+    public static class Builder{
+        private String nome;
+        private Escolaridade escolaridade;
+        private LocalDate dataNasc;
+        private Funcionario funcionario;
+
+        private Builder(){
+
+        }
+
+        public Builder create(){
+            return new Builder();
+        }
+
+        public static Builder from(Dependente dependente){
+            Builder builder = new Builder();
+
+            builder.nome = dependente.nome;;
+            builder.escolaridade = dependente.escolaridade;
+            builder.dataNasc = dependente.dataNasc;
+            builder.funcionario = dependente.funcionario;
+
+            return builder;
+        }
+
+        public Builder nome(String nome){
+            this.nome = nome;
+            return this;
+        }
+
+        public Builder escolaridade(Escolaridade escolaridade){
+            this.escolaridade = escolaridade;
+            return this;
+        }
+
+        public Builder dataNasc(LocalDate dataNasc){
+            this.dataNasc = dataNasc;
+            return this;
+        }
+
+        public Builder funcionario(Funcionario funcionario){
+            this.funcionario = funcionario;
+            return this;
+        }
+
+        public Dependente build(){
+            return new Dependente(nome, escolaridade, dataNasc, funcionario);
+        }
     }
 }
