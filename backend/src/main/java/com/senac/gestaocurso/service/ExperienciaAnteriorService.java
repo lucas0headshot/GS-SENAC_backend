@@ -1,11 +1,9 @@
 package com.senac.gestaocurso.service;
 
 
-import com.senac.gestaocurso.dto.AulaDto;
-import com.senac.gestaocurso.dto.ExpAnteriorDto;
+import com.senac.gestaocurso.dto.ExperiencaAnteriorDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.ExperienciaAnterior;
-import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.repository.ExperienciaAnteriorRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,14 +25,14 @@ public class ExperienciaAnteriorService {
         return experienciaAnteriorRepository.save(entity);
     }
 
-    public Page<ExpAnteriorDto> buscaTodos(String filter, Pageable pageable) {
+    public Page<ExperiencaAnteriorDto> buscaTodos(String filter, Pageable pageable) {
         Page<ExperienciaAnterior> experienciaAnteriorPage = experienciaAnteriorRepository.findAll(filter, ExperienciaAnterior.class, pageable);
 
 
         if (experienciaAnteriorPage.isEmpty()){
             throw new NotFoundException("Nenhuma experiencia encontrada");
         }
-        return experienciaAnteriorPage.map(ExpAnteriorDto::fromEntity);
+        return experienciaAnteriorPage.map(ExperiencaAnteriorDto::fromEntity);
     }
 
     public ExperienciaAnterior buscaPorId(Long id) {

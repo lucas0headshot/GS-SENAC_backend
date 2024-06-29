@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.resource;
 
 
-import com.senac.gestaocurso.dto.ExpAnteriorDto;
+import com.senac.gestaocurso.dto.ExperiencaAnteriorDto;
 import com.senac.gestaocurso.models.ExperienciaAnterior;
 import com.senac.gestaocurso.service.ExperienciaAnteriorService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -36,7 +36,7 @@ public class ExperienciaAnteriorController extends AbstractController{
                                    @RequestParam(defaultValue = "0") int page,
                                    @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<ExpAnteriorDto> expAnteriors = experienciaAnteriorService.buscaTodos(filter, pageable);
+        Page<ExperiencaAnteriorDto> expAnteriors = experienciaAnteriorService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(expAnteriors);
     }
 

@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.resource;
 
 
-import com.senac.gestaocurso.dto.DadosBancariosDto;
+import com.senac.gestaocurso.dto.DadosBancarioDto;
 import com.senac.gestaocurso.models.DadosBancario;
 import com.senac.gestaocurso.service.DadosBancariosService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,7 +35,7 @@ public class DadosBancariosController extends AbstractController{
                                    @RequestParam(defaultValue = "0") int page,
                                    @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<DadosBancariosDto> dadosBancarios = dadosBancariosService.buscaTodos(filter, pageable);
+        Page<DadosBancarioDto> dadosBancarios = dadosBancariosService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(dadosBancarios);
     }
 

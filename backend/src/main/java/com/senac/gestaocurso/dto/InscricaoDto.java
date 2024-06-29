@@ -2,11 +2,7 @@ package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.enums.Status;
 import com.senac.gestaocurso.models.domain.Inscricao;
-
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
-
 
 public class InscricaoDto {
     private  LocalDate data;
@@ -47,20 +43,17 @@ public class InscricaoDto {
 
     public static InscricaoDto fromEntity(Inscricao entity){
         return new InscricaoDto(
-
-                entity.getData(),
-                entity.getStatus(),
-                entity.getValor()
+            entity.getData(),
+            entity.getStatus(),
+            entity.getValor()
         );
     }
 
     public Inscricao toEntity(){
-
         Inscricao entity = new Inscricao();
-
-                entity.setData(this.data);
-                entity.setStatus(this.status);
-                entity.setValor(this.valor);
-                return entity;
+        entity.setData(this.data);
+        entity.setStatus(this.status);
+        entity.setValor(this.valor);
+        return entity;
     }
 }

@@ -1,11 +1,9 @@
 package com.senac.gestaocurso.service;
 
 
-import com.senac.gestaocurso.dto.AulaDto;
-import com.senac.gestaocurso.dto.DependentesDto;
+import com.senac.gestaocurso.dto.DependenteDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.Dependente;
-import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.repository.DependentesRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +26,13 @@ public class DependentesService {
         return dependentesRepository.save(entity);
     }
 
-    public Page<DependentesDto> buscaTodos(String filter, Pageable pageable) {
+    public Page<DependenteDto> buscaTodos(String filter, Pageable pageable) {
         Page<Dependente> dependentePage = dependentesRepository.findAll(filter, Dependente.class, pageable);
 
         if (dependentePage.isEmpty()){
             throw new NotFoundException("Nenhum Dependente encontrado");
         }
-        return dependentePage.map(DependentesDto::fromEntity);
+        return dependentePage.map(DependenteDto::fromEntity);
     }
 
     public Dependente buscaPorId(Long id) {

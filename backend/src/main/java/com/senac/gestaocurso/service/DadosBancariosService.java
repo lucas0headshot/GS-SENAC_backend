@@ -1,11 +1,9 @@
 package com.senac.gestaocurso.service;
 
 
-import com.senac.gestaocurso.dto.AulaDto;
-import com.senac.gestaocurso.dto.DadosBancariosDto;
+import com.senac.gestaocurso.dto.DadosBancarioDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.DadosBancario;
-import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.repository.DadosBancariosRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,13 +26,13 @@ public class DadosBancariosService {
         return dadosBancariosRepository.save(entity);
     }
 
-    public Page<DadosBancariosDto> buscaTodos(String filter, Pageable pageable) {
+    public Page<DadosBancarioDto> buscaTodos(String filter, Pageable pageable) {
         Page<DadosBancario> dadosBancarioPage = dadosBancariosRepository.findAll(filter, DadosBancario.class, pageable);
 
         if (dadosBancarioPage.isEmpty()){
             throw new NotFoundException("Dados bancarios não encontrado");
         }
-        return dadosBancarioPage.map(DadosBancariosDto::fromEntity);
+        return dadosBancarioPage.map(DadosBancarioDto::fromEntity);
     }
 
     public DadosBancario buscaPorId(Long id) {

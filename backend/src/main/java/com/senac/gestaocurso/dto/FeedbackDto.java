@@ -1,13 +1,9 @@
 package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.domain.Feedback;
-
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
-
-public class FeedbackDto  {
+public class FeedbackDto {
     private  String feedback;
     private  Integer nota;
     private  LocalDate data;
@@ -46,21 +42,17 @@ public class FeedbackDto  {
 
     public static FeedbackDto fromEntity(FeedbackDto entity){
         return new FeedbackDto(
-
-                entity.getFeedback(),
-                entity.getNota(),
-                entity.getData()
+            entity.getFeedback(),
+            entity.getNota(),
+            entity.getData()
         );
     }
 
     public  Feedback toEntity(){
-
         Feedback entity = new Feedback();
-
-                entity.setFeedback(this.feedback);
-                entity.setNota(this.nota);
-                entity.setData(this.data);
-                return entity;
-
+        entity.setFeedback(this.feedback);
+        entity.setNota(this.nota);
+        entity.setData(this.data);
+        return entity;
     }
 }
