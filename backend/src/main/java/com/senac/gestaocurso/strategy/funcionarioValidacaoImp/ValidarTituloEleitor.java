@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ValidarTituloEleitor implements NovaValidacaoFuncionarioStrategy {
-
     @Autowired
     private FuncionarioRepository repository;
 

@@ -7,7 +7,6 @@ import org.springframework.validation.FieldError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,6 +26,7 @@ public abstract class AbstractController {
         errors.put("erro", collect.toString());
         return errors;
     }
+
     @ResponseStatus(HttpStatus.UNPROCESSABLE_ENTITY)
     @ExceptionHandler(ValidationException.class)
     public Map<String, String> handleValidationExceptions422(
@@ -35,6 +35,7 @@ public abstract class AbstractController {
         errors.put("erro", ex.getMessage());
         return errors;
     }
+
     @ResponseStatus(HttpStatus.NOT_FOUND)
     @ExceptionHandler(NotFoundException.class)
     public Map<String, String> handleValidationExceptions404(
@@ -43,5 +44,4 @@ public abstract class AbstractController {
         errors.put("erro", ex.getMessage());
         return errors;
     }
-
 }

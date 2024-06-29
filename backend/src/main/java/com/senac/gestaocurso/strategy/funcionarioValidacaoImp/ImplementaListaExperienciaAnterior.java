@@ -4,7 +4,6 @@ import com.senac.gestaocurso.models.ExperienciaAnterior;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,9 +26,7 @@ public class ImplementaListaExperienciaAnterior implements ValidarImplementacaoL
         }
     }
 
-    private boolean validaLista(Funcionario funcionario){
-        if (!funcionario.getExperienciaAnterior().isEmpty()) return true;
-
-        return false;
+    private Boolean validaLista(Funcionario funcionario){
+        return !funcionario.getExperienciaAnterior().isEmpty();
     }
 }

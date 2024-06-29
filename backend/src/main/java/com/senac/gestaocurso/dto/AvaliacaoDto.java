@@ -1,21 +1,18 @@
 package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.domain.Avaliacao;
-
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
 
-public class AvaliacaoDto   {
+public class AvaliacaoDto {
     private  Long id;
     private  String nome;
     private  Integer nota;
     private  LocalDate data;
 
     public AvaliacaoDto(){
-
     }
+
     public AvaliacaoDto(Long id, String nome, Integer nota, LocalDate data) {
         this.id = id;
         this.nome = nome;
@@ -57,17 +54,15 @@ public class AvaliacaoDto   {
 
     public static AvaliacaoDto fromEntity (Avaliacao entity){
         return new AvaliacaoDto(
-
-                entity.getId(),
-                entity.getNome(),
-                entity.getNota(),
-                entity.getData()
+            entity.getId(),
+            entity.getNome(),
+            entity.getNota(),
+            entity.getData()
         );
     }
 
     public Avaliacao toEntity(){
         Avaliacao entity = new Avaliacao();
-
         entity.setId(this.id);
         entity.setNome(this.nome);
         entity.setNota(this.nota);

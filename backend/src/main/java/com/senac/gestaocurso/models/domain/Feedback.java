@@ -1,12 +1,9 @@
 package com.senac.gestaocurso.models.domain;
 
-
 import com.senac.gestaocurso.models.EntityID;
 import com.senac.gestaocurso.models.Funcionario;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
-
 
 @Entity
 public class Feedback extends EntityID {
@@ -27,13 +24,9 @@ public class Feedback extends EntityID {
     @JoinColumn(name = "avaliado_id")
     private Curso avaliado;
 
-
     public Feedback() {
 
     }
-
-
-
 
     public Funcionario getAutor() {
         return autor;
@@ -74,8 +67,6 @@ public class Feedback extends EntityID {
     public void setAvaliado(Curso avaliado) {
         this.avaliado = avaliado;
     }
-
-
 
     @Override
     public String toString() {

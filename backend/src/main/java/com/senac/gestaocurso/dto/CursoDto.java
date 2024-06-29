@@ -2,17 +2,11 @@ package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.domain.Curso;
 
-import java.io.Serializable;
-import java.util.Objects;
-
-
-public class CursoDto   {
-
+public class CursoDto {
     private  long id;
     private  String nome;
     private  String descricao;
     private  Integer cargaHorariaTotal;
-
 
     public CursoDto(){}
 
@@ -57,20 +51,15 @@ public class CursoDto   {
 
     public static CursoDto fromEntity(Curso entity){
         return new CursoDto(
-
-                entity.getId(),
-                entity.getNome(),
-                entity.getDescricao(),
-                entity.getCargaHorariaTotal()
-
-
+            entity.getId(),
+            entity.getNome(),
+            entity.getDescricao(),
+            entity.getCargaHorariaTotal()
         );
     }
 
     public Curso toEntity(){
-
         Curso entity = new Curso();
-
         entity.setId(this.id);
         entity.setNome(this.nome);
         entity.setDescricao(this.descricao);

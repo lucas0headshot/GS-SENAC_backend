@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ValidarCnh implements NovaValidacaoFuncionarioStrategy {
-
     @Autowired
     private FuncionarioRepository repository;
 
@@ -20,7 +19,7 @@ public class ValidarCnh implements NovaValidacaoFuncionarioStrategy {
         }
     }
 
-    private boolean cnhValidado(String cnh){
+    private Boolean cnhValidado(String cnh){
         return repository.findByCnh(cnh) != null;
     }
 }

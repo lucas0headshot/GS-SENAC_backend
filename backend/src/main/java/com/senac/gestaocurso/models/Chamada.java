@@ -1,14 +1,9 @@
 package com.senac.gestaocurso.models;
 
-
-
 import com.senac.gestaocurso.models.domain.Frequencia;
 import jakarta.persistence.*;
-
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 @Entity
 public class Chamada extends EntityID {
@@ -19,10 +14,7 @@ public class Chamada extends EntityID {
     @OneToMany(mappedBy = "chamada", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Frequencia> frequencias = new ArrayList<>();
 
-
-
     public Chamada() {}
-
 
     public Funcionario getProfessor() {
         return professor;
@@ -39,7 +31,6 @@ public class Chamada extends EntityID {
     public void setFrequencias(List<Frequencia> frequencias) {
         this.frequencias = frequencias;
     }
-
 
     @Override
     public String toString() {

@@ -1,11 +1,7 @@
 package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.domain.Turma;
-
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
-
 
 public class TurmaDto {
     private  String nome;
@@ -15,7 +11,6 @@ public class TurmaDto {
     private  Integer limiteQtdInscricao;
 
     public TurmaDto() {}
-
 
     public TurmaDto(String nome, LocalDate dataInicio, LocalDate dataFinal, String descricao, Integer limiteQtdInscricao) {
         this.nome = nome;
@@ -68,25 +63,21 @@ public class TurmaDto {
 
     public static TurmaDto fromEntity(Turma entity){
         return new TurmaDto(
-
-                entity.getNome(),
-                entity.getDataInicio(),
-                entity.getDataFinal(),
-                entity.getDescricao(),
-                entity.getLimiteQtdInscricao()
+            entity.getNome(),
+            entity.getDataInicio(),
+            entity.getDataFinal(),
+            entity.getDescricao(),
+            entity.getLimiteQtdInscricao()
         );
     }
 
     public Turma toEntity(){
-
         Turma entity = new Turma();
-
-                entity.setNome(this.nome);
-                entity.setDataInicio(this.dataInicio);
-                entity.setDataFinal(this.dataFinal);
-                entity.setDescricao(this.descricao);
-                entity.setLimiteQtdInscricao(this.limiteQtdInscricao);
-                return entity;
-
+        entity.setNome(this.nome);
+        entity.setDataInicio(this.dataInicio);
+        entity.setDataFinal(this.dataFinal);
+        entity.setDescricao(this.descricao);
+        entity.setLimiteQtdInscricao(this.limiteQtdInscricao);
+        return entity;
     }
 }

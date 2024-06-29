@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ValidarEmail implements NovaValidacaoFuncionarioStrategy {
-
     @Autowired
     private FuncionarioRepository repository;
 
@@ -20,7 +19,7 @@ public class ValidarEmail implements NovaValidacaoFuncionarioStrategy {
         }
     }
 
-    private boolean emailValidado(String email){
+    private Boolean emailValidado(String email){
         return repository.findByEmail(email) != null;
     }
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ValidarMatricula implements NovaValidacaoFuncionarioStrategy {
-
     @Autowired
     private FuncionarioRepository repository;
 
@@ -20,7 +19,7 @@ public class ValidarMatricula implements NovaValidacaoFuncionarioStrategy {
         }
     }
 
-    private boolean matriculaValidado(String matricula){
+    private Boolean matriculaValidado(String matricula){
         return repository.findByMatricula(matricula) != null;
     }
 }

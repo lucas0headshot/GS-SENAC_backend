@@ -1,11 +1,7 @@
 package com.senac.gestaocurso.models;
 
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
-
 
 @Entity
 public class Cargo extends EntityID {
@@ -18,12 +14,8 @@ public class Cargo extends EntityID {
     @Column(nullable = false)
     private Boolean comissionado;
 
-
-
     public Cargo() {
     }
-
-
 
     public String getDescricao() {
         return descricao;
@@ -48,8 +40,6 @@ public class Cargo extends EntityID {
     public void setComissionado(Boolean comissionado) {
         this.comissionado = comissionado;
     }
-
-
 
     @Override
     public String toString() {

@@ -1,15 +1,10 @@
 package com.senac.gestaocurso.models.domain;
 
-
-
 import com.senac.gestaocurso.models.EntityID;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
-
 
 @Entity
 public class Turma extends EntityID {
@@ -35,11 +30,8 @@ public class Turma extends EntityID {
     @Column
     private Integer limiteQtdInscricao;
 
-
     public Turma() {
     }
-
-
 
     public String getNome() {
         return nome;
@@ -96,8 +88,6 @@ public class Turma extends EntityID {
     public void setLimiteQtdInscricao(Integer limiteQtdInscricao) {
         this.limiteQtdInscricao = limiteQtdInscricao;
     }
-
-
 
     @Override
     public String toString() {

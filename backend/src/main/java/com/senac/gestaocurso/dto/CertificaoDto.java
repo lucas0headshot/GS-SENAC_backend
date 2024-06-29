@@ -1,23 +1,19 @@
 package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.domain.Certificacao;
-
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
-
-public class CertificacoesDto   {
+public class CertificaoDto {
     private  Long id;
     private  String nome;
     private  Integer cargaHoraria;
     private  LocalDate dataEmissao;
 
-    public CertificacoesDto(){
+    public CertificaoDto(){
 
     }
 
-    public CertificacoesDto(Long id, String nome, Integer cargaHoraria, LocalDate dataEmissao) {
+    public CertificaoDto(Long id, String nome, Integer cargaHoraria, LocalDate dataEmissao) {
         this.id = id;
         this.nome = nome;
         this.cargaHoraria = cargaHoraria;
@@ -25,7 +21,6 @@ public class CertificacoesDto   {
     }
 
     public Long getId() {
-
         return id;
     }
 
@@ -57,26 +52,20 @@ public class CertificacoesDto   {
         this.dataEmissao = dataEmissao;
     }
 
-    public static CertificacoesDto fromEntity(Certificacao entity){
-        return new CertificacoesDto(
-
-                entity.getId(),
-                entity.getNome(),
-                entity.getCargaHoraria(),
-                entity.getDataEmissao()
+    public static CertificaoDto fromEntity(Certificacao entity){
+        return new CertificaoDto(
+            entity.getId(),
+            entity.getNome(),
+            entity.getCargaHoraria(),
+            entity.getDataEmissao()
         );
     }
-    public Certificacao toEntity (){
-
+    public Certificacao toEntity(){
         Certificacao entity = new Certificacao();
-
         entity.setId(this.id);
         entity.setNome(this.nome);
         entity.setCargaHoraria(this.cargaHoraria);
         entity.setDataEmissao(this.dataEmissao);
-
         return  entity;
-
     }
-
 }

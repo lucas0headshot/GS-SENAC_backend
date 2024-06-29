@@ -1,14 +1,10 @@
 package com.senac.gestaocurso.models.domain;
 
-
-
 import com.senac.gestaocurso.models.EntityID;
 import jakarta.persistence.*;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import java.time.LocalDate;
-
-
 
 @Entity
 public class Avaliacao extends EntityID {
@@ -31,14 +27,8 @@ public class Avaliacao extends EntityID {
     @Column(nullable = false)
     private LocalDate data;
 
-
-
     public Avaliacao() {
     }
-
-
-
-
 
     public Materia getMateria() {
         return materia;
@@ -79,8 +69,6 @@ public class Avaliacao extends EntityID {
     public void setData(LocalDate data) {
         this.data = data;
     }
-
-
 
     @Override
     public String toString() {

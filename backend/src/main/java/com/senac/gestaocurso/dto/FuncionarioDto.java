@@ -2,11 +2,7 @@ package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.Funcionario;
 
-import java.io.Serializable;
-import java.util.Objects;
-
-
-public class FuncionarioDto   {
+public class FuncionarioDto {
     private  Long id;
     private  String nome;
     private  String cpf;
@@ -93,8 +89,6 @@ public class FuncionarioDto   {
         entity.setRg(this.rg);
         entity.setEndereco(this.endereco);
         entity.setCtbs(this.ctbs);
-
         return entity;
     }
-
 }

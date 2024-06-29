@@ -4,14 +4,11 @@ import com.senac.gestaocurso.models.Dependente;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Component
 public class ImplementaListaDependente implements ValidarImplementacaoListasStrategy {
-
-
     @Override
     public void lista(Funcionario funcionario) {
      if (validaLista(funcionario)){
@@ -28,9 +25,7 @@ public class ImplementaListaDependente implements ValidarImplementacaoListasStra
      }
     }
 
-    private boolean validaLista(Funcionario funcionario){
-        if (!funcionario.getDependentes().isEmpty()) return true;
-
-        return false;
+    private Boolean validaLista(Funcionario funcionario){
+        return !funcionario.getDependentes().isEmpty();
     }
 }

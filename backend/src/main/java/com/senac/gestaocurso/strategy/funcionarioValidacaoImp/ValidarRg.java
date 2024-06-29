@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ValidarRg implements NovaValidacaoFuncionarioStrategy {
-
     @Autowired
     private FuncionarioRepository repository;
 
@@ -20,7 +19,7 @@ public class ValidarRg implements NovaValidacaoFuncionarioStrategy {
         }
     }
 
-    private boolean rgValidado(String rg){
+    private Boolean rgValidado(String rg){
         return repository.findByRg(rg) != null;
     }
 }
