@@ -8,7 +8,8 @@ import java.util.List;
 
 @Entity
 public class Turma extends EntityID {
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @ManyToOne
     @JoinColumn(name = "curso_id")
     private Curso curso;
 
@@ -25,7 +26,7 @@ public class Turma extends EntityID {
     private String descricao;
 
     @OneToMany(mappedBy = "turma", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Inscricao> inscritos = new ArrayList<>();
+    private List<Inscricao> inscritos;
 
     @Column
     private Integer limiteQtdInscricao;

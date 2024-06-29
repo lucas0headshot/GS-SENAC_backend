@@ -1,5 +1,8 @@
 package com.senac.gestaocurso.models.domain;
 
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.gestaocurso.enums.Status;
 import com.senac.gestaocurso.models.EntityID;
 import com.senac.gestaocurso.models.Funcionario;
@@ -8,7 +11,7 @@ import java.time.LocalDate;
 
 @Entity
 public class Inscricao extends EntityID {
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "inscrito_id")
     private Funcionario inscrito;
 
@@ -21,8 +24,9 @@ public class Inscricao extends EntityID {
     @Column(nullable = false)
     private Integer valor;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "turma_id")
+    @JsonIgnore
     private Turma turma;
 
     public Inscricao() {

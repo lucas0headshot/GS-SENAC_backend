@@ -6,13 +6,14 @@ import jakarta.persistence.*;
 
 @Entity
 public class Curso extends EntityID {
+
     @Column(nullable = false)
     private String nome;
 
     @Column(nullable = false)
     private String descricao;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "coordenador_id")
     private Funcionario coordenador;
 
