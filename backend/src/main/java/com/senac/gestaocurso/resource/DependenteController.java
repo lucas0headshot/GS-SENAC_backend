@@ -1,6 +1,5 @@
 package com.senac.gestaocurso.resource;
 
-
 import com.senac.gestaocurso.dto.DependenteDto;
 import com.senac.gestaocurso.models.Dependente;
 import com.senac.gestaocurso.service.DependentesService;
@@ -16,7 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("api/dependentes")
-public class DependentesController extends AbstractController{
+public class DependenteController extends AbstractController{
     @Autowired
     private DependentesService dependentesService;
 
@@ -63,4 +62,3 @@ public class DependentesController extends AbstractController{
         return  ResponseEntity.ok().body(alterado);
     }
 }
-

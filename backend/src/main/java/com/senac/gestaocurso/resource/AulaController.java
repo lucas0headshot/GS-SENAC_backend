@@ -13,12 +13,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
-
 @RestController
 @RequestMapping("/api/aulas")
 public class AulaController extends AbstractController{
-
-
     @Autowired
     private AulaService aulaService;
 
@@ -30,7 +27,6 @@ public class AulaController extends AbstractController{
         return ResponseEntity.created(URI.create("/api/aulas" + aulas.getId())).body(save);
     }
 
-
     @Tag(name = "AULAS")
     @Operation(summary = "Lista todas as aulas")
     @GetMapping
@@ -41,6 +37,7 @@ public class AulaController extends AbstractController{
         Page<AulaDto> aulas = aulaService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(aulas);
     }
+
     @Tag(name = "AULAS")
     @Operation(summary = "Busca aulas por ID")
     @GetMapping("/{id}")
@@ -65,4 +62,3 @@ public class AulaController extends AbstractController{
         return  ResponseEntity.ok().body(alterado);
     }
 }
-

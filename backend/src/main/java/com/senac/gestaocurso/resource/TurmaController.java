@@ -1,6 +1,5 @@
 package com.senac.gestaocurso.resource;
 
-
 import com.senac.gestaocurso.dto.TurmaDto;
 import com.senac.gestaocurso.models.domain.Turma;
 import com.senac.gestaocurso.service.TurmaService;
@@ -12,13 +11,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 
 @RestController
 @RequestMapping("api/turma")
 public class TurmaController extends AbstractController{
-
     @Autowired
     private TurmaService turmaService;
 
@@ -65,5 +62,3 @@ public class TurmaController extends AbstractController{
         return  ResponseEntity.ok().body(alterado);
     }
 }
-
-

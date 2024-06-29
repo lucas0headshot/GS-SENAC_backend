@@ -15,8 +15,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping("/api/certificacoes")
-public class CertificacoesController extends AbstractController{
-
+public class CertificacaoController extends AbstractController{
     @Autowired
     private CertificacoesService certificacoesService;
 
@@ -63,4 +62,3 @@ public class CertificacoesController extends AbstractController{
         return ResponseEntity.ok().body(alterado);
     }
 }
-

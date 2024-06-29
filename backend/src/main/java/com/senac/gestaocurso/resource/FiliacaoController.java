@@ -11,9 +11,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
-import java.util.List;
+
 @RestController
 @RequestMapping("api/filiacao")
 public class FiliacaoController extends AbstractController{
@@ -63,4 +62,3 @@ public class FiliacaoController extends AbstractController{
         return  ResponseEntity.ok().body(alterado);
     }
 }
-

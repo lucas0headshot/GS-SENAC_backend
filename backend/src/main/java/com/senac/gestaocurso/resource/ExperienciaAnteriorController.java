@@ -1,6 +1,5 @@
 package com.senac.gestaocurso.resource;
 
-
 import com.senac.gestaocurso.dto.ExperiencaAnteriorDto;
 import com.senac.gestaocurso.models.ExperienciaAnterior;
 import com.senac.gestaocurso.service.ExperienciaAnteriorService;
@@ -13,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
-
 
 @RestController
 @RequestMapping("/api/experiencias")
@@ -64,7 +62,3 @@ public class ExperienciaAnteriorController extends AbstractController{
         return  ResponseEntity.ok().body(alterado);
     }
 }
-
-
-
-

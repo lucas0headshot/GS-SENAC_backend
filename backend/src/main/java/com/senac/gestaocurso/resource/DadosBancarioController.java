@@ -1,6 +1,5 @@
 package com.senac.gestaocurso.resource;
 
-
 import com.senac.gestaocurso.dto.DadosBancarioDto;
 import com.senac.gestaocurso.models.DadosBancario;
 import com.senac.gestaocurso.service.DadosBancariosService;
@@ -12,12 +11,11 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 
 @RestController
 @RequestMapping("api/dadosbancarios")
-public class DadosBancariosController extends AbstractController{
+public class DadosBancarioController extends AbstractController{
     @Autowired
     private DadosBancariosService dadosBancariosService;
 
@@ -28,6 +26,7 @@ public class DadosBancariosController extends AbstractController{
         DadosBancario save = dadosBancariosService.salvar(dadosBancario);
         return ResponseEntity.created(URI.create("/api/dadosbancarios" + dadosBancario.getId())).body(save);
     }
+
     @Tag(name = "BANCARIOS")
     @Operation(summary = "Lista todos dados bancarios")
     @GetMapping
@@ -62,4 +61,3 @@ public class DadosBancariosController extends AbstractController{
         return  ResponseEntity.ok().body(alterado);
     }
 }
-
