@@ -1,11 +1,7 @@
 package com.senac.gestaocurso.models.domain;
 
-
-
 import com.senac.gestaocurso.models.EntityID;
 import jakarta.persistence.*;
-
-
 
 @Entity
 public class Materia extends EntityID {
@@ -15,11 +11,8 @@ public class Materia extends EntityID {
     @Column
     private Integer cargaHoraria;
 
-
     public Materia() {
     }
-
-
 
     public String getNome() {
         return nome;
@@ -36,7 +29,6 @@ public class Materia extends EntityID {
     public void setCargaHoraria(Integer cargaHoraria) {
         this.cargaHoraria = cargaHoraria;
     }
-
 
     @Override
     public String toString() {

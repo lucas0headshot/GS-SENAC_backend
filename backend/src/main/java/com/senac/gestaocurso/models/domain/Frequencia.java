@@ -1,11 +1,8 @@
 package com.senac.gestaocurso.models.domain;
 
-
-
 import com.senac.gestaocurso.models.Chamada;
 import com.senac.gestaocurso.models.EntityID;
 import jakarta.persistence.*;
-
 
 @Entity
 public class Frequencia extends EntityID {
@@ -24,12 +21,8 @@ public class Frequencia extends EntityID {
     @JoinColumn(name = "chamada_id")
     private Chamada chamada;
 
-
-
     public Frequencia() {
     }
-
-
 
     public Chamada getChamada() {
         return chamada;
@@ -62,8 +55,6 @@ public class Frequencia extends EntityID {
     public void setInscricao(Inscricao inscricao) {
         this.aluno = inscricao;
     }
-
-
 
     @Override
     public String toString() {
