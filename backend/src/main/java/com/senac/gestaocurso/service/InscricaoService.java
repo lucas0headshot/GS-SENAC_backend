@@ -4,6 +4,7 @@ import com.senac.gestaocurso.dto.InscricaoDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.domain.Inscricao;
 import com.senac.gestaocurso.repository.InscricaoRepository;
+import com.senac.gestaocurso.strategy.NovaValidacaoInscricaoStrategy;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -19,7 +20,12 @@ public class InscricaoService {
     @Autowired
     private InscricaoRepository inscricaoRepository;
 
+    @Autowired
+    private NovaValidacaoInscricaoStrategy validacaoInscricaoStrategy;
+
     public Inscricao salvar(Inscricao entity) {
+
+        validacaoInscricaoStrategy.validar(entity);
         return inscricaoRepository.save(entity);
     }
 
