@@ -1,9 +1,7 @@
 package com.senac.gestaocurso.service;
 
-import com.senac.gestaocurso.dto.AulaDto;
 import com.senac.gestaocurso.dto.TurmaDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
-import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.models.domain.Turma;
 import com.senac.gestaocurso.repository.TurmaRepository;
 import org.modelmapper.ModelMapper;
@@ -11,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
+
 @Service
 public class TurmaService {
-
     @Autowired
     private ModelMapper modelMapper;
 
@@ -32,6 +29,7 @@ public class TurmaService {
         if (turmaPage.isEmpty()){
             throw new NotFoundException("Nenhuma turma encontrada");
         }
+
         return turmaPage.map(TurmaDto::fromEntity);
     }
 
@@ -41,11 +39,13 @@ public class TurmaService {
 
     public Turma alterar(Long id, Turma alterado) {
         Optional<Turma> encontrado = turmaRepository.findById(id);
+
         if ((encontrado.isPresent())) {
             Turma turma = encontrado.get();
             modelMapper.map(alterado, turma);
             return turmaRepository.save(turma);
         }
+
         throw new NotFoundException("Turma não encontrada");
     }
 
@@ -53,4 +53,3 @@ public class TurmaService {
         turmaRepository.deleteById(id);
     }
 }
-
