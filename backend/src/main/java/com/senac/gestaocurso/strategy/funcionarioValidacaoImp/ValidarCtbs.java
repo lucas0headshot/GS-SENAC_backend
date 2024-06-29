@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ValidarCtbs implements NovaValidacaoFuncionarioStrategy {
-
     @Autowired
     private FuncionarioRepository repository;
 
@@ -20,7 +19,7 @@ public class ValidarCtbs implements NovaValidacaoFuncionarioStrategy {
         }
     }
 
-    private boolean ctbsValidado(String ctbs){
+    private Boolean ctbsValidado(String ctbs){
         return repository.findByCtbs(ctbs) != null;
     }
 }
