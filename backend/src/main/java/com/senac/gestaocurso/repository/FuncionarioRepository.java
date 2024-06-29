@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface FuncionarioRepository extends JpaRepository <Funcionario, Long>, CustomQuerydslPredicateExecutor<Funcionario> {
-
     Funcionario findByCpf(String cpf);
     Funcionario findByRg(String rg);
     Funcionario findByCtbs(String ctbs);
