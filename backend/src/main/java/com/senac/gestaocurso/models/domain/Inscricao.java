@@ -26,7 +26,6 @@ public class Inscricao extends EntityID {
 
     @ManyToOne
     @JoinColumn(name = "turma_id")
-    @JsonIgnore
     private Turma turma;
 
     public Inscricao() {
