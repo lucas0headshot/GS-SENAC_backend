@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 @Component
-public class validarFuncionario implements NovaValidacaoInscricaoStrategy {
+public class ValidarFuncionario implements NovaValidacaoInscricaoStrategy {
 
     @Autowired
     private InscricaoRepository repository;
