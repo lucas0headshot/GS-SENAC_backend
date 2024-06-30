@@ -8,11 +8,11 @@ import java.time.LocalDate;
 
 @Entity
 public class Avaliacao extends EntityID {
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "materia_id")
     private Materia materia;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "aluno_id")
     private Inscricao aluno;
 

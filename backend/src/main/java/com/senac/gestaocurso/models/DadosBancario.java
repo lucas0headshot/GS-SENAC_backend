@@ -18,7 +18,7 @@ public class DadosBancario extends EntityID {
     @Enumerated(EnumType.STRING)
     private TipoContaBancaria tipoContaBancaria;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "funcionario_id")
     @JsonIgnore
     private Funcionario funcionario;

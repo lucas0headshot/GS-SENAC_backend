@@ -7,7 +7,7 @@ import java.util.List;
 
 @Entity
 public class Chamada extends EntityID {
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "professor_id")
     private Funcionario professor;
 

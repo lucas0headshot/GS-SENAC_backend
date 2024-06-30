@@ -16,7 +16,7 @@ public class Dependente extends EntityID {
     @Column
     private LocalDate dataNasc;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "funcionario_id")
     @JsonIgnore
     private Funcionario funcionario;

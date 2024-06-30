@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Entity
 public class Feedback extends EntityID {
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "autor_id")
     private Funcionario autor;
 
@@ -20,7 +20,7 @@ public class Feedback extends EntityID {
     @Column(nullable = false)
     private LocalDate data;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "avaliado_id")
     private Curso avaliado;
 
