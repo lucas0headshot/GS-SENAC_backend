@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,11 +23,11 @@ public class InscricaoService {
     private InscricaoRepository inscricaoRepository;
 
     @Autowired
-    private NovaValidacaoInscricaoStrategy validacaoInscricaoStrategy;
+    private List<NovaValidacaoInscricaoStrategy> validacaoInscricaoStrategies;
 
     public Inscricao salvar(Inscricao entity) {
 
-        validacaoInscricaoStrategy.validar(entity);
+        validacaoInscricaoStrategies.forEach(validation -> validation.validar(entity));
         return inscricaoRepository.save(entity);
     }
 
