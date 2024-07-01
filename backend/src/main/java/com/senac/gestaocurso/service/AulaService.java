@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -21,10 +23,10 @@ public class AulaService {
     private AulaRepository aulaRepository;
 
     @Autowired
-    private NovaValidacaoAulaStrategy novaValidacaoAulaStrategy;
+    private List<NovaValidacaoAulaStrategy> novaValidacaoAulaStrategy;
 
     public Aula salvar(Aula entity){
-        novaValidacaoAulaStrategy.validar(entity);
+        novaValidacaoAulaStrategy.forEach(validacao -> validacao.validar(entity));
         return aulaRepository.save(entity);
     }
 
@@ -48,10 +50,11 @@ public class AulaService {
         if (encontrado.isPresent()) {
             Aula aula = encontrado.get();
             modelMapper.map(alterado, aula);
+            novaValidacaoAulaStrategy.forEach(validacao -> validacao.validar(aula));
             return aulaRepository.save(aula);
         }
 
-        throw new NotFoundException("aula não encontrada");
+        throw new NotFoundException("Aula não encontrada");
     }
 
     public void remover(Long id) {aulaRepository.deleteById(id);}
