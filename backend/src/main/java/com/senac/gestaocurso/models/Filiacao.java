@@ -26,7 +26,36 @@ public class Filiacao extends EntityID {
     public Filiacao() {
     }
 
+    public static class Builder {
+        private String nomePai;
+        private String telefonePai;
+        private String nomeMae;
+        private String telefoneMae;
 
+        public Builder nomePai(String nomePai) {
+            this.nomePai = nomePai;
+            return this;
+        }
+
+        public Builder telefonePai(String telefonePai) {
+            this.telefonePai = telefonePai;
+            return this;
+        }
+
+        public Builder nomeMae(String nomeMae) {
+            this.nomeMae = nomeMae;
+            return this;
+        }
+
+        public Builder telefoneMae(String telefoneMae) {
+            this.telefoneMae = telefoneMae;
+            return this;
+        }
+
+        public Filiacao build() {
+            return new Filiacao(this);
+        }
+    }
 
     public String getNomePai() {
         return nomePai;
