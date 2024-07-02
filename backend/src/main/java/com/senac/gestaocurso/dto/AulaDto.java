@@ -37,18 +37,14 @@ public class AulaDto   {
 
         public static AulaDto fromEntityList (Aula entity){
             return new AulaDto(
-
                     entity.getId(),
                     entity.getDia()
             );
         }
 
-        public Aula toEntity(){
-            Aula entity = new Aula();
-
-            entity.setDia(this.dia);
-            entity.setId(this.id);
-
-            return entity;
-        }
+    public Aula toEntity(){
+        return Aula.Builder.builder()
+                .dia(this.dia)
+                .build();
+    }
 }

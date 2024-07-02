@@ -23,10 +23,15 @@ public class Aula extends EntityID {
     @JoinColumn(name = "professor_id")
     private Funcionario professor;
 
+    public Aula() {
 
+    }
 
-    public Aula(){}
-
+    public Aula(Builder builder){
+        this.materia = builder.materia;
+        this.dia = builder.dia;
+        this.professor = builder.professor;
+    }
 
 
     public Materia getMateria() {
@@ -61,5 +66,37 @@ public class Aula extends EntityID {
                 "materia=" + materia +
                 ", dia=" + dia +
                 '}';
+    }
+
+    public static class Builder {
+        private Materia materia;
+        private LocalDate dia;
+        private Funcionario professor;
+
+        public Builder() {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder materia(Materia materia) {
+            this.materia = materia;
+            return this;
+        }
+
+        public Builder dia(LocalDate dia) {
+            this.dia = dia;
+            return this;
+        }
+
+        public Builder professor(Funcionario professor) {
+            this.professor = professor;
+            return this;
+        }
+
+        public Aula build() {
+            return new Aula(this);
+        }
     }
 }
