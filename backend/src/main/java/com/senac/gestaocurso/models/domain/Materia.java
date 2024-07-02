@@ -19,7 +19,10 @@ public class Materia extends EntityID {
     public Materia() {
     }
 
-
+    public Materia(Builder builder) {
+        this.nome = builder.nome;
+        this.cargaHoraria = builder.cargaHoraria;
+    }
 
     public String getNome() {
         return nome;
@@ -38,11 +41,39 @@ public class Materia extends EntityID {
     }
 
 
+
     @Override
     public String toString() {
         return "Materia{" +
                 "nome='" + nome + '\'' +
                 ", cargaHoraria=" + cargaHoraria +
                 '}';
+    }
+
+    public static class Builder {
+        private String nome;
+        private Integer cargaHoraria;
+
+        public Builder(){
+
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder nome(String nome){
+            this.nome = nome;
+            return this;
+        }
+
+        public Builder cargaHoraria(Integer cargaHoraria){
+            this.cargaHoraria = cargaHoraria;
+            return this;
+        }
+
+        public Materia build() {
+            return new Materia(this);
+        }
     }
 }

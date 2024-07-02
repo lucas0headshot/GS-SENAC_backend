@@ -42,11 +42,9 @@ public class MateriaDto {
     }
 
     public Materia toEntity(){
-
-        Materia entity = new Materia();
-
-                entity.setNome(this.nome);
-                entity.setCargaHoraria(this.cargaHoraria);
-                return entity;
+        return Materia.Builder.builder()
+                .nome(this.nome)
+                .cargaHoraria(this.cargaHoraria)
+                .build();
     }
 }
