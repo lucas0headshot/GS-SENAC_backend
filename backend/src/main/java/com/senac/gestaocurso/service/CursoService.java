@@ -21,7 +21,12 @@ public class CursoService {
     private CursoRepository cursoRepository;
 
     public Curso salvar(Curso entity) {
-        return cursoRepository.save(entity);
+        Curso curso = Curso.Builder.builder()
+                .nome(entity.getNome())
+                .descricao(entity.getDescricao())
+                .cargaHorariaTotal(entity.getCargaHorariaTotal())
+                .build();
+        return cursoRepository.save(curso);
     }
 
     public Page<Curso> buscaTodos(Pageable pageable) {

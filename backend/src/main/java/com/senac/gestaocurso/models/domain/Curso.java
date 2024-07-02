@@ -29,6 +29,12 @@ public class Curso extends EntityID {
     public Curso() {
     }
 
+    public Curso(Builder builder) {
+        this.nome = builder.nome;
+        this.descricao = builder.descricao;
+        this.coordenador = builder.coordenador;
+        this.cargaHorariaTotal = builder.cargaHorariaTotal;
+    }
 
     public String getDescricao() {
         return descricao;
@@ -72,5 +78,43 @@ public class Curso extends EntityID {
                 ", coordenador=" + coordenador +
                 ", cargaHorariaTotal=" + cargaHorariaTotal +
                 '}';
+    }
+
+    public static class Builder {
+        private String nome;
+        private String descricao;
+        private Funcionario coordenador;
+        private Integer cargaHorariaTotal;
+
+        public Builder(){
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder nome(String nome){
+            this.nome = nome;
+            return this;
+        }
+
+        public Builder descricao(String descricao){
+            this.descricao = descricao;
+            return this;
+        }
+
+        public Builder coordenador(Funcionario coordenador){
+            this.coordenador = coordenador;
+            return this;
+        }
+
+        public Builder cargaHorariaTotal(Integer cargaHorariaTotal){
+            this.cargaHorariaTotal = cargaHorariaTotal;
+            return this;
+        }
+
+        public Curso build(){
+            return new Curso(this);
+        }
     }
 }

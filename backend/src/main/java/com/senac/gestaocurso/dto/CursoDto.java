@@ -68,13 +68,10 @@ public class CursoDto   {
     }
 
     public Curso toEntity(){
-
-        Curso entity = new Curso();
-
-        entity.setId(this.id);
-        entity.setNome(this.nome);
-        entity.setDescricao(this.descricao);
-        entity.setCargaHorariaTotal(this.cargaHorariaTotal);
-        return entity;
+        return Curso.Builder.builder()
+                .nome(this.nome)
+                .descricao(this.descricao)
+                .cargaHorariaTotal(this.cargaHorariaTotal)
+                .build();
     }
 }
