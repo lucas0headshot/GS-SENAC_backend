@@ -10,13 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
+
 @Service
 public class AulaService {
-
     @Autowired
     private ModelMapper modelMapper;
+
     @Autowired
     private AulaRepository aulaRepository;
 
@@ -34,6 +34,7 @@ public class AulaService {
         if (aulasPage.isEmpty()){
             throw new NotFoundException("Nenhum funcionário encontrado");
         }
+
         return aulasPage.map(AulaDto::fromEntity);
     }
 
@@ -43,6 +44,7 @@ public class AulaService {
 
     public Aula alterar(Long id, Aula alterado){
         Optional<Aula> encontrado = aulaRepository.findById(id);
+
         if (encontrado.isPresent()) {
             Aula aula = encontrado.get();
             modelMapper.map(alterado, aula);
@@ -52,6 +54,5 @@ public class AulaService {
         throw new NotFoundException("aula não encontrada");
     }
 
-    public void remover(Long id) {aulaRepository.deleteById(id);
-    }
+    public void remover(Long id) {aulaRepository.deleteById(id);}
 }

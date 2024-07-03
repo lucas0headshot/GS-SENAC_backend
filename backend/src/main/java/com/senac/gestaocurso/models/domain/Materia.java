@@ -1,25 +1,22 @@
 package com.senac.gestaocurso.models.domain;
 
-
-
 import com.senac.gestaocurso.models.EntityID;
 import jakarta.persistence.*;
 
-
-
 @Entity
 public class Materia extends EntityID {
-    @Column
+    @Column(nullable = false)
     private String nome;
 
-    @Column
+    @Column(nullable = false)
     private Integer cargaHoraria;
 
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
 
     public Materia() {
     }
-
-
 
     public String getNome() {
         return nome;
@@ -37,12 +34,20 @@ public class Materia extends EntityID {
         this.cargaHoraria = cargaHoraria;
     }
 
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
 
     @Override
     public String toString() {
         return "Materia{" +
                 "nome='" + nome + '\'' +
                 ", cargaHoraria=" + cargaHoraria +
+                ", curso=" + curso +
                 '}';
     }
 }

@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ValidarCpf implements NovaValidacaoFuncionarioStrategy {
-
     @Autowired
     private FuncionarioRepository repository;
 
@@ -20,7 +19,7 @@ public class ValidarCpf implements NovaValidacaoFuncionarioStrategy {
         }
     }
 
-    private boolean cpfValidado(String cpf){
+    private Boolean cpfValidado(String cpf){
         return repository.findByCpf(cpf) != null;
     }
 }

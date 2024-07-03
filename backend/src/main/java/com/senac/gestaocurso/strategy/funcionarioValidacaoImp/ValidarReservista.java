@@ -9,7 +9,6 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class ValidarReservista implements NovaValidacaoFuncionarioStrategy {
-
     @Autowired
     private FuncionarioRepository repository;
 
@@ -20,7 +19,7 @@ public class ValidarReservista implements NovaValidacaoFuncionarioStrategy {
         }
     }
 
-    private boolean reservistaValidado(String reservista){
+    private Boolean reservistaValidado(String reservista){
         return repository.findByReservista(reservista) != null;
     }
 }

@@ -11,15 +11,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 
 @RestController
-@RequestMapping("api/materia")
+@RequestMapping("api/materias")
 public class MateriaController extends AbstractController{
     @Autowired
     private MateriaService materiaService;
-
 
     @Tag(name = "MATERIA")
     @Operation(summary = "Salva nova materia")
@@ -64,5 +62,3 @@ public class MateriaController extends AbstractController{
         return  ResponseEntity.ok().body(alterado);
     }
 }
-
-

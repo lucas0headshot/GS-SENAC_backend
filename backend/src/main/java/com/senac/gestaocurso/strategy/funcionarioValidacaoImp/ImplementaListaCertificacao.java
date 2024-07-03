@@ -4,7 +4,6 @@ import com.senac.gestaocurso.models.domain.Certificacao;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,8 +26,6 @@ public class ImplementaListaCertificacao implements ValidarImplementacaoListasSt
     }
 
     private Boolean validaLista(Funcionario funcionario){
-        if (!funcionario.getCertificacoes().isEmpty()) return true;
-
-        return false;
+        return !funcionario.getCertificacoes().isEmpty();
     }
 }

@@ -1,18 +1,15 @@
 package com.senac.gestaocurso.models.domain;
 
-
-
 import com.senac.gestaocurso.enums.Status;
+import com.senac.gestaocurso.enums.StatusInscricao;
 import com.senac.gestaocurso.models.EntityID;
 import com.senac.gestaocurso.models.Funcionario;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 
-
-
 @Entity
 public class Inscricao extends EntityID {
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "inscrito_id")
     private Funcionario inscrito;
 
@@ -20,14 +17,14 @@ public class Inscricao extends EntityID {
     private LocalDate data;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private StatusInscricao status;
 
     @Column(nullable = false)
     private Integer valor;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "turma_id")
-    private Turma turma;
+    @ManyToOne
+    @JoinColumn(name = "curso_id")
+    private Curso curso;
 
     public Inscricao() {
     }
@@ -47,11 +44,11 @@ public class Inscricao extends EntityID {
         this.data = data;
     }
 
-    public Status getStatus() {
+    public StatusInscricao getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(StatusInscricao status) {
         this.status = status;
     }
 
@@ -63,12 +60,12 @@ public class Inscricao extends EntityID {
         this.valor = valor;
     }
 
-    public Turma getTurma() {
-        return turma;
+    public Curso getCurso() {
+        return curso;
     }
 
-    public void setTurma(Turma turma) {
-        this.turma = turma;
+    public void setCurso(Curso curso) {
+        this.curso = curso;
     }
 
     @Override
@@ -78,6 +75,7 @@ public class Inscricao extends EntityID {
                 ", data=" + data +
                 ", status=" + status +
                 ", valor=" + valor +
+                ", curso=" + curso +
                 '}';
     }
 }

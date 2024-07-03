@@ -1,6 +1,5 @@
 package com.senac.gestaocurso.resource;
 
-
 import com.senac.gestaocurso.dto.CursoDto;
 import com.senac.gestaocurso.models.domain.Curso;
 import com.senac.gestaocurso.service.CursoService;
@@ -12,7 +11,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 
 @RestController
@@ -64,8 +62,3 @@ public class CursoController extends AbstractController{
         return  ResponseEntity.ok().body(alterado);
     }
 }
-
-
-
-
-

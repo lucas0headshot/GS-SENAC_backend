@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class SwaggerConfig {
-
     @Bean
     public OpenAPI openApiConfigurer(){
         Info information = new Info()
@@ -17,6 +16,4 @@ public class SwaggerConfig {
 
         return new OpenAPI().info(information);
     }
-
-
 }

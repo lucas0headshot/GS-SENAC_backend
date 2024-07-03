@@ -1,18 +1,13 @@
 package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.domain.Aula;
-
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
-
-public class AulaDto   {
+public class AulaDto {
     private  Long id;
     private  LocalDate dia;
 
     public AulaDto() {}
-
 
     public AulaDto(Long id, LocalDate dia) {
         this.id = id;
@@ -35,20 +30,17 @@ public class AulaDto   {
         this.dia = dia;
     }
 
-        public static AulaDto fromEntity (Aula entity){
-            return new AulaDto(
+    public static AulaDto fromEntity(Aula entity){
+        return new AulaDto(
+            entity.getId(),
+            entity.getDia()
+        );
+    }
 
-                    entity.getId(),
-                    entity.getDia()
-            );
-        }
-
-        public Aula toEntity(){
-            Aula entity = new Aula();
-
-            entity.setDia(this.dia);
-            entity.setId(this.id);
-
-            return entity;
-        }
+    public Aula toEntity(){
+        Aula entity = new Aula();
+        entity.setDia(this.dia);
+        entity.setId(this.id);
+        return entity;
+    }
 }

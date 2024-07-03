@@ -1,13 +1,8 @@
 package com.senac.gestaocurso.models;
 
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
-
-
 
 @Entity
 public class ExperienciaAnterior extends EntityID {
@@ -28,8 +23,6 @@ public class ExperienciaAnterior extends EntityID {
     @JoinColumn(name = "funcionario_id")
     @JsonIgnore
     private Funcionario funcionario;
-
-
 
     public ExperienciaAnterior() {
     }
@@ -81,8 +74,6 @@ public class ExperienciaAnterior extends EntityID {
     public void setPeriodoInicial(LocalDate peridoInicial) {
         this.periodoInicial = peridoInicial;
     }
-
-
 
     @Override
     public String toString() {

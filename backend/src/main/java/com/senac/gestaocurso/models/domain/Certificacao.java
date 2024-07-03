@@ -4,11 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.gestaocurso.models.EntityID;
 import com.senac.gestaocurso.models.Funcionario;
 import jakarta.persistence.*;
-
-
 import java.time.LocalDate;
-
-
 
 @Entity
 public class Certificacao extends EntityID {
@@ -25,8 +21,6 @@ public class Certificacao extends EntityID {
     @JoinColumn(name = "funcionario_id")
     @JsonIgnore
     private Funcionario funcionario;
-
-
 
     public Certificacao() {
     }
@@ -69,8 +63,6 @@ public class Certificacao extends EntityID {
     public void setDataEmissao(LocalDate dataEmissao) {
         this.dataEmissao = dataEmissao;
     }
-
-
 
     @Override
     public String toString() {

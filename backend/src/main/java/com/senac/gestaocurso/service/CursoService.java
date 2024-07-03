@@ -1,10 +1,7 @@
 package com.senac.gestaocurso.service;
 
-
-import com.senac.gestaocurso.dto.AulaDto;
 import com.senac.gestaocurso.dto.CursoDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
-import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.models.domain.Curso;
 import com.senac.gestaocurso.repository.CursoRepository;
 import org.modelmapper.ModelMapper;
@@ -12,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
+
 @Service
 public class CursoService {
-
     @Autowired
     private ModelMapper modelMapper;
 
@@ -33,6 +29,7 @@ public class CursoService {
         if (cursoPage.isEmpty()){
             throw new NotFoundException("Nenhum curso encontrado");
         }
+
         return cursoPage.map(CursoDto::fromEntity);
     }
 
@@ -42,6 +39,7 @@ public class CursoService {
 
     public Curso alterar(Long id, Curso alterado) {
         Optional<Curso> encontrado = cursoRepository.findById(id);
+
         if ((encontrado.isPresent())) {
             Curso curso = encontrado.get();
             modelMapper.map(alterado, curso);
@@ -54,4 +52,3 @@ public class CursoService {
         cursoRepository.deleteById(id);
     }
 }
-

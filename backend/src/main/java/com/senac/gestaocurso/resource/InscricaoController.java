@@ -11,11 +11,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
 
 @RestController
-@RequestMapping("api/inscricao")
+@RequestMapping("api/inscricoes")
 public class InscricaoController extends AbstractController{
     @Autowired
     private InscricaoService inscricaoService;
@@ -63,6 +62,3 @@ public class InscricaoController extends AbstractController{
         return  ResponseEntity.ok().body(inscricao);
     }
 }
-
-
-
