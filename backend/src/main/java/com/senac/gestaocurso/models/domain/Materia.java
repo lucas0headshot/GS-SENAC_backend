@@ -21,6 +21,7 @@ public class Materia extends EntityID {
     public Materia(Builder builder) {
         this.nome = builder.nome;
         this.cargaHoraria = builder.cargaHoraria;
+        this.curso = builder.curso;
     }
 
     public String getNome() {
@@ -53,6 +54,7 @@ public class Materia extends EntityID {
     public static class Builder {
         private String nome;
         private Integer cargaHoraria;
+        private Curso curso;
 
         public Builder(){
 
@@ -69,6 +71,11 @@ public class Materia extends EntityID {
 
         public Builder cargaHoraria(Integer cargaHoraria){
             this.cargaHoraria = cargaHoraria;
+            return this;
+        }
+
+        public Builder curso(Curso curso) {
+            this.curso = curso;
             return this;
         }
 
