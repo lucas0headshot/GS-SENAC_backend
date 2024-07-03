@@ -28,6 +28,15 @@ public class Inscricao extends EntityID {
 
     public Inscricao() {
     }
+
+    public Inscricao(Builder builder) {
+        this.inscrito = builder.inscrito;
+        this.data = builder.data;
+        this.status = builder.status;
+        this.valor = builder.valor;
+        this.curso = builder.curso;
+    }
+
     public Funcionario getInscrito() {
         return inscrito;
     }
@@ -77,5 +86,50 @@ public class Inscricao extends EntityID {
                 ", valor=" + valor +
                 ", curso=" + curso +
                 '}';
+    }
+
+    public static class Builder {
+        private Funcionario inscrito;
+        private LocalDate data;
+        private StatusInscricao status;
+        private Integer valor;
+        private Curso curso;
+
+        public Builder() {
+
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Funcionario funcionario(Funcionario inscrito) {
+            this.inscrito = inscrito;
+            return this.inscrito;
+        }
+
+        public Builder data(LocalDate data) {
+            this.data = data;
+            return this;
+        }
+
+        public Builder status(StatusInscricao status) {
+            this.status = status;
+            return this;
+        }
+
+        public Builder valor(Integer valor) {
+            this.valor = valor;
+            return this;
+        }
+
+        public Builder curso(Curso curso) {
+            this.curso = curso;
+            return this;
+        }
+
+        public Inscricao build() {
+            return new Inscricao(this);
+        }
     }
 }
