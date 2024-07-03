@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("api/materia")
+@RequestMapping("api/materias")
 public class MateriaController extends AbstractController{
     @Autowired
     private MateriaService materiaService;
