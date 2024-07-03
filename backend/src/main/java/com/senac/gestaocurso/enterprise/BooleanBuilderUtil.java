@@ -4,24 +4,17 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.Expression;
 import com.querydsl.core.types.dsl.Expressions;
 import com.querydsl.core.types.dsl.PathBuilder;
-
-
 import java.lang.reflect.Field;
 import java.time.LocalDate;
 
-
 public class BooleanBuilderUtil {
-
-
     public static BooleanBuilder buildPredicateFromFilter(String filter, Class<?> classes) {
         if (filter == null || filter.isEmpty()) {
             return new BooleanBuilder();
         }
 
-
         BooleanBuilder predicate = new BooleanBuilder();
         String[] parts = filter.split("\\+");
-
 
         if (parts.length == 3) {
             try {
@@ -29,7 +22,6 @@ public class BooleanBuilderUtil {
                 field.setAccessible(true);
                 Class<?> fieldType = field.getType();
                 PathBuilder<?> fieldPath = new PathBuilder<>(fieldType, field.getName());
-
 
                 switch (parts[1].toLowerCase()) {
                     case "equal":
@@ -56,15 +48,12 @@ public class BooleanBuilderUtil {
                     default:
                         throw new RuntimeException("Operador não suportado");
                 }
-
-
             } catch (NoSuchFieldException e) {
                 throw new RuntimeException("Campo não encontrado");
             } catch (Exception e) {
                 throw new RuntimeException("Acesso ilegal ao campo");
             }
         }
-
 
         if (parts.length == 4) {
             try {
@@ -73,7 +62,6 @@ public class BooleanBuilderUtil {
                 Class<?> fieldType = field.getType();
                 PathBuilder<?> fieldPath = new PathBuilder<>(fieldType, field.getName());
 
-
                 switch (parts[1].toLowerCase()) {
                     case "between":
                         predicate.and(Expressions.booleanTemplate("{0} >= {1} AND {0} <= {2}", fieldPath, getType(fieldType, parts[2]), getType(fieldType, parts[3])));
@@ -81,8 +69,6 @@ public class BooleanBuilderUtil {
                     default:
                         throw new RuntimeException("Operador não suportado");
                 }
-
-
             } catch (NoSuchFieldException e) {
                 throw new RuntimeException("Campo não encontrado");
             } catch (Exception e) {
@@ -90,12 +76,8 @@ public class BooleanBuilderUtil {
             }
         }
 
-
         return predicate;
     }
-
-
-
 
     public static Expression getType(Class<?> fieldType, String part) {
         if (fieldType == Integer.class || fieldType == int.class) {
@@ -108,7 +90,6 @@ public class BooleanBuilderUtil {
         return Expressions.constant(part);
     }
 
-
     private static Field getFieldRecursively(Class<?> classes, String fieldName) throws NoSuchFieldException {
         try {
             return classes.getDeclaredField(fieldName);
@@ -120,6 +101,4 @@ public class BooleanBuilderUtil {
             }
         }
     }
-
-
 }

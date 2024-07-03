@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.service;
 
+import com.senac.gestaocurso.dto.AulaDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.repository.AulaRepository;
@@ -9,13 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
+
 @Service
 public class AulaService {
-
     @Autowired
     private ModelMapper modelMapper;
+
     @Autowired
     private AulaRepository aulaRepository;
 
@@ -32,12 +33,14 @@ public class AulaService {
         return aulaRepository.save(aula);
     }
 
-    public Page<Aula> buscaTodos(Pageable pageable){
-        var list = aulaRepository.findAll(pageable);
-        if (list.isEmpty()){
-            throw new NotFoundException("nenhuma aula encontrada");
+    public Page<AulaDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Aula> aulasPage = aulaRepository.findAll(filter, Aula.class, pageable);
+
+        if (aulasPage.isEmpty()){
+            throw new NotFoundException("Nenhum funcionário encontrado");
         }
-        return list;
+
+        return aulasPage.map(AulaDto::fromEntity);
     }
 
     public Aula buscaPorId(Long id){
@@ -46,6 +49,7 @@ public class AulaService {
 
     public Aula alterar(Long id, Aula alterado){
         Optional<Aula> encontrado = aulaRepository.findById(id);
+
         if (encontrado.isPresent()) {
             Aula aula = encontrado.get();
             modelMapper.map(alterado, aula);
@@ -55,6 +59,5 @@ public class AulaService {
         throw new NotFoundException("aula não encontrada");
     }
 
-    public void remover(Long id) {aulaRepository.deleteById(id);
-    }
+    public void remover(Long id) {aulaRepository.deleteById(id);}
 }

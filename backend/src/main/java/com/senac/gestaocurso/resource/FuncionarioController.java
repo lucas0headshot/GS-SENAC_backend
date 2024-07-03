@@ -1,6 +1,5 @@
 package com.senac.gestaocurso.resource;
 
-
 import com.senac.gestaocurso.dto.FuncionarioDto;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.service.FuncionarioService;
@@ -12,11 +11,10 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
 import java.net.URI;
+
 @RestController
 @RequestMapping("/api/funcionario")
-
 public class FuncionarioController extends AbstractController{
     @Autowired
     private FuncionarioService funcionarioService;
@@ -32,9 +30,11 @@ public class FuncionarioController extends AbstractController{
     @Tag(name = "FUNCIONARIO")
     @Operation(summary = "Lista todos os funcionarios")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<FuncionarioDto> funcionarios = funcionarioService.buscaTodos(pageable);
+        Page<FuncionarioDto> funcionarios = funcionarioService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(funcionarios);
     }
 
@@ -62,6 +62,3 @@ public class FuncionarioController extends AbstractController{
         return  ResponseEntity.ok().body(alterado);
     }
 }
-
-
-

@@ -11,14 +11,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 @Service
 public class FuncionarioService {
-
     @Autowired
     private ModelMapper modelMapper;
 
@@ -37,30 +34,33 @@ public class FuncionarioService {
         return funcionarioRepository.save(entity);
     }
 
-    public Page<FuncionarioDto> buscaTodos(Pageable pageable) {
-        Page<Funcionario> funcionariosPage = funcionarioRepository.findAll(pageable);
+    public Page<FuncionarioDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Funcionario> funcionariosPage = funcionarioRepository.findAll(filter, Funcionario.class, pageable);
 
         if (funcionariosPage.isEmpty()){
             throw new NotFoundException("Nenhum funcionário encontrado");
         }
+
         return funcionariosPage.map(FuncionarioDto::fromEntity);
     }
+
     public Funcionario buscaPorId(Long id) {
         return funcionarioRepository.findById(id).orElseThrow(() -> new NotFoundException("Funcionário não encontrado"));
     }
 
     public Funcionario alterar(Long id, Funcionario alterado) {
         Optional<Funcionario> encontrado = funcionarioRepository.findById(id);
+
         if (encontrado.isPresent()) {
             Funcionario funcionario = encontrado.get();
             modelMapper.map(alterado, funcionario);
             return funcionarioRepository.save(funcionario);
         }
+
         throw new NotFoundException("Funcionário não encontrado");
     }
 
     public void remover(Long id) {
         funcionarioRepository.deleteById(id);
     }
-
 }

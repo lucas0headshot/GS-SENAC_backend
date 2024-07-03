@@ -4,7 +4,6 @@ import com.senac.gestaocurso.models.DadosBancario;
 import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.strategy.ValidarImplementacaoListasStrategy;
 import org.springframework.stereotype.Component;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,9 +26,7 @@ public class ImplementaListaDadoBancario implements ValidarImplementacaoListasSt
         }
     }
 
-    private boolean validaLista(Funcionario funcionario){
-        if (!funcionario.getDadosBancarios().isEmpty()) return true;
-
-        return false;
+    private Boolean validaLista(Funcionario funcionario){
+        return !funcionario.getDadosBancarios().isEmpty();
     }
 }

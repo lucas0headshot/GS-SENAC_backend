@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.resource;
 
-
+import com.senac.gestaocurso.dto.ExperiencaAnteriorDto;
 import com.senac.gestaocurso.models.ExperienciaAnterior;
 import com.senac.gestaocurso.service.ExperienciaAnteriorService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,7 +12,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
-
 
 @RestController
 @RequestMapping("/api/experiencias")
@@ -31,9 +30,11 @@ public class ExperienciaAnteriorController extends AbstractController{
     @Tag(name = "EXPERIENCIAS")
     @Operation(summary = "Lista todas as experiencias anteriores")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<ExperienciaAnterior> expAnteriors = experienciaAnteriorService.buscaTodos(pageable);
+        Page<ExperiencaAnteriorDto> expAnteriors = experienciaAnteriorService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(expAnteriors);
     }
 
@@ -61,7 +62,3 @@ public class ExperienciaAnteriorController extends AbstractController{
         return  ResponseEntity.ok().body(alterado);
     }
 }
-
-
-
-

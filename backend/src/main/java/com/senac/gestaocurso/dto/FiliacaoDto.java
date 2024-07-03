@@ -2,10 +2,6 @@ package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.Filiacao;
 
-import java.io.Serializable;
-import java.util.Objects;
-
-
 public class FiliacaoDto {
     private  String nomePai;
     private  String telefonePai;
@@ -53,23 +49,21 @@ public class FiliacaoDto {
         this.telefoneMae = telefoneMae;
     }
 
-    public static FiliacaoDto fromEntityList(Filiacao entity){
+    public static FiliacaoDto fromEntity(Filiacao entity){
         return new FiliacaoDto(
-
-                entity.getNomePai(),
-                entity.getTelefonePai(),
-                entity.getNomeMae(),
-                entity.getTelefoneMae()
+            entity.getNomePai(),
+            entity.getTelefonePai(),
+            entity.getNomeMae(),
+            entity.getTelefoneMae()
         );
     }
 
     public Filiacao toEntity(){
         Filiacao entity = new Filiacao();
-
-                entity.setNomePai(this.nomePai);
-                entity.setTelefonePai(this.telefonePai);
-                entity.setNomeMae(this.nomeMae);
-                entity.setTelefoneMae(this.telefoneMae);
-                return entity;
+        entity.setNomePai(this.nomePai);
+        entity.setTelefonePai(this.telefonePai);
+        entity.setNomeMae(this.nomeMae);
+        entity.setTelefoneMae(this.telefoneMae);
+        return entity;
     }
 }

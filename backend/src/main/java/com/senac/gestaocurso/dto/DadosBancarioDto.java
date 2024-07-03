@@ -3,19 +3,15 @@ package com.senac.gestaocurso.dto;
 import com.senac.gestaocurso.enums.TipoContaBancaria;
 import com.senac.gestaocurso.models.DadosBancario;
 
-import java.io.Serializable;
-import java.util.Objects;
-
-
-public class DadosBancariosDto {
+public class DadosBancarioDto {
     private  String banco;
     private  String agencia;
     private  String conta;
     private  TipoContaBancaria tipoContaBancaria;
 
-    public DadosBancariosDto(){}
+    public DadosBancarioDto(){}
 
-    public DadosBancariosDto(String banco, String agencia, String conta, TipoContaBancaria tipoContaBancaria) {
+    public DadosBancarioDto(String banco, String agencia, String conta, TipoContaBancaria tipoContaBancaria) {
         this.banco = banco;
         this.agencia = agencia;
         this.conta = conta;
@@ -54,24 +50,21 @@ public class DadosBancariosDto {
         this.tipoContaBancaria = tipoContaBancaria;
     }
 
-    public static DadosBancariosDto fromEntityList (DadosBancario entity){
-        return new DadosBancariosDto(
-
-                entity.getBanco(),
-                entity.getAgencia(),
-                entity.getConta(),
-                entity.getTipoContaBancaria()
+    public static DadosBancarioDto fromEntity(DadosBancario entity){
+        return new DadosBancarioDto(
+            entity.getBanco(),
+            entity.getAgencia(),
+            entity.getConta(),
+            entity.getTipoContaBancaria()
         );
     }
 
     public DadosBancario toEntity(){
-
         DadosBancario entity = new DadosBancario();
-
-                entity.setBanco(this.banco);
-                entity.setAgencia(this.agencia);
-                entity.setConta(this.conta);
-                entity.setTipoContaBancaria(this.tipoContaBancaria);
-                return entity;
+        entity.setBanco(this.banco);
+        entity.setAgencia(this.agencia);
+        entity.setConta(this.conta);
+        entity.setTipoContaBancaria(this.tipoContaBancaria);
+        return entity;
     }
 }

@@ -2,20 +2,16 @@ package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.enums.Escolaridade;
 import com.senac.gestaocurso.models.Dependente;
-
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
-
-public class DependentesDto {
+public class DependenteDto {
     private  String nome;
     private  Escolaridade escolaridade;
     private  LocalDate dataNasc;
 
-    public DependentesDto(){}
+    public DependenteDto(){}
 
-    public DependentesDto(String nome, Escolaridade escolaridade, LocalDate dataNasc) {
+    public DependenteDto(String nome, Escolaridade escolaridade, LocalDate dataNasc) {
         this.nome = nome;
         this.escolaridade = escolaridade;
         this.dataNasc = dataNasc;
@@ -45,23 +41,19 @@ public class DependentesDto {
         this.dataNasc = dataNasc;
     }
 
-    public static DependentesDto fromEntityList(Dependente entity){
-        return new DependentesDto(
-
-                entity.getNome(),
-                entity.getEscolaridade(),
-                entity.getDataNasc()
-
+    public static DependenteDto fromEntity(Dependente entity){
+        return new DependenteDto(
+            entity.getNome(),
+            entity.getEscolaridade(),
+            entity.getDataNasc()
         );
     }
 
-    public Dependente toEntity (){
-
+    public Dependente toEntity(){
         Dependente entity = new Dependente();
-
-                entity.setNome(this.nome);
-                entity.setEscolaridade(this.escolaridade);
-                entity.setDataNasc(this.dataNasc);
-                return entity;
+        entity.setNome(this.nome);
+        entity.setEscolaridade(this.escolaridade);
+        entity.setDataNasc(this.dataNasc);
+        return entity;
     }
 }

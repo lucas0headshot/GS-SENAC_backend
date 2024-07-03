@@ -1,7 +1,5 @@
 package com.senac.gestaocurso.models;
 
-
-
 import jakarta.persistence.*;
 import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.constraints.br.TituloEleitoral;
@@ -12,8 +10,6 @@ import jakarta.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
-
-
 
 @Entity(name = "funcionario")
 public class Funcionario extends EntityID {
@@ -148,11 +144,8 @@ public class Funcionario extends EntityID {
     @Column
     private LocalTime horaSaida;
 
-
-
     public Funcionario() {
     }
-
 
     public String getNome() {
         return nome;

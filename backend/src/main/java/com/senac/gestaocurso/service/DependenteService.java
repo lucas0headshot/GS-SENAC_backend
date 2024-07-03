@@ -1,55 +1,55 @@
 package com.senac.gestaocurso.service;
 
-
+import com.senac.gestaocurso.dto.DependenteDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.Dependente;
-import com.senac.gestaocurso.repository.DependentesRepository;
+import com.senac.gestaocurso.repository.DependenteRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
-public class DependentesService {
-
+public class DependenteService {
     @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
-    private DependentesRepository dependentesRepository;
+    private DependenteRepository dependenteRepository;
 
     public Dependente salvar(Dependente entity) {
-        return dependentesRepository.save(entity);
+        return dependenteRepository.save(entity);
     }
 
-    public Page<Dependente> buscaTodos(Pageable pageable) {
-        var list = dependentesRepository.findAll(pageable);
+    public Page<DependenteDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Dependente> dependentePage = dependenteRepository.findAll(filter, Dependente.class, pageable);
 
-        if (list.isEmpty()){
-            throw new NotFoundException("Nenhum dependente encontrado");
+        if (dependentePage.isEmpty()){
+            throw new NotFoundException("Nenhum Dependente encontrado");
         }
 
-        return list;
+        return dependentePage.map(DependenteDto::fromEntity);
     }
 
     public Dependente buscaPorId(Long id) {
-        return dependentesRepository.findById(id).orElseThrow(() -> new NotFoundException("Dependente não encontrado"));
+        return dependenteRepository.findById(id).orElseThrow(() -> new NotFoundException("Dependente não encontrado"));
     }
 
     public Dependente alterar(Long id, Dependente alterado) {
-        Optional<Dependente> encontrado = dependentesRepository.findById(id);
+        Optional<Dependente> encontrado = dependenteRepository.findById(id);
+
         if ((encontrado.isPresent())) {
             Dependente dependente = encontrado.get();
             modelMapper.map(alterado, dependente);
-            return dependentesRepository.save(dependente);
+            return dependenteRepository.save(dependente);
         }
+
         throw new NotFoundException("Dependente não encontrado");
     }
 
     public void remover(Long id) {
-        dependentesRepository.deleteById(id);
+        dependenteRepository.deleteById(id);
     }
 }

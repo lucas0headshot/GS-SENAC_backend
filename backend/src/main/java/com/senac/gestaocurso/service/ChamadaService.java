@@ -1,7 +1,5 @@
 package com.senac.gestaocurso.service;
 
-
-
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.Chamada;
 import com.senac.gestaocurso.repository.ChamadaRepository;
@@ -10,15 +8,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
-
 
 @Service
 public class ChamadaService {
-
     @Autowired
     private ModelMapper modelMapper;
+
     @Autowired
     private ChamadaRepository repository;
 

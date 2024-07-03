@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.service;
 
-
+import com.senac.gestaocurso.dto.ExperiencaAnteriorDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.ExperienciaAnterior;
 import com.senac.gestaocurso.repository.ExperienciaAnteriorRepository;
@@ -9,11 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
+
 @Service
 public class ExperienciaAnteriorService {
-
     @Autowired
     private ModelMapper modelMapper;
 
@@ -24,14 +23,13 @@ public class ExperienciaAnteriorService {
         return experienciaAnteriorRepository.save(entity);
     }
 
-    public Page<ExperienciaAnterior> buscaTodos(Pageable pageable) {
-        var list = experienciaAnteriorRepository.findAll(pageable);
+    public Page<ExperiencaAnteriorDto> buscaTodos(String filter, Pageable pageable) {
+        Page<ExperienciaAnterior> experienciaAnteriorPage = experienciaAnteriorRepository.findAll(filter, ExperienciaAnterior.class, pageable);
 
-        if (list.isEmpty()){
-            throw new NotFoundException("Nenhuma experiência anterior encontrada");
+        if (experienciaAnteriorPage.isEmpty()){
+            throw new NotFoundException("Nenhuma experiencia encontrada");
         }
-
-        return list;
+        return experienciaAnteriorPage.map(ExperiencaAnteriorDto::fromEntity);
     }
 
     public ExperienciaAnterior buscaPorId(Long id) {
@@ -40,6 +38,7 @@ public class ExperienciaAnteriorService {
 
     public ExperienciaAnterior alterar(Long id, ExperienciaAnterior alterado) {
         Optional<ExperienciaAnterior> encontrado = experienciaAnteriorRepository.findById(id);
+
         if ((encontrado.isPresent())) {
             ExperienciaAnterior experienciaAnterior = encontrado.get();
             modelMapper.map(alterado, experienciaAnterior);
@@ -52,6 +51,4 @@ public class ExperienciaAnteriorService {
     public void remover(Long id) {
         experienciaAnteriorRepository.deleteById(id);
     }
-
 }
-

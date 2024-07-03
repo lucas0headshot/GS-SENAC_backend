@@ -1,14 +1,9 @@
 package com.senac.gestaocurso.models.domain;
 
-
-
 import com.senac.gestaocurso.models.EntityID;
 import com.senac.gestaocurso.models.Funcionario;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
-
-
 
 @Entity
 public class Aula extends EntityID {
@@ -57,8 +52,6 @@ public class Aula extends EntityID {
     public void setProfessor(Funcionario professor) {
         this.professor = professor;
     }
-
-
 
     @Override
     public String toString() {

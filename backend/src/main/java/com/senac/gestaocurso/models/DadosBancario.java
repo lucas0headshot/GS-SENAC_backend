@@ -1,11 +1,8 @@
 package com.senac.gestaocurso.models;
 
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.gestaocurso.enums.TipoContaBancaria;
 import jakarta.persistence.*;
-
 
 @Entity
 public class DadosBancario extends EntityID {
@@ -25,8 +22,6 @@ public class DadosBancario extends EntityID {
     @JoinColumn(name = "funcionario_id")
     @JsonIgnore
     private Funcionario funcionario;
-
-
 
     public DadosBancario() {
     }

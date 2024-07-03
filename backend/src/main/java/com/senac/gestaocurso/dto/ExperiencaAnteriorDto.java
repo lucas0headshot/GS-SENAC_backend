@@ -1,19 +1,15 @@
 package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.ExperienciaAnterior;
-
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
-
-public class ExpAnteriorDto  {
+public class ExperiencaAnteriorDto {
     private  Long id;
     private  String descricao;
     private  LocalDate periodoFinal;
     private  LocalDate periodoInicial;
 
-    public ExpAnteriorDto(Long id, String descricao, LocalDate periodoFinal, LocalDate periodoInicial) {
+    public ExperiencaAnteriorDto(Long id, String descricao, LocalDate periodoFinal, LocalDate periodoInicial) {
         this.id = id;
         this.descricao = descricao;
         this.periodoFinal = periodoFinal;
@@ -52,24 +48,21 @@ public class ExpAnteriorDto  {
         this.periodoInicial = periodoInicial;
     }
 
-    public static ExpAnteriorDto fromEntityList(ExperienciaAnterior entity){
-        return new ExpAnteriorDto(
-
-                entity.getId(),
-                entity.getDescricao(),
-                entity.getPeriodoInicial(),
-                entity.getPeriodoFinal()
+    public static ExperiencaAnteriorDto fromEntity(ExperienciaAnterior entity){
+        return new ExperiencaAnteriorDto(
+            entity.getId(),
+            entity.getDescricao(),
+            entity.getPeriodoInicial(),
+            entity.getPeriodoFinal()
         );
     }
 
     public ExperienciaAnterior toEntity(){
-
         ExperienciaAnterior entity = new ExperienciaAnterior();
-                entity.setId(this.id);
-                entity.setDescricao(this.descricao);
-                entity.setPeriodoInicial(this.periodoInicial);
-                entity.setPeriodoFinal(this.periodoFinal);
-                return entity;
-
+        entity.setId(this.id);
+        entity.setDescricao(this.descricao);
+        entity.setPeriodoInicial(this.periodoInicial);
+        entity.setPeriodoFinal(this.periodoFinal);
+        return entity;
     }
 }

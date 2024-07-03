@@ -1,11 +1,7 @@
 package com.senac.gestaocurso.models;
 
-
-
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-
-
 
 @Entity
 public class Filiacao extends EntityID {
@@ -20,8 +16,6 @@ public class Filiacao extends EntityID {
 
     @Column(nullable = false)
     private String telefoneMae;
-
-
 
     public Filiacao() {
     }
@@ -57,8 +51,6 @@ public class Filiacao extends EntityID {
     public void setTelefoneMae(String telefoneMae) {
         this.telefoneMae = telefoneMae;
     }
-
-
 
     @Override
     public String toString() {

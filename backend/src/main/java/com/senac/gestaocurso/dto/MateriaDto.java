@@ -2,10 +2,6 @@ package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.domain.Materia;
 
-import java.io.Serializable;
-import java.util.Objects;
-
-
 public class MateriaDto {
     private  String nome;
     private  Integer cargaHoraria;
@@ -33,11 +29,10 @@ public class MateriaDto {
         this.cargaHoraria = cargaHoraria;
     }
 
-    public static MateriaDto fromEntityList(Materia entity){
+    public static MateriaDto fromEntity(Materia entity){
         return new MateriaDto(
-
-                entity.getNome(),
-                entity.getCargaHoraria()
+            entity.getNome(),
+            entity.getCargaHoraria()
         );
     }
 

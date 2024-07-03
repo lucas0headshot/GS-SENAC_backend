@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.resource;
 
-
+import com.senac.gestaocurso.dto.CargoDto;
 import com.senac.gestaocurso.models.Cargo;
 import com.senac.gestaocurso.service.CargoService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -12,11 +12,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/cargos")
-
 public class CargoController extends AbstractController{
     @Autowired
     private CargoService cargoService;
@@ -32,9 +30,11 @@ public class CargoController extends AbstractController{
     @Tag(name = "CARGOS")
     @Operation(summary = "Lista todos os cargos")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Cargo> cargos = cargoService.buscaTodos(pageable);
+        Page<CargoDto> cargos = cargoService.buscaTodos(filter,pageable);
         return ResponseEntity.ok(cargos);
     }
 
@@ -62,6 +62,3 @@ public class CargoController extends AbstractController{
         return  ResponseEntity.ok().body(alterado);
     }
 }
-
-
-

@@ -1,14 +1,9 @@
 package com.senac.gestaocurso.models;
 
-
-
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.gestaocurso.enums.Escolaridade;
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
-
-
 
 @Entity
 public class Dependente extends EntityID {

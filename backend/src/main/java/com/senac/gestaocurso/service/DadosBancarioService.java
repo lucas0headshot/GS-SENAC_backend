@@ -1,56 +1,55 @@
 package com.senac.gestaocurso.service;
 
-
+import com.senac.gestaocurso.dto.DadosBancarioDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.DadosBancario;
-import com.senac.gestaocurso.repository.DadosBancariosRepository;
+import com.senac.gestaocurso.repository.DadosBancarioRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
 
 @Service
-public class DadosBancariosService {
-
+public class DadosBancarioService {
     @Autowired
     private ModelMapper modelMapper;
 
     @Autowired
-    private DadosBancariosRepository dadosBancariosRepository;
+    private DadosBancarioRepository dadosBancarioRepository;
 
     public DadosBancario salvar(DadosBancario entity) {
-        return dadosBancariosRepository.save(entity);
+        return dadosBancarioRepository.save(entity);
     }
 
-    public Page<DadosBancario> buscaTodos(Pageable pageable) {
-        var list = dadosBancariosRepository.findAll(pageable);
+    public Page<DadosBancarioDto> buscaTodos(String filter, Pageable pageable) {
+        Page<DadosBancario> dadosBancarioPage = dadosBancarioRepository.findAll(filter, DadosBancario.class, pageable);
 
-        if (list.isEmpty()){
-            throw new NotFoundException("Nenhum dado bancário encontrado");
+        if (dadosBancarioPage.isEmpty()){
+            throw new NotFoundException("Dados bancarios não encontrado");
         }
 
-        return list;
+        return dadosBancarioPage.map(DadosBancarioDto::fromEntity);
     }
 
     public DadosBancario buscaPorId(Long id) {
-        return dadosBancariosRepository.findById(id).orElseThrow(() -> new NotFoundException("Dado bancário não encontrado"));
+        return dadosBancarioRepository.findById(id).orElseThrow(() -> new NotFoundException("Dado bancário não encontrado"));
     }
 
     public DadosBancario alterar(Long id, DadosBancario alterado) {
-        Optional<DadosBancario> encontrado = dadosBancariosRepository.findById(id);
+        Optional<DadosBancario> encontrado = dadosBancarioRepository.findById(id);
+
         if ((encontrado.isPresent())) {
             DadosBancario dadosBancario = encontrado.get();
             modelMapper.map(alterado, dadosBancario);
-            return dadosBancariosRepository.save(dadosBancario);
+            return dadosBancarioRepository.save(dadosBancario);
         }
+
         throw new NotFoundException("Dado bancário não encontrado");
     }
 
     public void remover(Long id) {
-        dadosBancariosRepository.deleteById(id);
+        dadosBancarioRepository.deleteById(id);
     }
 }
-

@@ -2,17 +2,15 @@ package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.Cargo;
 
-import java.io.Serializable;
-import java.util.Objects;
-
-
-public class CargoDto   {
+public class CargoDto {
     private  Long id;
     private  String descricao;
     private  String nivel;
     private  Boolean comissionado;
 
-    public CargoDto(){}
+    public CargoDto(){
+
+    }
 
     public CargoDto(Long id, String descricao, String nivel, Boolean comissionado) {
         this.id = id;
@@ -53,25 +51,21 @@ public class CargoDto   {
         this.comissionado = comissionado;
     }
 
-    public static CargoDto fromEntityList(Cargo entity){
+    public static CargoDto fromEntity(Cargo entity){
         return new CargoDto(
-
-                entity.getId(),
-                entity.getDescricao(),
-                entity.getNivel(),
-                entity.getComissionado()
+            entity.getId(),
+            entity.getDescricao(),
+            entity.getNivel(),
+            entity.getComissionado()
         );
     }
 
     public Cargo toEntity(){
-
         Cargo entity = new Cargo();
-
         entity.setId(this.id);
         entity.setDescricao(this.descricao);
         entity.setNivel(this.nivel);
         entity.setComissionado(this.comissionado);
-
         return  entity;
     }
 }

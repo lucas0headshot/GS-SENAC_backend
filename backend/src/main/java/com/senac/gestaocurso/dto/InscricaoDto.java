@@ -1,21 +1,18 @@
 package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.enums.Status;
+import com.senac.gestaocurso.enums.StatusInscricao;
 import com.senac.gestaocurso.models.domain.Inscricao;
-
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
-
 
 public class InscricaoDto {
     private  LocalDate data;
-    private  Status status;
+    private StatusInscricao status;
     private  Integer valor;
 
     public InscricaoDto(){}
 
-    public InscricaoDto(LocalDate data, Status status, Integer valor) {
+    public InscricaoDto(LocalDate data, StatusInscricao status, Integer valor) {
         this.data = data;
         this.status = status;
         this.valor = valor;
@@ -29,11 +26,11 @@ public class InscricaoDto {
         this.data = data;
     }
 
-    public Status getStatus() {
+    public StatusInscricao getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(StatusInscricao status) {
         this.status = status;
     }
 
@@ -45,22 +42,19 @@ public class InscricaoDto {
         this.valor = valor;
     }
 
-    public static InscricaoDto fromEntityList(Inscricao entity){
+    public static InscricaoDto fromEntity(Inscricao entity){
         return new InscricaoDto(
-
-                entity.getData(),
-                entity.getStatus(),
-                entity.getValor()
+            entity.getData(),
+            entity.getStatus(),
+            entity.getValor()
         );
     }
 
     public Inscricao toEntity(){
-
         Inscricao entity = new Inscricao();
-
-                entity.setData(this.data);
-                entity.setStatus(this.status);
-                entity.setValor(this.valor);
-                return entity;
+        entity.setData(this.data);
+        entity.setStatus(this.status);
+        entity.setValor(this.valor);
+        return entity;
     }
 }

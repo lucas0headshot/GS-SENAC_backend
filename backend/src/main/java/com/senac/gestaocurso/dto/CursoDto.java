@@ -2,25 +2,26 @@ package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.domain.Curso;
 
-import java.io.Serializable;
-import java.util.Objects;
+import java.time.LocalDate;
 
-
-public class CursoDto   {
-
+public class CursoDto {
     private  long id;
     private  String nome;
     private  String descricao;
     private  Integer cargaHorariaTotal;
+    private LocalDate dataInicio;
+    private LocalDate dataFinal;
 
 
     public CursoDto(){}
 
-    public CursoDto(Long id, String nome, String descricao, Integer cargaHorariaTotal) {
+    public CursoDto(Long id, String nome, String descricao, Integer cargaHorariaTotal, LocalDate dataFinal, LocalDate dataInicio) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
         this.cargaHorariaTotal = cargaHorariaTotal;
+        this.dataFinal = dataFinal;
+        this.dataInicio = dataInicio;
     }
 
     public String getNome() {
@@ -55,15 +56,14 @@ public class CursoDto   {
         this.id = id;
     }
 
-    public static CursoDto fromEntityList(Curso entity){
+    public static CursoDto fromEntity(Curso entity){
         return new CursoDto(
-
-                entity.getId(),
-                entity.getNome(),
-                entity.getDescricao(),
-                entity.getCargaHorariaTotal()
-
-
+            entity.getId(),
+            entity.getNome(),
+            entity.getDescricao(),
+            entity.getCargaHorariaTotal(),
+            entity.getDataFinal(),
+            entity.getDataInicio()
         );
     }
 

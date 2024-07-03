@@ -1,18 +1,13 @@
 package com.senac.gestaocurso.dto;
 
 import com.senac.gestaocurso.models.domain.Aula;
-
-import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Objects;
 
-
-public class AulaDto   {
+public class AulaDto {
     private  Long id;
     private  LocalDate dia;
 
     public AulaDto() {}
-
 
     public AulaDto(Long id, LocalDate dia) {
         this.id = id;
