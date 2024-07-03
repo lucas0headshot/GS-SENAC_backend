@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("api/inscricao")
+@RequestMapping("api/inscricoes")
 public class InscricaoController extends AbstractController{
     @Autowired
     private InscricaoService inscricaoService;
