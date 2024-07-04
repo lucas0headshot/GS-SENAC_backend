@@ -1,9 +1,9 @@
 package com.senac.gestaocurso.strategy.inscricao;
 
 import com.senac.gestaocurso.enterprise.exception.ValidationException;
+import com.senac.gestaocurso.models.domain.Curso;
 import com.senac.gestaocurso.models.domain.Inscricao;
-import com.senac.gestaocurso.models.domain.Turma;
-import com.senac.gestaocurso.repository.TurmaRepository;
+import com.senac.gestaocurso.repository.CursoRepository;
 import com.senac.gestaocurso.strategy.NovaValidacaoInscricaoStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -14,14 +14,14 @@ import java.util.Optional;
 public class ValidarQuantidaInscricao implements NovaValidacaoInscricaoStrategy {
     
     @Autowired
-    private TurmaRepository turmaRepository;
+    private CursoRepository repository;
     @Override
     public void validar(Inscricao inscricao) {
-        validaTurma(inscricao.getTurma().getId());
+        validaTurma(inscricao.getCurso().getId());
     }
 
     private void validaTurma(Long id) {
-        Optional<Turma> ById = turmaRepository.findById(id);
+        Optional<Curso> ById = repository.findById(id);
 
         if (ById.isPresent()) {
             if (ById.get().getInscritos().size() >= ById.get().getLimiteQtdInscricao()) {
