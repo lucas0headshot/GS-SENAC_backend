@@ -49,10 +49,10 @@ public class FrequenciaDto {
     }
 
     public Frequencia toEntity() {
-        Frequencia entity = new Frequencia();
-        entity.setFrequencia(this.frequencia);
-        entity.setAula(this.aula.toEntity());
-        entity.setInscricao(this.aluno.toEntity());
-        return entity;
+        return new Frequencia.Builder()
+            .frequencia(frequencia)
+            .aula(aula.toEntity())
+            .aluno(aluno.toEntity())
+            .build();
     }
 }
