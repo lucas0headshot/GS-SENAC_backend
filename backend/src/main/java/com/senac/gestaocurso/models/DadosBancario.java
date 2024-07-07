@@ -83,4 +83,61 @@ public class DadosBancario extends EntityID {
                 ", tipoContaBancaria=" + tipoContaBancaria +
                 '}';
     }
+
+    public static class Builder{
+        private String banco;
+        private String agencia;
+        private String conta;
+        private TipoContaBancaria tipoContaBancaria;
+        private Funcionario funcionario;
+
+        private Builder(){
+
+        }
+
+        public static Builder create(){
+            return new Builder();
+        }
+
+        public static Builder from(DadosBancario dadosBancario){
+            Builder builder = new Builder();
+
+            builder.agencia = dadosBancario.agencia;
+            builder.banco = dadosBancario.banco;
+            builder.conta = dadosBancario.conta;
+            builder.funcionario = dadosBancario.funcionario;
+            builder.tipoContaBancaria = dadosBancario.tipoContaBancaria;
+
+            return builder;
+        }
+
+        public Builder agencia(String agencia){
+            this.agencia = agencia;
+            return this;
+        }
+
+        public Builder banco(String banco){
+            this.banco = banco;
+            return this;
+        }
+
+        public Builder conta(String conta){
+            this.conta = conta;
+            return this;
+        }
+
+        public Builder funcionario(Funcionario funcionario){
+            this.funcionario = funcionario;
+            return this;
+        }
+
+        public Builder tipoContaBancaria(TipoContaBancaria tipoContaBancaria){
+            this.tipoContaBancaria = tipoContaBancaria;
+            return this;
+        }
+
+        public DadosBancario build(){
+            return new DadosBancario(agencia, banco, conta, tipoContaBancaria, funcionario);
+        }
+    }
 }

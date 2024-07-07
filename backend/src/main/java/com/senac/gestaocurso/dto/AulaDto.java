@@ -30,17 +30,16 @@ public class AulaDto {
         this.dia = dia;
     }
 
-    public static AulaDto fromEntity(Aula entity){
-        return new AulaDto(
-            entity.getId(),
-            entity.getDia()
-        );
-    }
+        public static AulaDto fromEntity(Aula entity){
+            return new AulaDto(
+                    entity.getId(),
+                    entity.getDia()
+            );
+        }
 
     public Aula toEntity(){
-        Aula entity = new Aula();
-        entity.setDia(this.dia);
-        entity.setId(this.id);
-        return entity;
+        return Aula.Builder.builder()
+                .dia(this.dia)
+                .build();
     }
 }

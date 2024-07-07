@@ -25,7 +25,13 @@ public class AulaService {
 
     public Aula salvar(Aula entity){
         novaValidacaoAulaStrategy.validar(entity);
-        return aulaRepository.save(entity);
+        Aula aula = Aula.Builder.builder()
+                .dia(entity.getDia())
+                .materia(entity.getMateria())
+                .professor(entity.getProfessor())
+                .frequencias(entity.getFrequencias())
+                .build();
+        return aulaRepository.save(aula);
     }
 
     public Page<AulaDto> buscaTodos(String filter, Pageable pageable) {

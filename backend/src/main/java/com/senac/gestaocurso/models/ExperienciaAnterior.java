@@ -84,4 +84,61 @@ public class ExperienciaAnterior extends EntityID {
                 ", peridoInicial=" + periodoInicial +
                 '}';
     }
+
+    public static class Builder{
+        private String descricao;
+        private Cargo cargo;
+        private LocalDate periodoFinal;
+        private LocalDate periodoInicial;
+        private Funcionario funcionario;
+
+        private Builder(){
+
+        }
+
+        public static Builder create(){
+            return new Builder();
+        }
+
+        public static Builder from(ExperienciaAnterior experienciaAnterior){
+            Builder builder = new Builder();
+
+            builder.descricao = experienciaAnterior.descricao;
+            builder.cargo = experienciaAnterior.cargo;
+            builder.periodoFinal = experienciaAnterior.periodoFinal;
+            builder.periodoInicial = experienciaAnterior.periodoInicial;
+            builder.funcionario = experienciaAnterior.funcionario;
+
+            return builder;
+        }
+
+        public Builder descricao(String descricao){
+            this.descricao = descricao;
+            return this;
+        }
+
+        public Builder cargo(Cargo cargo){
+            this.cargo = cargo;
+            return this;
+        }
+
+        public Builder periodoFinal(LocalDate periodoFinal){
+            this.periodoFinal = periodoFinal;
+            return this;
+        }
+
+        public Builder periodoInicial(LocalDate periodoInicial){
+            this.periodoInicial = periodoInicial;
+            return this;
+        }
+
+        public Builder funcionario(Funcionario funcionario){
+            this.funcionario = funcionario;
+            return this;
+        }
+
+        public ExperienciaAnterior build(){
+            return new ExperienciaAnterior(descricao, cargo, periodoFinal, periodoInicial, funcionario);
+        }
+    }
 }
