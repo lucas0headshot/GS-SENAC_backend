@@ -7,4 +7,5 @@ import org.springframework.stereotype.Service;
 
 @Service
 public interface InscricaoRepository extends JpaRepository<Inscricao, Long>, CustomQuerydslPredicateExecutor<Inscricao> {
+        Inscricao findByInscritoId(Long inscritoId);
 }

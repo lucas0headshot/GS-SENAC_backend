@@ -8,11 +8,11 @@ public class Frequencia extends EntityID {
     @Column(nullable = false)
     private Boolean frequencia;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "aula_id")
     private Aula aula;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "inscricao_id")
     private Inscricao aluno;
 

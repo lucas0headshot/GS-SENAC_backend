@@ -19,7 +19,7 @@ public class ExperienciaAnterior extends EntityID {
     @Column(nullable = false)
     private LocalDate periodoInicial;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "funcionario_id")
     @JsonIgnore
     private Funcionario funcionario;

@@ -15,7 +15,7 @@ public class Certificacao extends EntityID {
     @Column(nullable = false)
     private LocalDate dataEmissao;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "funcionario_id")
     @JsonIgnore
     private Funcionario funcionario;
