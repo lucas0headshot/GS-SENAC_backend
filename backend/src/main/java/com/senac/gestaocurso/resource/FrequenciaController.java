@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.resource;
 
+import com.senac.gestaocurso.dto.FrequenciaDto;
 import com.senac.gestaocurso.models.domain.Frequencia;
 import com.senac.gestaocurso.service.FrequenciaService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -29,9 +30,11 @@ public class FrequenciaController extends AbstractController{
     @Tag(name = "FREQUENCIA")
     @Operation(summary = "Lista todas as frequencias")
     @GetMapping
-    public  ResponseEntity findAll(@RequestParam(defaultValue = "0") int page, @RequestParam(defaultValue = "1") int size) {
+    public  ResponseEntity findAll(@RequestParam(required = false) String filter,
+                                   @RequestParam(defaultValue = "0") int page,
+                                   @RequestParam(defaultValue = "1") int size) {
         Pageable pageable = PageRequest.of(page, size);
-        Page<Frequencia> frequencias = frequenciaService.buscaTodos(pageable);
+        Page<FrequenciaDto> frequencias = frequenciaService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(frequencias);
     }
 
