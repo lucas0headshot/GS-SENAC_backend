@@ -29,6 +29,7 @@ public class AulaService {
                 .dia(entity.getDia())
                 .materia(entity.getMateria())
                 .professor(entity.getProfessor())
+                .frequencias(entity.getFrequencias())
                 .build();
         return aulaRepository.save(aula);
     }

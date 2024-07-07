@@ -4,6 +4,8 @@ import com.senac.gestaocurso.models.EntityID;
 import com.senac.gestaocurso.models.Funcionario;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Aula extends EntityID {
@@ -18,6 +20,9 @@ public class Aula extends EntityID {
     @JoinColumn(name = "professor_id")
     private Funcionario professor;
 
+    @OneToMany(mappedBy = "aula", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Frequencia> frequencias = new ArrayList<>();
+
     public Aula() {
 
     }
@@ -26,6 +31,7 @@ public class Aula extends EntityID {
         this.materia = builder.materia;
         this.dia = builder.dia;
         this.professor = builder.professor;
+        this.frequencias = builder.frequencias;
     }
 
 
@@ -53,6 +59,14 @@ public class Aula extends EntityID {
         this.professor = professor;
     }
 
+    public List<Frequencia> getFrequencias() {
+        return frequencias;
+    }
+
+    public void setFrequencias(List<Frequencia> frequencias) {
+        this.frequencias = frequencias;
+    }
+
     @Override
     public String toString() {
         return "Aula{" +
@@ -65,6 +79,7 @@ public class Aula extends EntityID {
         private Materia materia;
         private LocalDate dia;
         private Funcionario professor;
+        private List<Frequencia> frequencias = new ArrayList<>();
 
         public Builder() {
         }
@@ -85,6 +100,11 @@ public class Aula extends EntityID {
 
         public Builder professor(Funcionario professor) {
             this.professor = professor;
+            return this;
+        }
+
+        public Builder frequencias(List<Frequencia> frequencias) {
+            this.frequencias = frequencias;
             return this;
         }
 
