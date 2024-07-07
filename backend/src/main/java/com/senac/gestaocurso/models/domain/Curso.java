@@ -52,6 +52,12 @@ public class Curso extends EntityID {
         this.descricao = builder.descricao;
         this.coordenador = builder.coordenador;
         this.cargaHorariaTotal = builder.cargaHorariaTotal;
+        this.dataInicio = builder.dataInicio;
+        this.dataInicioInscricao = builder.dataInicioInscricao;
+        this.dataFinal = builder.dataFinal;
+        this.dataFinalInscricao = builder.dataFinalInscricao;
+        this.limiteQtdInscricao = builder.limiteQtdInscricao;
+        this.materias = builder.materias;
     }
 
     public String getDescricao() {
@@ -164,6 +170,12 @@ public class Curso extends EntityID {
         private String descricao;
         private Funcionario coordenador;
         private Integer cargaHorariaTotal;
+        private LocalDate dataInicio;
+        private LocalDate dataInicioInscricao;
+        private LocalDate dataFinal;
+        private LocalDate dataFinalInscricao;
+        private Integer limiteQtdInscricao;
+        private List<Materia> materias = new ArrayList<>();
 
         public Builder(){
         }
@@ -189,6 +201,36 @@ public class Curso extends EntityID {
 
         public Builder cargaHorariaTotal(Integer cargaHorariaTotal){
             this.cargaHorariaTotal = cargaHorariaTotal;
+            return this;
+        }
+
+        public Builder dataInicio(LocalDate dataInicio){
+            this.dataInicio = dataInicio;
+            return this;
+        }
+
+        public Builder dataInicioInscricao(LocalDate dataInicioInscricao){
+            this.dataInicioInscricao = dataInicioInscricao;
+            return this;
+        }
+
+        public Builder dataFinal(LocalDate dataFinal){
+            this.dataFinal = dataFinal;
+            return this;
+        }
+
+        public Builder dataFinalInscricao(LocalDate dataFinalInscricao){
+            this.dataFinalInscricao = dataFinalInscricao;
+            return this;
+        }
+
+        public Builder limiteQtdInscricao(Integer limiteQtdInscricao){
+            this.limiteQtdInscricao = limiteQtdInscricao;
+            return this;
+        }
+
+        public Builder materias(List<Materia> materias){
+            this.materias = materias;
             return this;
         }
 

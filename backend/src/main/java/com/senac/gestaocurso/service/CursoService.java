@@ -24,6 +24,12 @@ public class CursoService {
                 .nome(entity.getNome())
                 .descricao(entity.getDescricao())
                 .cargaHorariaTotal(entity.getCargaHorariaTotal())
+                .dataInicio(entity.getDataInicio())
+                .dataInicioInscricao(entity.getDataInicioInscricao())
+                .dataFinal(entity.getDataFinal())
+                .dataFinalInscricao(entity.getDataFinalInscricao())
+                .limiteQtdInscricao(entity.getLimiteQtdInscricao())
+                .coordenador(entity.getCoordenador())
                 .build();
         return cursoRepository.save(curso);
     }
