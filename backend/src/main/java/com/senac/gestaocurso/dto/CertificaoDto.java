@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.dto;
 
-import com.senac.gestaocurso.models.domain.Certificacao;
+import com.senac.gestaocurso.models.Certificacao;
 import java.time.LocalDate;
 
 public class CertificaoDto {

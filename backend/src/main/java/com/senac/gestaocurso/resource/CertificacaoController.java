@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.resource;
 
 import com.senac.gestaocurso.dto.CertificaoDto;
-import com.senac.gestaocurso.models.domain.Certificacao;
+import com.senac.gestaocurso.models.Certificacao;
 import com.senac.gestaocurso.service.CertificacaoService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
