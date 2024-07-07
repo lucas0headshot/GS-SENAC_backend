@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.service;
 
+import com.senac.gestaocurso.dto.FrequenciaDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
 import com.senac.gestaocurso.models.domain.Frequencia;
 import com.senac.gestaocurso.repository.FrequenciaRepository;
@@ -22,14 +23,14 @@ public class FrequenciaService {
         return frequenciaRepository.save(entity);
     }
 
-    public Page<Frequencia> buscaTodos(Pageable pageable) {
-        var list = frequenciaRepository.findAll(pageable);
+    public Page<FrequenciaDto> buscaTodos(String filter, Pageable pageable) {
+        Page<Frequencia> frequenciasPage = frequenciaRepository.findAll(filter, Frequencia.class, pageable);
 
-        if (list.isEmpty()){
-            throw new NotFoundException("Nenhuma frequência encontrada");
+        if (frequenciasPage.isEmpty()){
+            throw new NotFoundException("Nenhuma frequência enscontrada");
         }
 
-        return list;
+        return frequenciasPage.map(FrequenciaDto::fromEntity);
     }
 
     public Frequencia buscaPorId(Long id) {
