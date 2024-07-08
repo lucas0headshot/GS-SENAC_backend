@@ -10,6 +10,7 @@ import java.util.List;
 
 @Entity
 public class Curso extends EntityID {
+
     @Column(nullable = false)
     private String nome;
 

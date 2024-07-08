@@ -1,5 +1,8 @@
 package com.senac.gestaocurso.models.domain;
 
+
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.gestaocurso.enums.Status;
 import com.senac.gestaocurso.enums.StatusInscricao;
 import com.senac.gestaocurso.models.EntityID;
