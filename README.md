@@ -4,21 +4,21 @@
 
 <p align="center">
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/lucas0headshot/GS-SENAC">
-  
+
   <img alt="GitHub last commit" src="https://img.shields.io/github/last-commit/lucas0headshot/GS-SENAC">
-    
+
   <img alt="GitHub License" src="https://img.shields.io/github/license/lucas0headshot/GS-SENAC">
 </p>
 
-<h4 align="center"> 
+<h4 align="center">
 	🚧  Gestão de Cursos 🎓 Em andamento 🚀 🚧
 </h4>
 
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
  <a href="#-funcionalidades">Funcionalidades</a> •
- <a href="#-tecnologias">Tecnologias</a> • 
- <a href="#-autores">Autores</a> • 
+ <a href="#-tecnologias">Tecnologias</a> •
+ <a href="#-autores">Autores</a> •
  <a href="#user-content--licença">Licença</a>
 </p>
 
@@ -26,31 +26,24 @@
 ## 💻 Sobre o projeto
 
 🎓 O projeto é um módulo de gestão de cursos integrado a um sistema empresarial. Ele gerencia o processo de criação de cursos, abertura de turmas, inscrição de funcionários, controle de frequência e avaliação dos alunos.
+Este é o Back-End, veja o Front-End [clicando aqui](https://github.com/lucas0headshot/GS-SENAC_frontend).
 
 ---
 
 ## ⚙️ Funcionalidades
 
 - [x] Gerenciamento de Cursos: Permite a criação, edição e exclusão de cursos oferecidos.
-- [x] Gerenciamento de Turmas: Facilita a organização e administração das turmas criadas para os cursos.
 - [x] Gerenciamento de Matérias: Possibilita a definição e gerenciamento das disciplinas que compõem os cursos.
 - [x] Gerenciamento de Aulas: Permite agendar, modificar e monitorar as aulas ministradas.
 - [x] Gerenciamento de Inscrições: Oferece funcionalidades para inscrição de funcionários nos cursos disponíveis.
 - [x] Gerenciamento de Frequências: Registra e acompanha a presença dos alunos nas aulas.
-- [x] Gerenciamento de Avaliações: Permite a criação, aplicação e análise de avaliações para os alunos.
-- [x] Gerenciamento de Feedback: Facilita a coleta e análise de feedback dos alunos sobre os cursos e aulas.
 
 ---
 
 ## 🛠 Tecnologias
 
-**Back-End**
 - [![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com/)
 - [![SpringBoot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot)
-
-**Front-End**
-- [![React](https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=react&logoColor=white)](https://reactjs.org/)
-- [![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)
 
 **BD**
 - [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
