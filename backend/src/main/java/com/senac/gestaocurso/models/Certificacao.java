@@ -1,8 +1,6 @@
-package com.senac.gestaocurso.models.domain;
+package com.senac.gestaocurso.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.senac.gestaocurso.models.EntityID;
-import com.senac.gestaocurso.models.Funcionario;
 import jakarta.persistence.*;
 import java.time.LocalDate;
 

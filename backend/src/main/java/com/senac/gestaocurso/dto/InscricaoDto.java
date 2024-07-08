@@ -1,6 +1,5 @@
 package com.senac.gestaocurso.dto;
 
-import com.senac.gestaocurso.enums.Status;
 import com.senac.gestaocurso.enums.StatusInscricao;
 import com.senac.gestaocurso.models.domain.Inscricao;
 import java.time.LocalDate;
@@ -51,10 +50,10 @@ public class InscricaoDto {
     }
 
     public Inscricao toEntity(){
-        Inscricao entity = new Inscricao();
-        entity.setData(this.data);
-        entity.setStatus(this.status);
-        entity.setValor(this.valor);
-        return entity;
+        return Inscricao.Builder.builder()
+                .data(this.data)
+                .status(this.status)
+                .valor(this.valor)
+                .build();
     }
 }

@@ -2,7 +2,7 @@ package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.CertificaoDto;
 import com.senac.gestaocurso.enterprise.exception.NotFoundException;
-import com.senac.gestaocurso.models.domain.Certificacao;
+import com.senac.gestaocurso.models.Certificacao;
 import com.senac.gestaocurso.repository.CertifcacaoRepository;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;

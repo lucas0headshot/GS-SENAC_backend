@@ -20,7 +20,11 @@ public class MateriaService {
     private MateriaRepository materiaRepository;
 
     public Materia salvar(Materia entity) {
-        return materiaRepository.save(entity);
+        Materia materia = Materia.Builder.builder()
+                .nome(entity.getNome())
+                .cargaHoraria(entity.getCargaHoraria())
+                .build();
+        return materiaRepository.save(materia);
     }
 
     public Page<MateriaDto> buscaTodos(String filter, Pageable pageable) {

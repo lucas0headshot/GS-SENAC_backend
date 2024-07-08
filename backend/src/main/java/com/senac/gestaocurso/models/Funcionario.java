@@ -5,8 +5,7 @@ import org.hibernate.validator.constraints.br.CPF;
 import org.hibernate.validator.constraints.br.TituloEleitoral;
 import javax.validation.constraints.Email;
 import com.senac.gestaocurso.enums.*;
-import com.senac.gestaocurso.models.domain.Certificacao;
-import jakarta.persistence.*;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;

@@ -20,7 +20,18 @@ public class CursoService {
     private CursoRepository cursoRepository;
 
     public Curso salvar(Curso entity) {
-        return cursoRepository.save(entity);
+        Curso curso = Curso.Builder.builder()
+                .nome(entity.getNome())
+                .descricao(entity.getDescricao())
+                .cargaHorariaTotal(entity.getCargaHorariaTotal())
+                .dataInicio(entity.getDataInicio())
+                .dataInicioInscricao(entity.getDataInicioInscricao())
+                .dataFinal(entity.getDataFinal())
+                .dataFinalInscricao(entity.getDataFinalInscricao())
+                .limiteQtdInscricao(entity.getLimiteQtdInscricao())
+                .coordenador(entity.getCoordenador())
+                .build();
+        return cursoRepository.save(curso);
     }
 
     public Page<CursoDto> buscaTodos(String filter, Pageable pageable) {

@@ -48,6 +48,19 @@ public class Curso extends EntityID {
     public Curso() {
     }
 
+    public Curso(Builder builder) {
+        this.nome = builder.nome;
+        this.descricao = builder.descricao;
+        this.coordenador = builder.coordenador;
+        this.cargaHorariaTotal = builder.cargaHorariaTotal;
+        this.dataInicio = builder.dataInicio;
+        this.dataInicioInscricao = builder.dataInicioInscricao;
+        this.dataFinal = builder.dataFinal;
+        this.dataFinalInscricao = builder.dataFinalInscricao;
+        this.limiteQtdInscricao = builder.limiteQtdInscricao;
+        this.materias = builder.materias;
+    }
+
     public String getDescricao() {
         return descricao;
     }
@@ -151,5 +164,79 @@ public class Curso extends EntityID {
                 ", limiteQtdInscricao=" + limiteQtdInscricao +
                 ", materias=" + materias +
                 '}';
+    }
+
+    public static class Builder {
+        private String nome;
+        private String descricao;
+        private Funcionario coordenador;
+        private Integer cargaHorariaTotal;
+        private LocalDate dataInicio;
+        private LocalDate dataInicioInscricao;
+        private LocalDate dataFinal;
+        private LocalDate dataFinalInscricao;
+        private Integer limiteQtdInscricao;
+        private List<Materia> materias = new ArrayList<>();
+
+        public Builder(){
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder nome(String nome){
+            this.nome = nome;
+            return this;
+        }
+
+        public Builder descricao(String descricao){
+            this.descricao = descricao;
+            return this;
+        }
+
+        public Builder coordenador(Funcionario coordenador){
+            this.coordenador = coordenador;
+            return this;
+        }
+
+        public Builder cargaHorariaTotal(Integer cargaHorariaTotal){
+            this.cargaHorariaTotal = cargaHorariaTotal;
+            return this;
+        }
+
+        public Builder dataInicio(LocalDate dataInicio){
+            this.dataInicio = dataInicio;
+            return this;
+        }
+
+        public Builder dataInicioInscricao(LocalDate dataInicioInscricao){
+            this.dataInicioInscricao = dataInicioInscricao;
+            return this;
+        }
+
+        public Builder dataFinal(LocalDate dataFinal){
+            this.dataFinal = dataFinal;
+            return this;
+        }
+
+        public Builder dataFinalInscricao(LocalDate dataFinalInscricao){
+            this.dataFinalInscricao = dataFinalInscricao;
+            return this;
+        }
+
+        public Builder limiteQtdInscricao(Integer limiteQtdInscricao){
+            this.limiteQtdInscricao = limiteQtdInscricao;
+            return this;
+        }
+
+        public Builder materias(List<Materia> materias){
+            this.materias = materias;
+            return this;
+        }
+
+        public Curso build(){
+            return new Curso(this);
+        }
     }
 }

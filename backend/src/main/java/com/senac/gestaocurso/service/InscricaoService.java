@@ -26,9 +26,13 @@ public class InscricaoService {
     private List<NovaValidacaoInscricaoStrategy> validacaoInscricaoStrategies;
 
     public Inscricao salvar(Inscricao entity) {
-
         validacaoInscricaoStrategies.forEach(validation -> validation.validar(entity));
-        return inscricaoRepository.save(entity);
+        Inscricao inscricao = Inscricao.Builder.builder()
+                .data(entity.getData())
+                .status(entity.getStatus())
+                .valor(entity.getValor())
+                .build();
+        return inscricaoRepository.save(inscricao);
     }
 
     public Page<InscricaoDto> buscaTodos(String filter, Pageable pageable) {

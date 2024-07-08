@@ -4,6 +4,8 @@ import com.senac.gestaocurso.models.EntityID;
 import com.senac.gestaocurso.models.Funcionario;
 import jakarta.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Aula extends EntityID {
@@ -18,7 +20,20 @@ public class Aula extends EntityID {
     @JoinColumn(name = "professor_id")
     private Funcionario professor;
 
-    public Aula(){}
+    @OneToMany(mappedBy = "aula", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Frequencia> frequencias = new ArrayList<>();
+
+    public Aula() {
+
+    }
+
+    public Aula(Builder builder){
+        this.materia = builder.materia;
+        this.dia = builder.dia;
+        this.professor = builder.professor;
+        this.frequencias = builder.frequencias;
+    }
+
 
     public Materia getMateria() {
         return materia;
@@ -44,11 +59,57 @@ public class Aula extends EntityID {
         this.professor = professor;
     }
 
+    public List<Frequencia> getFrequencias() {
+        return frequencias;
+    }
+
+    public void setFrequencias(List<Frequencia> frequencias) {
+        this.frequencias = frequencias;
+    }
+
     @Override
     public String toString() {
         return "Aula{" +
                 "materia=" + materia +
                 ", dia=" + dia +
                 '}';
+    }
+
+    public static class Builder {
+        private Materia materia;
+        private LocalDate dia;
+        private Funcionario professor;
+        private List<Frequencia> frequencias = new ArrayList<>();
+
+        public Builder() {
+        }
+
+        public static Builder builder() {
+            return new Builder();
+        }
+
+        public Builder materia(Materia materia) {
+            this.materia = materia;
+            return this;
+        }
+
+        public Builder dia(LocalDate dia) {
+            this.dia = dia;
+            return this;
+        }
+
+        public Builder professor(Funcionario professor) {
+            this.professor = professor;
+            return this;
+        }
+
+        public Builder frequencias(List<Frequencia> frequencias) {
+            this.frequencias = frequencias;
+            return this;
+        }
+
+        public Aula build() {
+            return new Aula(this);
+        }
     }
 }
