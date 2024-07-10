@@ -23,6 +23,7 @@ public class MateriaService {
         Materia materia = Materia.Builder.builder()
                 .nome(entity.getNome())
                 .cargaHoraria(entity.getCargaHoraria())
+                .curso(entity.getCurso())
                 .build();
         return materiaRepository.save(materia);
     }

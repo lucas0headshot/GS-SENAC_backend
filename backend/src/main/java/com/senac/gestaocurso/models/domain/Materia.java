@@ -40,6 +40,13 @@ public class Materia extends EntityID {
         this.cargaHoraria = cargaHoraria;
     }
 
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
 
 
     @Override
