@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.dto;
 
+import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.models.domain.Curso;
 
 import java.time.LocalDate;
@@ -13,10 +14,13 @@ public class CursoDto {
     private LocalDate dataInicioInscricao;
     private LocalDate dataFinal;
     private LocalDate dataFinalInscricao;
+    private Integer limiteQtdInscricao;
+    private Funcionario coordenador;
+
 
     public CursoDto(){}
 
-    public CursoDto(Long id, String nome, String descricao, Integer cargaHorariaTotal, LocalDate dataFinal, LocalDate dataInicio, LocalDate dataInicioInscricao, LocalDate dataFinalInscricao) {
+    public CursoDto(Long id, String nome, String descricao, Integer cargaHorariaTotal, LocalDate dataFinal, LocalDate dataInicio, LocalDate dataInicioInscricao, LocalDate dataFinalInscricao, Integer limiteQtdInscricao, Funcionario coordenador) {
         this.id = id;
         this.nome = nome;
         this.descricao = descricao;
@@ -25,6 +29,8 @@ public class CursoDto {
         this.dataInicio = dataInicio;
         this.dataInicioInscricao = dataInicioInscricao;
         this.dataFinalInscricao = dataFinalInscricao;
+        this.limiteQtdInscricao = limiteQtdInscricao;
+        this.coordenador = coordenador;
     }
 
     public String getNome() {
@@ -75,6 +81,38 @@ public class CursoDto {
         this.dataFinalInscricao = dataFinalInscricao;
     }
 
+    public Integer getLimiteQtdInscricao() {
+        return limiteQtdInscricao;
+    }
+
+    public void setLimiteQtdInscricao(Integer limiteQtdInscricao) {
+        this.limiteQtdInscricao = limiteQtdInscricao;
+    }
+
+    public LocalDate getDataInicio() {
+        return dataInicio;
+    }
+
+    public void setDataInicio(LocalDate dataInicio) {
+        this.dataInicio = dataInicio;
+    }
+
+    public LocalDate getDataFinal() {
+        return dataFinal;
+    }
+
+    public void setDataFinal(LocalDate dataFinal) {
+        this.dataFinal = dataFinal;
+    }
+
+    public Funcionario getCoordenador() {
+        return coordenador;
+    }
+
+    public void setCoordenador(Funcionario coordenador) {
+        this.coordenador = coordenador;
+    }
+
     public static CursoDto fromEntity(Curso entity){
         return new CursoDto(
             entity.getId(),
@@ -84,7 +122,9 @@ public class CursoDto {
             entity.getDataFinal(),
             entity.getDataInicio(),
             entity.getDataInicioInscricao(),
-            entity.getDataFinalInscricao()
+            entity.getDataFinalInscricao(),
+            entity.getLimiteQtdInscricao(),
+            entity.getCoordenador()
         );
     }
 
@@ -97,6 +137,8 @@ public class CursoDto {
                 .dataInicioInscricao(this.dataInicioInscricao)
                 .dataFinal(this.dataFinal)
                 .dataFinalInscricao(this.dataFinalInscricao)
+                .limiteQtdInscricao(this.limiteQtdInscricao)
+                .coordenador(this.coordenador)
                 .build();
     }
 }
