@@ -36,13 +36,13 @@ public class Curso extends EntityID {
     @Column(nullable = false)
     private LocalDate dataFinalInscricao;
 
-    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "curso")
     private List<Inscricao> inscritos = new ArrayList<>();
 
     @Column(nullable = false)
     private Integer limiteQtdInscricao;
 
-    @OneToMany(mappedBy = "curso", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "curso")
     private List<Materia> materias = new ArrayList<>();
 
     public Curso() {

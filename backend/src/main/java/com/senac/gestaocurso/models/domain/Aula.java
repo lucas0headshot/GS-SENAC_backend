@@ -20,7 +20,7 @@ public class Aula extends EntityID {
     @JoinColumn(name = "professor_id")
     private Funcionario professor;
 
-    @OneToMany(mappedBy = "aula", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "aula")
     private List<Frequencia> frequencias = new ArrayList<>();
 
     public Aula() {

@@ -89,7 +89,7 @@ public class Funcionario extends EntityID {
     @JoinColumn(name = "filiacao_id")
     private Filiacao filiacao;
 
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "funcionario")
     private List<Dependente> dependentes;
 
     @Column
@@ -104,7 +104,7 @@ public class Funcionario extends EntityID {
     @Enumerated(EnumType.STRING)
     private Genero genero;
 
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "funcionario")
     private List<Certificacao> certificacoes;
 
     @Enumerated(EnumType.STRING)
@@ -125,13 +125,13 @@ public class Funcionario extends EntityID {
     @Enumerated(EnumType.STRING)
     private Status status;
 
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "funcionario")
     private List<ExperienciaAnterior> experienciaAnterior;
 
     @Column
     private String idioma;
 
-    @OneToMany(mappedBy = "funcionario", cascade = CascadeType.ALL, fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "funcionario")
     private List<DadosBancario> dadosBancarios;
 
     @Column
