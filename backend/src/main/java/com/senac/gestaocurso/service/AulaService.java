@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.AulaDto;
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.models.domain.Aula;
 import com.senac.gestaocurso.repository.AulaRepository;
 import com.senac.gestaocurso.strategy.NovaValidacaoAulaStrategy;
@@ -26,7 +26,7 @@ public class AulaService {
     private List<NovaValidacaoAulaStrategy> novaValidacaoAulaStrategy;
 
     public Aula salvar(Aula entity){
-        novaValidacaoAulaStrategy.validar(entity);
+        novaValidacaoAulaStrategy.forEach(validate -> validate.validar(entity));
         Aula aula = Aula.Builder.builder()
                 .dia(entity.getDia())
                 .materia(entity.getMateria())
@@ -40,14 +40,14 @@ public class AulaService {
         Page<Aula> aulasPage = aulaRepository.findAll(filter, Aula.class, pageable);
 
         if (aulasPage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new OkNoContent("Nenhum funcionário encontrado");
         }
 
         return aulasPage.map(AulaDto::fromEntity);
     }
 
     public Aula buscaPorId(Long id){
-        return aulaRepository.findById(id).orElseThrow(() -> new NotFoundException("aula não encontrada"));
+        return aulaRepository.findById(id).orElseThrow(() -> new OkNoContent("aula não encontrada"));
     }
 
     public Aula alterar(Long id, Aula alterado){
@@ -60,7 +60,7 @@ public class AulaService {
             return aulaRepository.save(aula);
         }
 
-        throw new NotFoundException("Aula não encontrada");
+        throw new OkNoContent("Aula não encontrada");
     }
 
     public void remover(Long id) {aulaRepository.deleteById(id);}

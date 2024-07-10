@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.ExperiencaAnteriorDto;
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.models.ExperienciaAnterior;
 import com.senac.gestaocurso.repository.ExperienciaAnteriorRepository;
 import org.modelmapper.ModelMapper;
@@ -27,13 +27,13 @@ public class ExperienciaAnteriorService {
         Page<ExperienciaAnterior> experienciaAnteriorPage = experienciaAnteriorRepository.findAll(filter, ExperienciaAnterior.class, pageable);
 
         if (experienciaAnteriorPage.isEmpty()){
-            throw new NotFoundException("Nenhuma experiencia encontrada");
+            throw new OkNoContent("Nenhuma experiencia encontrada");
         }
         return experienciaAnteriorPage.map(ExperiencaAnteriorDto::fromEntity);
     }
 
     public ExperienciaAnterior buscaPorId(Long id) {
-        return experienciaAnteriorRepository.findById(id).orElseThrow(() -> new NotFoundException("Experiência anterior não encontrada"));
+        return experienciaAnteriorRepository.findById(id).orElseThrow(() -> new OkNoContent("Experiência anterior não encontrada"));
     }
 
     public ExperienciaAnterior alterar(Long id, ExperienciaAnterior alterado) {
@@ -45,7 +45,7 @@ public class ExperienciaAnteriorService {
             return experienciaAnteriorRepository.save(experienciaAnterior);
         }
 
-        throw new NotFoundException("Experiência anterior não encontrada");
+        throw new OkNoContent("Experiência anterior não encontrada");
     }
 
     public void remover(Long id) {

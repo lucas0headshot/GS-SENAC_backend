@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.FrequenciaDto;
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.models.domain.Frequencia;
 import com.senac.gestaocurso.repository.FrequenciaRepository;
 import org.modelmapper.ModelMapper;
@@ -27,14 +27,14 @@ public class FrequenciaService {
         Page<Frequencia> frequenciasPage = frequenciaRepository.findAll(filter, Frequencia.class, pageable);
 
         if (frequenciasPage.isEmpty()){
-            throw new NotFoundException("Nenhuma frequência enscontrada");
+            throw new OkNoContent("Nenhuma frequência enscontrada");
         }
 
         return frequenciasPage.map(FrequenciaDto::fromEntity);
     }
 
     public Frequencia buscaPorId(Long id) {
-        return frequenciaRepository.findById(id).orElseThrow(() -> new NotFoundException("Frequência não encontrada"));
+        return frequenciaRepository.findById(id).orElseThrow(() -> new OkNoContent("Frequência não encontrada"));
     }
 
     public Frequencia alterar(Long id, Frequencia alterado) {
@@ -44,7 +44,7 @@ public class FrequenciaService {
             modelMapper.map(alterado, frequencia);
             return frequenciaRepository.save(frequencia);
         }
-        throw new NotFoundException("Frequência não encontrada");
+        throw new OkNoContent("Frequência não encontrada");
     }
 
     public void remover(Long id) {frequenciaRepository.deleteById(id);

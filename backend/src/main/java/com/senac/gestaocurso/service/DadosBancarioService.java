@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.DadosBancarioDto;
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.models.DadosBancario;
 import com.senac.gestaocurso.repository.DadosBancarioRepository;
 import org.modelmapper.ModelMapper;
@@ -27,14 +27,14 @@ public class DadosBancarioService {
         Page<DadosBancario> dadosBancarioPage = dadosBancarioRepository.findAll(filter, DadosBancario.class, pageable);
 
         if (dadosBancarioPage.isEmpty()){
-            throw new NotFoundException("Dados bancarios não encontrado");
+            throw new OkNoContent("Dados bancarios não encontrado");
         }
 
         return dadosBancarioPage.map(DadosBancarioDto::fromEntity);
     }
 
     public DadosBancario buscaPorId(Long id) {
-        return dadosBancarioRepository.findById(id).orElseThrow(() -> new NotFoundException("Dado bancário não encontrado"));
+        return dadosBancarioRepository.findById(id).orElseThrow(() -> new OkNoContent("Dado bancário não encontrado"));
     }
 
     public DadosBancario alterar(Long id, DadosBancario alterado) {
@@ -46,7 +46,7 @@ public class DadosBancarioService {
             return dadosBancarioRepository.save(dadosBancario);
         }
 
-        throw new NotFoundException("Dado bancário não encontrado");
+        throw new OkNoContent("Dado bancário não encontrado");
     }
 
     public void remover(Long id) {
