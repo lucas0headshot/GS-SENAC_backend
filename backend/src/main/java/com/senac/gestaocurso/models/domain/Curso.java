@@ -1,5 +1,6 @@
 package com.senac.gestaocurso.models.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.senac.gestaocurso.models.EntityID;
 import com.senac.gestaocurso.models.Funcionario;
 import jakarta.persistence.*;
@@ -37,6 +38,7 @@ public class Curso extends EntityID {
     private LocalDate dataFinalInscricao;
 
     @OneToMany(mappedBy = "curso")
+    @JsonIgnore
     private List<Inscricao> inscritos = new ArrayList<>();
 
     @Column(nullable = false)

@@ -12,15 +12,17 @@ public class InscricaoDto {
     private StatusInscricao status;
     private  Integer valor;
     private Funcionario funcionario;
+    private Curso curso;
 
     public InscricaoDto(){}
 
-    public InscricaoDto(Long id, LocalDate data, StatusInscricao status, Integer valor, Funcionario funcionario) {
+    public InscricaoDto(Long id, LocalDate data, StatusInscricao status, Integer valor, Funcionario funcionario, Curso curso) {
         this.id = id;
         this.data = data;
         this.status = status;
         this.valor = valor;
         this.funcionario = funcionario;
+        this.curso = curso;
     }
 
     public Long getId() {
@@ -63,13 +65,22 @@ public class InscricaoDto {
         this.funcionario = funcionario;
     }
 
+    public Curso getCurso() {
+        return curso;
+    }
+
+    public void setCurso(Curso curso) {
+        this.curso = curso;
+    }
+
     public static InscricaoDto fromEntity(Inscricao entity){
         return new InscricaoDto(
             entity.getId(),
             entity.getData(),
             entity.getStatus(),
             entity.getValor(),
-            entity.getInscrito());
+            entity.getInscrito(),
+            entity.getCurso());
     }
 
     public Inscricao toEntity(){
