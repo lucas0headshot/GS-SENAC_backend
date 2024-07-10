@@ -32,7 +32,7 @@ public class DependenteController extends AbstractController{
     @GetMapping
     public  ResponseEntity findAll(@RequestParam(required = false) String filter,
                                    @RequestParam(defaultValue = "0") int page,
-                                   @RequestParam(defaultValue = "1") int size) {
+                                   @RequestParam(defaultValue = "10") int size) {
         Pageable pageable = PageRequest.of(page, size);
         Page<DependenteDto> dependentes = dependenteService.buscaTodos(filter, pageable);
         return ResponseEntity.ok(dependentes);
