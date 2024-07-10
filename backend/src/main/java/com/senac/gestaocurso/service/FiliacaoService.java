@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.FiliacaoDto;
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.models.Filiacao;
 import com.senac.gestaocurso.repository.FiliacaoRepository;
 import org.modelmapper.ModelMapper;
@@ -27,14 +27,14 @@ public class FiliacaoService {
         Page<Filiacao> filiacaoPage = filiacaoRepository.findAll(filter, Filiacao.class, pageable);
 
         if (filiacaoPage.isEmpty()){
-            throw new NotFoundException("Não há Filiação");
+            throw new OkNoContent("Não há Filiação");
         }
 
         return filiacaoPage.map(FiliacaoDto::fromEntity);
     }
 
     public Filiacao buscaPorId(Long id) {
-        return filiacaoRepository.findById(id).orElseThrow(() -> new NotFoundException("Filiação não encontrada"));
+        return filiacaoRepository.findById(id).orElseThrow(() -> new OkNoContent("Filiação não encontrada"));
     }
 
     public Filiacao alterar(Long id, Filiacao alterado) {
@@ -46,7 +46,7 @@ public class FiliacaoService {
             return filiacaoRepository.save(filiacao);
         }
 
-        throw new NotFoundException("Filiaçãonão encontrada");
+        throw new OkNoContent("Filiaçãonão encontrada");
     }
 
     public void remover(Long id) {

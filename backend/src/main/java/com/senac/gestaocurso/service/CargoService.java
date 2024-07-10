@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.CargoDto;
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.models.Cargo;
 import com.senac.gestaocurso.repository.CargoRepository;
 import org.modelmapper.ModelMapper;
@@ -27,14 +27,14 @@ public class CargoService {
         Page<Cargo> cargoPage = cargoRepository.findAll(filter, Cargo.class, pageable);
 
         if (cargoPage.isEmpty()){
-            throw new NotFoundException("Nenhum cargo encontrado");
+            throw new OkNoContent("Nenhum cargo encontrado");
         }
 
         return cargoPage.map(CargoDto::fromEntity);
     }
 
     public Cargo buscaPorId(Long id) {
-        return cargoRepository.findById(id).orElseThrow(() -> new NotFoundException("cargo não encontrado"));
+        return cargoRepository.findById(id).orElseThrow(() -> new OkNoContent("cargo não encontrado"));
     }
 
     public Cargo alterar(Long id, Cargo alterado) {
@@ -46,7 +46,7 @@ public class CargoService {
             return cargoRepository.save(cargo);
         }
 
-        throw new NotFoundException("cargo não encontrado");
+        throw new OkNoContent("cargo não encontrado");
     }
 
     public void remover(Long id) {

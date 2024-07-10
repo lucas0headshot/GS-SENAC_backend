@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.MateriaDto;
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.models.domain.Materia;
 import com.senac.gestaocurso.repository.MateriaRepository;
 import org.modelmapper.ModelMapper;
@@ -32,14 +32,14 @@ public class MateriaService {
         Page<Materia> materiaPage = materiaRepository.findAll(filter, Materia.class, pageable);
 
         if (materiaPage.isEmpty()){
-            throw new NotFoundException("Nenhuma matéria encontrada");
+            throw new OkNoContent("Nenhuma matéria encontrada");
         }
 
         return materiaPage.map(MateriaDto::fromEntity);
     }
 
     public Materia buscaPorId(Long id) {
-        return materiaRepository.findById(id).orElseThrow(() -> new NotFoundException("Matéria não encontrada"));
+        return materiaRepository.findById(id).orElseThrow(() -> new OkNoContent("Matéria não encontrada"));
     }
 
     public Materia alterar(Long id, Materia alterado) {
@@ -51,7 +51,7 @@ public class MateriaService {
             return materiaRepository.save(materia);
         }
 
-        throw new NotFoundException("Matéria não encontrada");
+        throw new OkNoContent("Matéria não encontrada");
     }
 
     public void remover(Long id) {

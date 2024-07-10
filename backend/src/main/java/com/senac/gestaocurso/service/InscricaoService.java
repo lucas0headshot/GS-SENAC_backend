@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.InscricaoDto;
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.models.domain.Inscricao;
 import com.senac.gestaocurso.repository.InscricaoRepository;
 import com.senac.gestaocurso.strategy.NovaValidacaoInscricaoStrategy;
@@ -41,14 +41,14 @@ public class InscricaoService {
         Page<Inscricao> inscricaoPage = inscricaoRepository.findAll(filter, Inscricao.class, pageable);
 
         if (inscricaoPage.isEmpty()){
-            throw new NotFoundException("Nenhuma Inscrição encontrada");
+            throw new OkNoContent("Nenhuma Inscrição encontrada");
         }
 
         return inscricaoPage.map(InscricaoDto::fromEntity);
     }
 
     public Inscricao buscaPorId(Long id) {
-        return inscricaoRepository.findById(id).orElseThrow(() -> new NotFoundException("Inscrição não encontrada"));
+        return inscricaoRepository.findById(id).orElseThrow(() -> new OkNoContent("Inscrição não encontrada"));
     }
 
     public Inscricao alterar(Long id, Inscricao alterado) {
@@ -60,7 +60,7 @@ public class InscricaoService {
             return inscricaoRepository.save(inscricao);
         }
 
-        throw new NotFoundException("Inscrição não encontrada");
+        throw new OkNoContent("Inscrição não encontrada");
     }
 
     public void remover(Long id) {

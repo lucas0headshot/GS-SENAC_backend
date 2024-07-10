@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.FuncionarioDto;
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.models.*;
 import com.senac.gestaocurso.repository.FuncionarioRepository;
 import com.senac.gestaocurso.strategy.NovaValidacaoFuncionarioStrategy;
@@ -38,14 +38,14 @@ public class FuncionarioService {
         Page<Funcionario> funcionariosPage = funcionarioRepository.findAll(filter, Funcionario.class, pageable);
 
         if (funcionariosPage.isEmpty()){
-            throw new NotFoundException("Nenhum funcionário encontrado");
+            throw new OkNoContent("Nenhum funcionário encontrado");
         }
 
         return funcionariosPage.map(FuncionarioDto::fromEntity);
     }
 
     public Funcionario buscaPorId(Long id) {
-        return funcionarioRepository.findById(id).orElseThrow(() -> new NotFoundException("Funcionário não encontrado"));
+        return funcionarioRepository.findById(id).orElseThrow(() -> new OkNoContent("Funcionário não encontrado"));
     }
 
     public Funcionario alterar(Long id, Funcionario alterado) {
@@ -57,7 +57,7 @@ public class FuncionarioService {
             return funcionarioRepository.save(funcionario);
         }
 
-        throw new NotFoundException("Funcionário não encontrado");
+        throw new OkNoContent("Funcionário não encontrado");
     }
 
     public void remover(Long id) {
