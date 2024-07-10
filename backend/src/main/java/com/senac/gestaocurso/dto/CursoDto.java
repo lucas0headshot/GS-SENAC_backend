@@ -105,22 +105,6 @@ public class CursoDto {
         this.limiteQtdInscricao = limiteQtdInscricao;
     }
 
-    public LocalDate getDataInicio() {
-        return dataInicio;
-    }
-
-    public void setDataInicio(LocalDate dataInicio) {
-        this.dataInicio = dataInicio;
-    }
-
-    public LocalDate getDataFinal() {
-        return dataFinal;
-    }
-
-    public void setDataFinal(LocalDate dataFinal) {
-        this.dataFinal = dataFinal;
-    }
-
     public Funcionario getCoordenador() {
         return coordenador;
     }

@@ -45,6 +45,7 @@ public class Curso extends EntityID {
     private Integer limiteQtdInscricao;
 
     @OneToMany(mappedBy = "curso")
+    @JsonIgnore
     private List<Materia> materias = new ArrayList<>();
 
     public Curso() {

@@ -1,17 +1,25 @@
 package com.senac.gestaocurso.dto;
 
+import com.senac.gestaocurso.models.Funcionario;
 import com.senac.gestaocurso.models.domain.Aula;
+import com.senac.gestaocurso.models.domain.Materia;
+
 import java.time.LocalDate;
 
 public class AulaDto {
     private  Long id;
+    private Materia materia;
     private  LocalDate dia;
+    private Funcionario professor;
+
 
     public AulaDto() {}
 
-    public AulaDto(Long id, LocalDate dia) {
+    public AulaDto(Long id,Materia materia ,LocalDate dia, Funcionario professor) {
         this.id = id;
+        this.materia = materia;
         this.dia = dia;
+        this.professor = professor;
     }
 
     public Long getId() {
@@ -30,10 +38,28 @@ public class AulaDto {
         this.dia = dia;
     }
 
-        public static AulaDto fromEntity(Aula entity){
+    public Materia getMateria() {
+        return materia;
+    }
+
+    public void setMateria(Materia materia) {
+        this.materia = materia;
+    }
+
+    public Funcionario getProfessor() {
+        return professor;
+    }
+
+    public void setProfessor(Funcionario professor) {
+        this.professor = professor;
+    }
+
+    public static AulaDto fromEntity(Aula entity){
             return new AulaDto(
                     entity.getId(),
-                    entity.getDia()
+                    entity.getMateria(),
+                    entity.getDia(),
+                    entity.getProfessor()
             );
         }
 
