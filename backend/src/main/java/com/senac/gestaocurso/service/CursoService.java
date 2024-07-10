@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.CursoDto;
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.models.domain.Curso;
 import com.senac.gestaocurso.repository.CursoRepository;
 import org.modelmapper.ModelMapper;
@@ -38,14 +38,14 @@ public class CursoService {
         Page<Curso> cursoPage = cursoRepository.findAll(filter, Curso.class ,pageable);
 
         if (cursoPage.isEmpty()){
-            throw new NotFoundException("Nenhum curso encontrado");
+            throw new OkNoContent("Nenhum curso encontrado");
         }
 
         return cursoPage.map(CursoDto::fromEntity);
     }
 
     public Curso buscaPorId(Long id) {
-        return cursoRepository.findById(id).orElseThrow(() -> new NotFoundException("Curso não encontrado"));
+        return cursoRepository.findById(id).orElseThrow(() -> new OkNoContent("Curso não encontrado"));
     }
 
     public Curso alterar(Long id, Curso alterado) {
@@ -56,7 +56,7 @@ public class CursoService {
             modelMapper.map(alterado, curso);
             return cursoRepository.save(curso);
         }
-        throw new NotFoundException("Curso não encontrado");
+        throw new OkNoContent("Curso não encontrado");
     }
 
     public void remover(Long id) {

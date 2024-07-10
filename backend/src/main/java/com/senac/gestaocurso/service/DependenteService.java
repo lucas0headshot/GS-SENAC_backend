@@ -1,7 +1,7 @@
 package com.senac.gestaocurso.service;
 
 import com.senac.gestaocurso.dto.DependenteDto;
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.models.Dependente;
 import com.senac.gestaocurso.repository.DependenteRepository;
 import org.modelmapper.ModelMapper;
@@ -27,14 +27,14 @@ public class DependenteService {
         Page<Dependente> dependentePage = dependenteRepository.findAll(filter, Dependente.class, pageable);
 
         if (dependentePage.isEmpty()){
-            throw new NotFoundException("Nenhum Dependente encontrado");
+            throw new OkNoContent("Nenhum Dependente encontrado");
         }
 
         return dependentePage.map(DependenteDto::fromEntity);
     }
 
     public Dependente buscaPorId(Long id) {
-        return dependenteRepository.findById(id).orElseThrow(() -> new NotFoundException("Dependente não encontrado"));
+        return dependenteRepository.findById(id).orElseThrow(() -> new OkNoContent("Dependente não encontrado"));
     }
 
     public Dependente alterar(Long id, Dependente alterado) {
@@ -46,7 +46,7 @@ public class DependenteService {
             return dependenteRepository.save(dependente);
         }
 
-        throw new NotFoundException("Dependente não encontrado");
+        throw new OkNoContent("Dependente não encontrado");
     }
 
     public void remover(Long id) {
