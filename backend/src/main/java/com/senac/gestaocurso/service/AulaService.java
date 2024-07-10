@@ -26,7 +26,7 @@ public class AulaService {
     private List<NovaValidacaoAulaStrategy> novaValidacaoAulaStrategy;
 
     public Aula salvar(Aula entity){
-        novaValidacaoAulaStrategy.validar(entity);
+        novaValidacaoAulaStrategy.forEach(validate -> validate.validar(entity));
         Aula aula = Aula.Builder.builder()
                 .dia(entity.getDia())
                 .materia(entity.getMateria())
