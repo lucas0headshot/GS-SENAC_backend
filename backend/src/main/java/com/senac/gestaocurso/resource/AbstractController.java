@@ -1,6 +1,6 @@
 package com.senac.gestaocurso.resource;
 
-import com.senac.gestaocurso.enterprise.exception.NotFoundException;
+import com.senac.gestaocurso.enterprise.exception.OkNoContent;
 import com.senac.gestaocurso.enterprise.exception.ValidationException;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.FieldError;
@@ -36,10 +36,10 @@ public abstract class AbstractController {
         return errors;
     }
 
-    @ResponseStatus(HttpStatus.NOT_FOUND)
-    @ExceptionHandler(NotFoundException.class)
+    @ResponseStatus(HttpStatus.OK)
+    @ExceptionHandler(OkNoContent.class)
     public Map<String, String> handleValidationExceptions404(
-            NotFoundException ex) {
+            OkNoContent ex) {
         Map<String, String> errors = new HashMap<>();
         errors.put("erro", ex.getMessage());
         return errors;
