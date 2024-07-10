@@ -20,7 +20,7 @@ public class Aula extends EntityID {
     @JoinColumn(name = "professor_id")
     private Funcionario professor;
 
-    @OneToMany(mappedBy = "aula", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "aula")
     private List<Frequencia> frequencias = new ArrayList<>();
 
     public Aula() {
@@ -33,7 +33,6 @@ public class Aula extends EntityID {
         this.professor = builder.professor;
         this.frequencias = builder.frequencias;
     }
-
 
     public Materia getMateria() {
         return materia;
@@ -72,6 +71,8 @@ public class Aula extends EntityID {
         return "Aula{" +
                 "materia=" + materia +
                 ", dia=" + dia +
+                ", professor=" + professor +
+                ", frequencias=" + frequencias +
                 '}';
     }
 
