@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.net.URI;
 
 @RestController
-@RequestMapping("api/frequencia")
+@RequestMapping("api/frequencias")
 public class FrequenciaController extends AbstractController{
     @Autowired
     private FrequenciaService frequenciaService;
