@@ -1,9 +1,5 @@
 package com.senac.gestaocurso.models.domain;
 
-
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.senac.gestaocurso.enums.Status;
 import com.senac.gestaocurso.enums.StatusInscricao;
 import com.senac.gestaocurso.models.EntityID;
 import com.senac.gestaocurso.models.Funcionario;
@@ -30,6 +26,7 @@ public class Inscricao extends EntityID {
     private Curso curso;
 
     public Inscricao() {
+        this.status = StatusInscricao.ANALISE;
     }
 
     public Inscricao(Builder builder) {
