@@ -106,9 +106,9 @@ public class Inscricao extends EntityID {
             return new Builder();
         }
 
-        public Funcionario funcionario(Funcionario inscrito) {
+        public Builder inscrito(Funcionario inscrito) {
             this.inscrito = inscrito;
-            return this.inscrito;
+            return this;
         }
 
         public Builder data(LocalDate data) {

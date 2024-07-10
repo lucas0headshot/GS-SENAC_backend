@@ -31,6 +31,8 @@ public class InscricaoService {
                 .data(entity.getData())
                 .status(entity.getStatus())
                 .valor(entity.getValor())
+                .curso(entity.getCurso())
+                .inscrito(entity.getInscrito())
                 .build();
         return inscricaoRepository.save(inscricao);
     }
