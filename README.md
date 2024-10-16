@@ -10,10 +10,6 @@
   <img alt="GitHub License" src="https://img.shields.io/github/license/lucas0headshot/GS-SENAC">
 </p>
 
-<h4 align="center">
-	🚧  Gestão de Cursos 🎓 Em andamento 🚀 🚧
-</h4>
-
 <p align="center">
  <a href="#-sobre-o-projeto">Sobre</a> •
  <a href="#-funcionalidades">Funcionalidades</a> •
@@ -21,7 +17,6 @@
  <a href="#-autores">Autores</a> •
  <a href="#user-content--licença">Licença</a>
 </p>
-
 
 ## 💻 Sobre o projeto
 
@@ -32,11 +27,11 @@ Este é o Back-End, veja o Front-End [clicando aqui](https://github.com/lucas0he
 
 ## ⚙️ Funcionalidades
 
-- [x] Gerenciamento de Cursos: Permite a criação, edição e exclusão de cursos oferecidos.
-- [x] Gerenciamento de Matérias: Possibilita a definição e gerenciamento das disciplinas que compõem os cursos.
-- [x] Gerenciamento de Aulas: Permite agendar, modificar e monitorar as aulas ministradas.
-- [x] Gerenciamento de Inscrições: Oferece funcionalidades para inscrição de funcionários nos cursos disponíveis.
-- [x] Gerenciamento de Frequências: Registra e acompanha a presença dos alunos nas aulas.
+- [x] Gerenciamento de Cursos: permite a criação, edição e exclusão de cursos oferecidos.
+- [x] Gerenciamento de Matérias: possibilita a definição e gerenciamento das disciplinas que compõem os cursos.
+- [x] Gerenciamento de Aulas: permite agendar, modificar e monitorar as aulas ministradas.
+- [x] Gerenciamento de Inscrições: oferece funcionalidades para inscrição de funcionários nos cursos disponíveis.
+- [x] Gerenciamento de Frequências: registra e acompanha a presença dos alunos nas aulas.
 
 ---
 
@@ -46,8 +41,8 @@ Este é o Back-End, veja o Front-End [clicando aqui](https://github.com/lucas0he
 - [![SpringBoot](https://img.shields.io/badge/Spring_Boot-6DB33F?style=for-the-badge&logo=spring&logoColor=white)](https://spring.io/projects/spring-boot)
 
 **BD**
+
 - [![PostgreSQL](https://img.shields.io/badge/PostgreSQL-316192?style=for-the-badge&logo=postgresql&logoColor=white)](https://www.postgresql.org/)
-- [![MongoDB](https://img.shields.io/badge/MongoDB-47A248?style=for-the-badge&logo=mongodb&logoColor=white)](https://www.mongodb.com/)
 
 ---
 
